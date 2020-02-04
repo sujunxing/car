@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.mapper.MaintainxfMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.Maintainxf" >
+    <id column="mafid" property="mafid" jdbcType="VARCHAR" />
+    <result column="orrid" property="orrid" jdbcType="VARCHAR" />
+    <result column="cayid" property="cayid" jdbcType="VARCHAR" />
+    <result column="mafptype" property="mafptype" jdbcType="VARCHAR" />
+    <result column="mafavoid" property="mafavoid" jdbcType="VARCHAR" />
+    <result column="sid" property="sid" jdbcType="VARCHAR" />
+    <result column="mafbefore" property="mafbefore" jdbcType="INTEGER" />
+    <result column="maflater" property="maflater" jdbcType="INTEGER" />
+    <result column="mafdescribe" property="mafdescribe" jdbcType="VARCHAR" />
+    <result column="mafcause" property="mafcause" jdbcType="VARCHAR" />
+    <result column="temid" property="temid" jdbcType="VARCHAR" />
+    <result column="mafwork" property="mafwork" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    mafid, orrid, cayid, mafptype, mafavoid, sid, mafbefore, maflater, mafdescribe, mafcause, 
+    temid, mafwork
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.MaintainxfExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from maintainxf
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from maintainxf
+    where mafid = #{mafid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from maintainxf
+    where mafid = #{mafid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.accp.domain.MaintainxfExample" >
+    delete from maintainxf
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.accp.domain.Maintainxf" >
+    insert into maintainxf (mafid, orrid, cayid, 
+      mafptype, mafavoid, sid, 
+      mafbefore, maflater, mafdescribe, 
+      mafcause, temid, mafwork
+      )
+    values (#{mafid,jdbcType=VARCHAR}, #{orrid,jdbcType=VARCHAR}, #{cayid,jdbcType=VARCHAR}, 
+      #{mafptype,jdbcType=VARCHAR}, #{mafavoid,jdbcType=VARCHAR}, #{sid,jdbcType=VARCHAR}, 
+      #{mafbefore,jdbcType=INTEGER}, #{maflater,jdbcType=INTEGER}, #{mafdescribe,jdbcType=VARCHAR}, 
+      #{mafcause,jdbcType=VARCHAR}, #{temid,jdbcType=VARCHAR}, #{mafwork,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.domain.Maintainxf" >
+    insert into maintainxf
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mafid != null" >
+        mafid,
+      </if>
+      <if test="orrid != null" >
+        orrid,
+      </if>
+      <if test="cayid != null" >
+        cayid,
+      </if>
+      <if test="mafptype != null" >
+        mafptype,
+      </if>
+      <if test="mafavoid != null" >
+        mafavoid,
+      </if>
+      <if test="sid != null" >
+        sid,
+      </if>
+      <if test="mafbefore != null" >
+        mafbefore,
+      </if>
+      <if test="maflater != null" >
+        maflater,
+      </if>
+      <if test="mafdescribe != null" >
+        mafdescribe,
+      </if>
+      <if test="mafcause != null" >
+        mafcause,
+      </if>
+      <if test="temid != null" >
+        temid,
+      </if>
+      <if test="mafwork != null" >
+        mafwork,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mafid != null" >
+        #{mafid,jdbcType=VARCHAR},
+      </if>
+      <if test="orrid != null" >
+        #{orrid,jdbcType=VARCHAR},
+      </if>
+      <if test="cayid != null" >
+        #{cayid,jdbcType=VARCHAR},
+      </if>
+      <if test="mafptype != null" >
+        #{mafptype,jdbcType=VARCHAR},
+      </if>
+      <if test="mafavoid != null" >
+        #{mafavoid,jdbcType=VARCHAR},
+      </if>
+      <if test="sid != null" >
+        #{sid,jdbcType=VARCHAR},
+      </if>
+      <if test="mafbefore != null" >
+        #{mafbefore,jdbcType=INTEGER},
+      </if>
+      <if test="maflater != null" >
+        #{maflater,jdbcType=INTEGER},
+      </if>
+      <if test="mafdescribe != null" >
+        #{mafdescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="mafcause != null" >
+        #{mafcause,jdbcType=VARCHAR},
+      </if>
+      <if test="temid != null" >
+        #{temid,jdbcType=VARCHAR},
+      </if>
+      <if test="mafwork != null" >
+        #{mafwork,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.accp.domain.MaintainxfExample" resultType="java.lang.Integer" >
+    select count(*) from maintainxf
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update maintainxf
+    <set >
+      <if test="record.mafid != null" >
+        mafid = #{record.mafid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orrid != null" >
+        orrid = #{record.orrid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cayid != null" >
+        cayid = #{record.cayid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mafptype != null" >
+        mafptype = #{record.mafptype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mafavoid != null" >
+        mafavoid = #{record.mafavoid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sid != null" >
+        sid = #{record.sid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mafbefore != null" >
+        mafbefore = #{record.mafbefore,jdbcType=INTEGER},
+      </if>
+      <if test="record.maflater != null" >
+        maflater = #{record.maflater,jdbcType=INTEGER},
+      </if>
+      <if test="record.mafdescribe != null" >
+        mafdescribe = #{record.mafdescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mafcause != null" >
+        mafcause = #{record.mafcause,jdbcType=VARCHAR},
+      </if>
+      <if test="record.temid != null" >
+        temid = #{record.temid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mafwork != null" >
+        mafwork = #{record.mafwork,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update maintainxf
+    set mafid = #{record.mafid,jdbcType=VARCHAR},
+      orrid = #{record.orrid,jdbcType=VARCHAR},
+      cayid = #{record.cayid,jdbcType=VARCHAR},
+      mafptype = #{record.mafptype,jdbcType=VARCHAR},
+      mafavoid = #{record.mafavoid,jdbcType=VARCHAR},
+      sid = #{record.sid,jdbcType=VARCHAR},
+      mafbefore = #{record.mafbefore,jdbcType=INTEGER},
+      maflater = #{record.maflater,jdbcType=INTEGER},
+      mafdescribe = #{record.mafdescribe,jdbcType=VARCHAR},
+      mafcause = #{record.mafcause,jdbcType=VARCHAR},
+      temid = #{record.temid,jdbcType=VARCHAR},
+      mafwork = #{record.mafwork,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.Maintainxf" >
+    update maintainxf
+    <set >
+      <if test="orrid != null" >
+        orrid = #{orrid,jdbcType=VARCHAR},
+      </if>
+      <if test="cayid != null" >
+        cayid = #{cayid,jdbcType=VARCHAR},
+      </if>
+      <if test="mafptype != null" >
+        mafptype = #{mafptype,jdbcType=VARCHAR},
+      </if>
+      <if test="mafavoid != null" >
+        mafavoid = #{mafavoid,jdbcType=VARCHAR},
+      </if>
+      <if test="sid != null" >
+        sid = #{sid,jdbcType=VARCHAR},
+      </if>
+      <if test="mafbefore != null" >
+        mafbefore = #{mafbefore,jdbcType=INTEGER},
+      </if>
+      <if test="maflater != null" >
+        maflater = #{maflater,jdbcType=INTEGER},
+      </if>
+      <if test="mafdescribe != null" >
+        mafdescribe = #{mafdescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="mafcause != null" >
+        mafcause = #{mafcause,jdbcType=VARCHAR},
+      </if>
+      <if test="temid != null" >
+        temid = #{temid,jdbcType=VARCHAR},
+      </if>
+      <if test="mafwork != null" >
+        mafwork = #{mafwork,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where mafid = #{mafid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.domain.Maintainxf" >
+    update maintainxf
+    set orrid = #{orrid,jdbcType=VARCHAR},
+      cayid = #{cayid,jdbcType=VARCHAR},
+      mafptype = #{mafptype,jdbcType=VARCHAR},
+      mafavoid = #{mafavoid,jdbcType=VARCHAR},
+      sid = #{sid,jdbcType=VARCHAR},
+      mafbefore = #{mafbefore,jdbcType=INTEGER},
+      maflater = #{maflater,jdbcType=INTEGER},
+      mafdescribe = #{mafdescribe,jdbcType=VARCHAR},
+      mafcause = #{mafcause,jdbcType=VARCHAR},
+      temid = #{temid,jdbcType=VARCHAR},
+      mafwork = #{mafwork,jdbcType=VARCHAR}
+    where mafid = #{mafid,jdbcType=VARCHAR}
+  </update>
+</mapper>

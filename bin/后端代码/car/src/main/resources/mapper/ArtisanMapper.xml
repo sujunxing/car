@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.mapper.ArtisanMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.Artisan" >
+    <id column="arnid" property="arnid" jdbcType="VARCHAR" />
+    <result column="arnname" property="arnname" jdbcType="VARCHAR" />
+    <result column="arnsex" property="arnsex" jdbcType="VARCHAR" />
+    <result column="arnfalg" property="arnfalg" jdbcType="INTEGER" />
+    <result column="temid" property="temid" jdbcType="VARCHAR" />
+    <result column="arnphone" property="arnphone" jdbcType="VARCHAR" />
+    <result column="arnusername" property="arnusername" jdbcType="VARCHAR" />
+    <result column="arnaddress" property="arnaddress" jdbcType="VARCHAR" />
+    <result column="arndate" property="arndate" jdbcType="VARCHAR" />
+    <result column="arnwechat" property="arnwechat" jdbcType="VARCHAR" />
+    <result column="arncard" property="arncard" jdbcType="VARCHAR" />
+    <result column="arncardaddress" property="arncardaddress" jdbcType="VARCHAR" />
+    <result column="arnbank" property="arnbank" jdbcType="VARCHAR" />
+    <result column="arnbanknumber" property="arnbanknumber" jdbcType="VARCHAR" />
+    <result column="arngrade" property="arngrade" jdbcType="VARCHAR" />
+    <result column="arntype" property="arntype" jdbcType="VARCHAR" />
+    <result column="arnbrand" property="arnbrand" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    arnid, arnname, arnsex, arnfalg, temid, arnphone, arnusername, arnaddress, arndate, 
+    arnwechat, arncard, arncardaddress, arnbank, arnbanknumber, arngrade, arntype, arnbrand
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.ArtisanExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from artisan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from artisan
+    where arnid = #{arnid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from artisan
+    where arnid = #{arnid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.accp.domain.ArtisanExample" >
+    delete from artisan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.accp.domain.Artisan" >
+    insert into artisan (arnid, arnname, arnsex, 
+      arnfalg, temid, arnphone, 
+      arnusername, arnaddress, arndate, 
+      arnwechat, arncard, arncardaddress, 
+      arnbank, arnbanknumber, arngrade, 
+      arntype, arnbrand)
+    values (#{arnid,jdbcType=VARCHAR}, #{arnname,jdbcType=VARCHAR}, #{arnsex,jdbcType=VARCHAR}, 
+      #{arnfalg,jdbcType=INTEGER}, #{temid,jdbcType=VARCHAR}, #{arnphone,jdbcType=VARCHAR}, 
+      #{arnusername,jdbcType=VARCHAR}, #{arnaddress,jdbcType=VARCHAR}, #{arndate,jdbcType=VARCHAR}, 
+      #{arnwechat,jdbcType=VARCHAR}, #{arncard,jdbcType=VARCHAR}, #{arncardaddress,jdbcType=VARCHAR}, 
+      #{arnbank,jdbcType=VARCHAR}, #{arnbanknumber,jdbcType=VARCHAR}, #{arngrade,jdbcType=VARCHAR}, 
+      #{arntype,jdbcType=VARCHAR}, #{arnbrand,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.domain.Artisan" >
+    insert into artisan
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="arnid != null" >
+        arnid,
+      </if>
+      <if test="arnname != null" >
+        arnname,
+      </if>
+      <if test="arnsex != null" >
+        arnsex,
+      </if>
+      <if test="arnfalg != null" >
+        arnfalg,
+      </if>
+      <if test="temid != null" >
+        temid,
+      </if>
+      <if test="arnphone != null" >
+        arnphone,
+      </if>
+      <if test="arnusername != null" >
+        arnusername,
+      </if>
+      <if test="arnaddress != null" >
+        arnaddress,
+      </if>
+      <if test="arndate != null" >
+        arndate,
+      </if>
+      <if test="arnwechat != null" >
+        arnwechat,
+      </if>
+      <if test="arncard != null" >
+        arncard,
+      </if>
+      <if test="arncardaddress != null" >
+        arncardaddress,
+      </if>
+      <if test="arnbank != null" >
+        arnbank,
+      </if>
+      <if test="arnbanknumber != null" >
+        arnbanknumber,
+      </if>
+      <if test="arngrade != null" >
+        arngrade,
+      </if>
+      <if test="arntype != null" >
+        arntype,
+      </if>
+      <if test="arnbrand != null" >
+        arnbrand,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="arnid != null" >
+        #{arnid,jdbcType=VARCHAR},
+      </if>
+      <if test="arnname != null" >
+        #{arnname,jdbcType=VARCHAR},
+      </if>
+      <if test="arnsex != null" >
+        #{arnsex,jdbcType=VARCHAR},
+      </if>
+      <if test="arnfalg != null" >
+        #{arnfalg,jdbcType=INTEGER},
+      </if>
+      <if test="temid != null" >
+        #{temid,jdbcType=VARCHAR},
+      </if>
+      <if test="arnphone != null" >
+        #{arnphone,jdbcType=VARCHAR},
+      </if>
+      <if test="arnusername != null" >
+        #{arnusername,jdbcType=VARCHAR},
+      </if>
+      <if test="arnaddress != null" >
+        #{arnaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="arndate != null" >
+        #{arndate,jdbcType=VARCHAR},
+      </if>
+      <if test="arnwechat != null" >
+        #{arnwechat,jdbcType=VARCHAR},
+      </if>
+      <if test="arncard != null" >
+        #{arncard,jdbcType=VARCHAR},
+      </if>
+      <if test="arncardaddress != null" >
+        #{arncardaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="arnbank != null" >
+        #{arnbank,jdbcType=VARCHAR},
+      </if>
+      <if test="arnbanknumber != null" >
+        #{arnbanknumber,jdbcType=VARCHAR},
+      </if>
+      <if test="arngrade != null" >
+        #{arngrade,jdbcType=VARCHAR},
+      </if>
+      <if test="arntype != null" >
+        #{arntype,jdbcType=VARCHAR},
+      </if>
+      <if test="arnbrand != null" >
+        #{arnbrand,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.accp.domain.ArtisanExample" resultType="java.lang.Integer" >
+    select count(*) from artisan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update artisan
+    <set >
+      <if test="record.arnid != null" >
+        arnid = #{record.arnid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.arnname != null" >
+        arnname = #{record.arnname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.arnsex != null" >
+        arnsex = #{record.arnsex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.arnfalg != null" >
+        arnfalg = #{record.arnfalg,jdbcType=INTEGER},
+      </if>
+      <if test="record.temid != null" >
+        temid = #{record.temid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.arnphone != null" >
+        arnphone = #{record.arnphone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.arnusername != null" >
+        arnusername = #{record.arnusername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.arnaddress != null" >
+        arnaddress = #{record.arnaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.arndate != null" >
+        arndate = #{record.arndate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.arnwechat != null" >
+        arnwechat = #{record.arnwechat,jdbcType=VARCHAR},
+      </if>
+      <if test="record.arncard != null" >
+        arncard = #{record.arncard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.arncardaddress != null" >
+        arncardaddress = #{record.arncardaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.arnbank != null" >
+        arnbank = #{record.arnbank,jdbcType=VARCHAR},
+      </if>
+      <if test="record.arnbanknumber != null" >
+        arnbanknumber = #{record.arnbanknumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.arngrade != null" >
+        arngrade = #{record.arngrade,jdbcType=VARCHAR},
+      </if>
+      <if test="record.arntype != null" >
+        arntype = #{record.arntype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.arnbrand != null" >
+        arnbrand = #{record.arnbrand,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update artisan
+    set arnid = #{record.arnid,jdbcType=VARCHAR},
+      arnname = #{record.arnname,jdbcType=VARCHAR},
+      arnsex = #{record.arnsex,jdbcType=VARCHAR},
+      arnfalg = #{record.arnfalg,jdbcType=INTEGER},
+      temid = #{record.temid,jdbcType=VARCHAR},
+      arnphone = #{record.arnphone,jdbcType=VARCHAR},
+      arnusername = #{record.arnusername,jdbcType=VARCHAR},
+      arnaddress = #{record.arnaddress,jdbcType=VARCHAR},
+      arndate = #{record.arndate,jdbcType=VARCHAR},
+      arnwechat = #{record.arnwechat,jdbcType=VARCHAR},
+      arncard = #{record.arncard,jdbcType=VARCHAR},
+      arncardaddress = #{record.arncardaddress,jdbcType=VARCHAR},
+      arnbank = #{record.arnbank,jdbcType=VARCHAR},
+      arnbanknumber = #{record.arnbanknumber,jdbcType=VARCHAR},
+      arngrade = #{record.arngrade,jdbcType=VARCHAR},
+      arntype = #{record.arntype,jdbcType=VARCHAR},
+      arnbrand = #{record.arnbrand,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.Artisan" >
+    update artisan
+    <set >
+      <if test="arnname != null" >
+        arnname = #{arnname,jdbcType=VARCHAR},
+      </if>
+      <if test="arnsex != null" >
+        arnsex = #{arnsex,jdbcType=VARCHAR},
+      </if>
+      <if test="arnfalg != null" >
+        arnfalg = #{arnfalg,jdbcType=INTEGER},
+      </if>
+      <if test="temid != null" >
+        temid = #{temid,jdbcType=VARCHAR},
+      </if>
+      <if test="arnphone != null" >
+        arnphone = #{arnphone,jdbcType=VARCHAR},
+      </if>
+      <if test="arnusername != null" >
+        arnusername = #{arnusername,jdbcType=VARCHAR},
+      </if>
+      <if test="arnaddress != null" >
+        arnaddress = #{arnaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="arndate != null" >
+        arndate = #{arndate,jdbcType=VARCHAR},
+      </if>
+      <if test="arnwechat != null" >
+        arnwechat = #{arnwechat,jdbcType=VARCHAR},
+      </if>
+      <if test="arncard != null" >
+        arncard = #{arncard,jdbcType=VARCHAR},
+      </if>
+      <if test="arncardaddress != null" >
+        arncardaddress = #{arncardaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="arnbank != null" >
+        arnbank = #{arnbank,jdbcType=VARCHAR},
+      </if>
+      <if test="arnbanknumber != null" >
+        arnbanknumber = #{arnbanknumber,jdbcType=VARCHAR},
+      </if>
+      <if test="arngrade != null" >
+        arngrade = #{arngrade,jdbcType=VARCHAR},
+      </if>
+      <if test="arntype != null" >
+        arntype = #{arntype,jdbcType=VARCHAR},
+      </if>
+      <if test="arnbrand != null" >
+        arnbrand = #{arnbrand,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where arnid = #{arnid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.domain.Artisan" >
+    update artisan
+    set arnname = #{arnname,jdbcType=VARCHAR},
+      arnsex = #{arnsex,jdbcType=VARCHAR},
+      arnfalg = #{arnfalg,jdbcType=INTEGER},
+      temid = #{temid,jdbcType=VARCHAR},
+      arnphone = #{arnphone,jdbcType=VARCHAR},
+      arnusername = #{arnusername,jdbcType=VARCHAR},
+      arnaddress = #{arnaddress,jdbcType=VARCHAR},
+      arndate = #{arndate,jdbcType=VARCHAR},
+      arnwechat = #{arnwechat,jdbcType=VARCHAR},
+      arncard = #{arncard,jdbcType=VARCHAR},
+      arncardaddress = #{arncardaddress,jdbcType=VARCHAR},
+      arnbank = #{arnbank,jdbcType=VARCHAR},
+      arnbanknumber = #{arnbanknumber,jdbcType=VARCHAR},
+      arngrade = #{arngrade,jdbcType=VARCHAR},
+      arntype = #{arntype,jdbcType=VARCHAR},
+      arnbrand = #{arnbrand,jdbcType=VARCHAR}
+    where arnid = #{arnid,jdbcType=VARCHAR}
+  </update>
+</mapper>

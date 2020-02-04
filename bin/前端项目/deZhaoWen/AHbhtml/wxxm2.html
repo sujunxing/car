@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>维修项目(副)</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+		<style type="text/css">
+			* {
+				margin: 0px;
+				padding: 0px;
+			}
+			a {
+				text-decoration: none;
+				color: #334354;
+			}
+
+			a:hover {
+				text-decoration: none;
+			}
+
+			#content {
+				background-color: #F7F7F7;
+			}
+
+			#header {
+				background-color: #F7FFFF;
+				height: 37px;
+			}
+
+			.orans a:hover {
+				color: orange;
+			}
+
+			ul li {
+				list-style: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="ctx" class="container">
+			<!--头部1-->
+			<div class="row" id="header">
+				<div class="col-sm-2" style="padding-top: 4px;"><strong style="font-size: 17px;">接车登记</strong></div>
+				<div class="col-sm-offset-3 col-sm-4">
+					<input type="text" class="form-control" placeholder="匹配车牌号/车架号/手机/客户" />
+				</div>
+				<div class="col-sm-3">
+					<button class="btn btn-success">选择</button>
+					<button class="btn btn-warning">搜索</button>
+					<button class="btn btn-group">关闭</button>
+				</div>
+			</div>
+			<!--主要跳转-->
+			<div class="row" id="content">
+				<div class="row">
+					<div class="col-md-1 col-md-offset-11 orans" style="font-size: 17px;">
+						<a class="glyphicon glyphicon-info-sign"><strong>导出</strong></a>
+					</div>
+				</div>
+			</div>
+			<!--主要内容-->
+			<div class="row">
+				<div class="col-sm-3">
+					<ul>
+						<li>车型</li>
+						<li>发动机</li>
+						<li>钣喷</li>
+						<li>保养</li>
+						<li>小修</li>
+					</ul>
+				</div>
+				<div class="col-sm-9">
+					<div id="" style="width: 862px;height: 1000;overflow: auto;">
+						<tables :jdheader="jdheader" :jdcontent="jdcontent" style="width: 2000px;"></tables>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--模态框1-->
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="exampleModalLabel"><strong>维修项目</strong></h4>
+					</div>
+					<div class="modal-body" style="border: 0px solid red;height: 450px;">
+						<form>
+							<div class="form-group col-sm-5" style="width: 270px;">
+								<label for="exampleInputEmail2">项目编码</label>
+								<input type="email" class="form-control">
+							</div>
+							<div class="form-group col-sm-5" style="width: 270px;">
+								<label for="exampleInputEmail2">项目名称</label>
+								<input type="email" class="form-control">
+							</div>
+							<div class="form-group col-sm-5" style="width: 270px;">
+								<label for="exampleInputEmail2">收入种类</label>
+								<input type="email" class="form-control">
+							</div>
+							<div class="form-group col-sm-5" style="width: 270px;">
+								<label for="exampleInputEmail2">项目类别</label>
+								<input type="email" class="form-control">
+							</div>
+							<div class="form-group col-sm-2" style="width: 270px;">
+								<label for="exampleInputEmail2">标准价</label>
+								<input type="email" class="form-control">
+							</div>
+							<div class="form-group col-sm-2" style="width: 270px;">
+								<label for="exampleInputEmail2">会员价</label>
+								<input type="email" class="form-control">
+							</div>
+							<div class="form-group col-sm-2" style="width: 270px;">
+								<label for="exampleInputEmail2">VIP价</label>
+								<input type="email" class="form-control">
+							</div>
+							<div class="form-group col-sm-2" style="width: 270px;">
+								<label for="exampleInputEmail2">协议价</label>
+								<input type="email" class="form-control">
+							</div>
+							<div class="form-group col-sm-2" style="width: 270px;">
+								<label for="exampleInputEmail2">索赔价</label>
+								<input type="email" class="form-control">
+							</div>
+							<div class="form-group col-sm-2" style="width: 270px;">
+								<label for="exampleInputEmail2">保险价</label>
+								<input type="email" class="form-control">
+							</div>
+							<div class="form-group">
+							  <label for="recipient-name" class="control-label">&nbsp;&nbsp;&nbsp;&nbsp;备注</label>
+							  <input type="text" class="form-control" id="recipient-name">
+							</div>
+						</form>
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						<button type="button" class="btn btn-primary">保存</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="js/jquery-1.12.4.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			Vue.component("tables", {
+				template: `
+					<table class="table table-hover table-bordered text-center">
+						<tr>
+							<td style="border:1px solid #DDDDDD;background-color:#39CEDE;height: 37px;">操作</td>
+							<td v-for="item in jdheader" style="border:1px solid #DDDDDD;background-color:#39CEDE;height: 37px;">{{item}}</td>
+						</tr>
+						<tbody>
+							<tr v-for="(data,index) in jdcontent">
+								<td><input type="checkbox"></td>
+								<td>{{data.zt}}</td>
+								<td>{{data.lx}}</td>
+								<td>{{data.lx}}</td>
+								<td>{{data.kh}}</td>
+								<td>{{data.sj}}</td>
+								<td>{{data.kh}}</td>
+								<td>{{data.wx}}</td>
+								<td>{{data.dj}}</td>
+								<td>{{data.kd}}</td>
+								<td>{{data.yj}}</td>
+								<td id="count_(index)">{{data.js}}</td>
+							</tr>
+						</tbody>
+					</table>
+				`,
+				props: ["jdheader", "jdcontent"],
+				methods: {
+
+				}
+			});
+			var vm = new Vue({
+				el: "#ctx",
+				data() {
+					return {
+						jdheader: ["单据状态", "业务类型", "客户名称", "车牌号", "手机", "会员卡号", "维修单号", "单据类型", "开单时间", "预计完工", "结算时间", "啦啦啦啦", "啦啦啦啦",
+							"啦啦啦啦", "啦啦啦啦", "啦啦啦啦", "啦啦啦啦", "啦啦啦啦", "啦啦啦啦", "啦啦啦啦"
+						],
+						jdcontent: [{
+							zt: "接车1",
+							lx: "中国重汽1",
+							kh: "张三1",
+							cp: "黑123451",
+							sj: "132985461311",
+							hy: "544121",
+							wx: "1234567891234567891",
+							dj: "救援1",
+							kd: "2019-12-31 10:441",
+							yj: "",
+							wg: "2020-1-2 8:00",
+							js: ""
+						}, {
+							zt: "接车2",
+							lx: "中国重汽2",
+							kh: "张三2",
+							cp: "黑123452",
+							sj: "132985461312",
+							hy: "544122",
+							wx: "1234567891234567892",
+							dj: "救援2",
+							kd: "2019-12-31 10:44",
+							yj: "",
+							wg: "2020-1-2 8:00",
+							js: ""
+						}, {
+							zt: "接车3",
+							lx: "中国重汽3",
+							kh: "张三3",
+							cp: "黑123453",
+							sj: "132985461313",
+							hy: "544123",
+							wx: "1234567891234567893",
+							dj: "救援3",
+							kd: "2019-12-31 10:44",
+							yj: "",
+							wg: "2020-1-2 8:00",
+							js: ""
+						}]
+					}
+				},
+				methods: {
+
+				}
+
+			});
+		</script>
+	</body>
+</html>

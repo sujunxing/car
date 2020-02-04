@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>维修单</title>
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
+		<style type="text/css">
+			* {
+				margin: 0px;
+				padding: 0px;
+			}
+
+			a {
+				text-decoration: none;
+				color: #334354;
+			}
+
+			a:hover {
+				text-decoration: none;
+			}
+
+			#content {
+				background-color: #F7F7F7;
+			}
+
+			#header {
+				background-color: #F7FFFF;
+				height: 37px;
+			}
+
+			.orans a:hover {
+				color: orange;
+			}
+
+			.trs {
+				color: #40CEE3;
+				font-size: 16px;
+			}
+
+			#formdiv div {
+				padding-top: 10px;
+				padding-left: 5px;
+			}
+
+			ul li {
+				list-style: none;
+				display: inline-block;
+				padding-left: 10px;
+				padding-top: 18px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="ctx" class="container">
+			<!--头部1-->
+			<div class="row" id="header">
+				<div class="col-sm-2" style="padding-top: 4px;"><strong style="font-size: 17px;">维修单</strong></div>
+				<div class="col-sm-2 col-sm-offset-8">
+					<button type="button" class="btn btn-warning" @click="addwxd()">保存</button>
+					<button class="btn btn-group">取消</button>
+				</div>
+			</div>
+			<!--主要跳转-->
+			<div class="row" id="content">
+				<div class="row">
+					<div class="col-sm-2 col-sm-offset-1">
+						<span>单号:00000RE191200022</span>
+					</div>
+					<div class="col-md-4 col-md-offset-5 orans" style="font-size: 17px;">
+						<a class="glyphicon glyphicon glyphicon-ok"><strong>接车完</strong></a>&nbsp;&nbsp;&nbsp;
+						<a class="glyphicon glyphicon glyphicon-inbox"><strong>委托书</strong></a>&nbsp;&nbsp;&nbsp;
+						<a class="glyphicon glyphicon glyphicon-picture"><strong>照片</strong></a>&nbsp;&nbsp;&nbsp;
+						<a class="glyphicon glyphicon glyphicon glyphicon-edit"><strong>附单</strong></a>
+					</div>
+				</div>
+			</div>
+			<!--主要内容-->
+			<div class="row" id="neirong" style="border-top: 2px solid #40CEE3;"><br>
+				<div class="col-md-10" style="font-size: 15px;">
+					<form class="form-inline" id="formdiv">
+						<div class="form-group" style="width: 270px;">
+							<label for="exampleInputEmail2">车牌号码</label>
+							<input type="email" class="form-control" id="exampleInputEmail2" placeholder="">
+						</div>
+						<div class="form-group" style="width: 270px;">
+							<label for="exampleInputEmail2">车架号</label>
+							<input type="email" class="form-control">
+						</div>
+						<div class="form-group" style="width: 270px;">
+							<label for="exampleInputEmail2">车辆型号</label>
+							<input type="email" class="form-control">
+						</div>
+						<div class="form-group" style="width: 270px;">
+							<label for="exampleInputEmail2">车辆品牌</label>
+							<input type="email" class="form-control">
+						</div>
+						<div class="form-group" style="width: 270px;">
+							<label for="exampleInputEmail2">发动机号</label>
+							<input type="email" class="form-control">
+						</div><br>
+						<div class="form-group" style="width: 300px;">
+							<label for="exampleInputEmail2">发动机品牌</label>
+							<input type="email" id="exampleInputName2" class="form-control">
+						</div>
+						<div class="form-group dropdown" id="dropdown">
+							<label for="exampleInputEmail2">服务顾问</label>
+							<select name="" class="form-control">
+								<option v-for="(data,index) in stafflist">{{data.sname}}</option>
+							</select>
+						</div>
+						<div class="form-group" style="width: 270px;">
+							<label for="exampleInputEmail2">车主姓名</label>
+							<input type="email" class="form-control">
+						</div>
+						<div class="form-group" style="width: 270px;">
+							<label for="exampleInputEmail2">驾驶员</label>
+							<input type="email" class="form-control">
+						</div>
+						<div class="form-group" style="width: 270px;">
+							<label for="exampleInputEmail2">联系电话</label>
+							<input type="email" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="exampleInputEmail2">进场里程</label>
+							<select name="" class="form-control">
+								<option>1/4</option>
+								<option>2/4</option>
+								<option>3/4</option>
+								<option>4/4</option>
+							</select>
+						</div>
+						<div class="form-group" style="width: 270px;">
+							<label for="exampleInputEmail2">进场油量</label>
+							<input type="email" class="form-control">
+						</div>
+						<div class="form-group" style="width: 270px;">
+							<label for="exampleInputEmail2">上次里程</label>
+							<input type="email" class="form-control">
+						</div>
+						<div class="form-group" style="width: 270px;">
+							<label for="exampleInputEmail2">进厂时间</label>
+							<input type="email" class="form-control">
+						</div>
+						<div class="form-group" style="width: 270px;">
+							<label for="exampleInputEmail2">业务类别</label>
+							<select name="" class="form-control">
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="exampleInputEmail2">施工班次</label>
+							<select name="" class="form-control">
+								<option>白天</option>
+								<option>夜晚</option>
+							</select>
+						</div>
+						<div class="form-group" style="width: 270px;">
+							<label for="exampleInputEmail2">接车人</label>
+							<input type="email" class="form-control">
+						</div>
+						<div class="form-group" style="width: 270px;">
+							<label for="exampleInputEmail2">预计完工</label>
+							<input type="email" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="exampleInputEmail2">结算方式</label>
+							<select name="" class="form-control">
+								<option>现结</option>
+								<option>2</option>
+								<option>3</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="exampleInputEmail2">赔款公司</label>
+							<select name="" class="form-control">
+								<option>阳光保险公司</option>
+								<option>夜晚</option>
+							</select>
+						</div>
+						<div class="form-group" style="width: 270px;">
+							<label for="exampleInputEmail2">完工时间</label>
+							<input type="email" class="form-control">
+						</div>
+						<div class="form-group" style="width: 270px;">
+							<label for="exampleInputEmail2">上次进场</label>
+							<input type="email" class="form-control">
+						</div>
+						<div class="form-group" style="width: 270px;">
+							<label for="exampleInputEmail2">预估金额</label>
+							<input type="email" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="exampleInputEmail2">接待备注</label>
+							<input type="email" class="form-control" style="width:700px;">
+						</div><br>
+						<div class="form-group">
+							<label for="exampleInputEmail2">保修陈述</label>
+							<textarea class="form-control" rows="3" style="width: 750px;"></textarea>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="row">
+				<ul class="nav nav-tabs">
+					<li class="ulclick active" role="presentation"><a href="#">维修项目</a></li>
+					<li class="ulclick" role="presentation"><a href="#">领料情况</a></li>
+					<li class="ulclick" role="presentation"><a href="#">附加项目</a></li>
+					<li class="ulclick" role="presentation"><a href="#">结算信息</a></li>
+				</ul>
+			</div>
+			<div class="row" style="background-color: #EFF7FF;font-size: 16px;">
+				<ul>
+					<li><strong>维修项目</strong></li>
+					<li><a href="javascript:void(0)" data-toggle="modal" data-target="#exampleModal">单个增加</a></li>
+					<li><a href="javascript:void(0)">多个增加</a></li>
+					<li><a href="javascript:void(0)">修改</a></li>
+					<li><a href="javascript:void(0)">删除</a></li>
+					<li><a href="javascript:void(0)">维修班组</a></li>
+					<li><a href="javascript:void(0)">重置价格</a></li>
+				</ul>
+			</div>
+			<div class="row">
+				<tables :jdheader="jdheader" :jdcontent="jdcontent"></tables>
+			</div>
+		</div>
+		<!--模态框1-->
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="exampleModalLabel"><strong>维修项目</strong></h4>
+					</div>
+					<div class="modal-body" style="border: 0px solid red;height: 550px;">
+						<form>
+							<div class="form-group">
+								<label for="recipient-name" class="control-label">维修项目<input class="caret" type="text"></label>
+								<input type="text" class="form-control" id="recipient-name">
+							</div>
+							<div class="form-group col-sm-5" style="width: 270px;">
+								<label for="exampleInputEmail2">价类</label>
+								<input type="email" class="form-control">
+							</div>
+							<div class="form-group col-sm-5" style="width: 270px;">
+								<label for="exampleInputEmail2">免单原因</label>
+								<input type="email" class="form-control">
+							</div>
+							<div class="form-group col-sm-5" style="width: 270px;">
+								<label for="exampleInputEmail2">服务顾问</label>
+								<input type="email" class="form-control">
+							</div>
+							<div class="form-group col-sm-5" style="width: 270px;">
+								<label for="exampleInputEmail2">数量</label>
+								<input type="email" class="form-control">
+							</div>
+							<div class="form-group col-sm-5" style="width: 270px;">
+								<label for="exampleInputEmail2">优惠前单价</label>
+								<input type="email" class="form-control">
+							</div>
+							<div class="form-group col-sm-5" style="width: 270px;">
+								<label for="exampleInputEmail2">优惠后单价</label>
+								<input type="email" class="form-control">
+							</div>
+							<div class="form-group">
+								<label for="recipient-name" class="control-label">故障描述</label>
+								<input type="text" class="form-control" id="recipient-name">
+							</div>
+							<div class="form-group">
+								<label for="recipient-name" class="control-label">故障原因</label>
+								<input type="text" class="form-control" id="recipient-name">
+							</div>
+							<div class="form-group col-sm-5" style="width: 270px;">
+								<label for="exampleInputEmail2">维修班组</label>
+								<input type="email" class="form-control">
+							</div>
+							<div class="form-group col-sm-5" style="width: 270px;">
+								<label for="exampleInputEmail2">工单号</label>
+								<input type="email" class="form-control">
+							</div>
+						</form>
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						<button type="button" class="btn btn-primary">保存</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="../js/jquery-1.12.4.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			Vue.component("tables", {
+				template: `
+					<table class="table table-hover table-bordered text-center">
+						<tr>
+							<td v-for="item in jdheader" style="border:1px solid #DDDDDD;background-color:#39CEDE;height: 37px;">{{item}}</td>
+							<td style="border:1px solid #DDDDDD;background-color:#39CEDE;height: 37px;">操作</td>
+						</tr>
+						<tbody>
+							<tr v-for="(data,index) in jdcontent">
+								<td>{{data.zt}}</td>
+								<td>{{data.lx}}</td>
+								<td>{{data.lx}}</td>
+								<td>{{data.kh}}</td>
+								<td>{{data.sj}}</td>
+								<td>{{data.kh}}</td>
+								<td>{{data.wx}}</td>
+								<td>{{data.dj}}</td>
+								<td>{{data.kd}}</td>
+								<td>{{data.yj}}</td>
+								<td id="count_(index)">{{data.js}}</td>
+								<td><a href="javascript:void(0)" style="color:green;">作废单据</a></td>
+							</tr>
+						</tbody>
+					</table>
+				`,
+				props: ["jdheader", "jdcontent"],
+				methods: {
+
+				}
+			});
+			var vm = new Vue({
+				el: "#ctx",
+				data() {
+					return {
+						jdheader: ["单据状态", "业务类型", "客户名称", "车牌号", "手机", "会员卡号", "维修单号", "单据类型", "开单时间", "预计完工", "结算时间"],
+						jdcontent: [],
+						stafflist: []
+					}
+				},
+				methods: {
+					addwxd() {
+						alert('等等');
+					}
+				},
+				created() {
+					$.getJSON("http://localhost:8080/toWxd",
+						function(response) {
+							vm.stafflist = response;
+							console.log(vm.stafflist);
+						});
+				}
+			});
+
+			$(function() {
+				$(".ulclick").click(function() {
+					$(".ulclick").removeClass("active");
+					$(this).addClass("active");
+				});
+
+				$(".caret").click(function() {
+					alert("明白");
+				});
+
+			});
+		</script>
+	</body>
+</html>

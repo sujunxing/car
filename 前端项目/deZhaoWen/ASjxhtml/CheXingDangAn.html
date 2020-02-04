@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#chexingdangan>div:nth-of-type(1){
+				font-size: 27px;
+				padding: 5px;
+				background-color: #F7FFFF;
+				color: #6B696B;
+			}
+			#chexingdangan>div>div>p{
+				font-size: 18px;
+				
+			}
+			#chexingdangan>div>div>p:nth-of-type(1){
+				margin: 10px 0 0;
+			}
+			#chexingdangan>div>div>p>span{
+				margin:0 20px 0 0;
+			}
+			#chexingdangan>div>div>p>span>span{
+				color: #F7A621;
+			}
+			#chexingdangan>div>div>p>button{
+				width: 70px;
+				font-size: 14px;
+				height: 30px;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div id="chexingdangan">
+			<div>
+				品牌车型
+			</div>
+			<div class="container-fluid">
+				<div class="col-md-3">
+					<p>
+						<span data-toggle="modal" data-target="#zhenjiashangping"><span class="tubiao glyphicon glyphicon-menu-hamburger"></span>增加品牌</span>
+						<span data-toggle="modal" data-target="#zhenjiashangping"><span class="tubiao glyphicon glyphicon-edit"></span>修改</span>
+						<span><span class="tubiao glyphicon glyphicon-remove"></span>删除</span>
+					</p>
+					<p>
+						<input placeholder="匹配 品牌编码/品牌名称/首字母"/>
+						<button>搜索</button>
+					</p>
+					<p>
+						<table class="table table-hover text-center">
+							<thead style="background-color: #39C9DE; color: #FFFFFF;">
+								<tr>
+									<th class="text-center">编码</th>
+									<th class="text-center">品牌名称</th>
+									<th class="text-center">首字母</th>
+								</tr>
+							</thead>
+							<tbody>
+								
+							</tbody>
+						</table>
+					</p>
+				</div>
+				<div class="col-md-9">
+					<p>
+						<span data-toggle="modal" data-target="#zhenjiacengjia"><span class="tubiao glyphicon glyphicon-menu-hamburger"></span>增加车型</span>
+						<span data-toggle="modal" data-target="#zhenjiacengjia"><span class="tubiao glyphicon glyphicon-edit"></span>修改</span>
+						<span><span class="tubiao glyphicon glyphicon-remove"></span>删除</span>
+						<span><span class="tubiao glyphicon glyphicon-picture"></span>图片</span>
+					</p>
+					<p>
+						<input placeholder="匹配 车型编码/车型名称"/>
+						<button>搜索</button>
+					</p>
+					<p>
+						<table class="table table-hover text-center">
+							<thead style="background-color: #39C9DE; color: #FFFFFF;">
+								<tr>
+									<th class="text-center">App展示</th>
+									<th class="text-center">车型ID</th>
+									<th class="text-center">车型名称</th>
+									<th class="text-center">发动机品牌</th>
+									<th class="text-center">参考价格</th>
+									<th class="text-center">首字母</th>
+									<th class="text-center">车辆年款</th>
+									<th class="text-center">功率</th>
+									<th class="text-center">进口国产</th>
+								</tr>
+							</thead>
+							<tbody>
+								
+							</tbody>
+						</table>
+					</p>
+				</div>
+			</div>
+		
+			<div class="modal fade" id="zhenjiashangping" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			  <div class="modal-dialog" role="document" style="width: 400px;">
+				<div class="modal-content">
+				  <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h3 class="modal-title" id="myModalLabel">商品定义</h3>
+				  </div>
+				  <div class="modal-body">
+					<table style="font-size: 18px;" class="table-condensed">
+						<tr>
+							<td>品牌编号:</td>
+							<td><input></td>
+						</tr>
+						<tr>
+							<td>品牌名称:</td>
+							<td><input></td>
+						</tr>
+						<tr>
+							<td>首字母:</td>
+							<td><input></td>
+						</tr>
+					</table>
+				  </div>
+				  <div class="modal-footer">
+					<button type="button" class="btn btn-primary">保存</button>
+				  </div>
+				</div>
+			  </div>
+			</div>
+		
+			<div class="modal fade" id="zhenjiacengjia" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			  <div class="modal-dialog" role="document" style="width: 700px;">
+				<div class="modal-content">
+				  <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h3 class="modal-title" id="myModalLabel">车型定义</h3>
+				  </div>
+				  <div class="modal-body">
+					<table style="font-size: 16px;" class="table-condensed">
+						<tr>
+							<td>车辆品牌:</td>
+							<td colspan="3"><input style="width: 488px;"></td>
+						</tr>
+						<tr>
+							<td>车型ID:</td><td><input></td>
+							<td>车型名称:</td><td><input></td>
+						</tr>
+						<tr>
+							<td>进口国产:</td><td  data-toggle="modal" data-target="#jinkouguo"><input></td>
+							<td>参考价格:</td><td><input></td>
+						</tr>
+						<tr>
+							<td>车辆年款:</td><td><input></td>
+							<td>功率:</td><td><input></td>
+						</tr>
+						<tr>
+							<td>燃油标号:</td><td><input></td>
+							<td>载重:</td><td><input></td>
+						</tr>
+						<tr>
+							<td>发动机品牌:</td>
+							<td colspan="3"><input style="width: 488px;"></td>
+						</tr>
+					</table>
+				  </div>
+				  <div class="modal-footer">
+					<button type="button" class="btn btn-primary">保存</button>
+				  </div>
+				</div>
+			  </div>
+			</div>
+			
+			<div class="modal fade" id="jinkouguo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			  <div class="modal-dialog" role="document" style="width: 400px;">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h3 class="modal-title" id="myModalLabel" style="display: inline-block;">商品定义</h3>
+					<p style="display: inline-block;margin: 0 0 0 15rem; font-size: 16px;"><span>修改</span> <span>保存</span></p>
+			      </div>
+			      <div class="modal-body">
+			        <table style="font-size: 18px;" class="table-condensed">
+						<thead>
+							<tr>序号</tr>
+							<tr>进口国产</tr>
+						</thead>
+					</table>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-primary">确定</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+		
+		</div>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/vue.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+	</body>
+</html>

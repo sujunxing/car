@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			#shouye>div{
+				display: inline-block;
+				height: 600px;
+				vertical-align:top;
+				width: 400px;
+				
+			}
+			#shouye>div:nth-of-type(1){
+				border-right: #848684 solid 1px;
+				
+			}
+			#shouye ul{
+				list-style-type:none;
+				width: 300px;
+			}
+			#shouye ul li:nth-of-type(1){
+				height: 30px;
+				font-size: 1.5rem;
+				border-bottom: #848684 solid 1px;
+				background-color: #FFFFFF;
+				color: #848684;
+			}
+			#shouye ul li{
+				font-size: 1.1rem;
+				height: 25px;
+				padding: 3px 0;
+				color: #5B595B;
+			}
+			#shouye ul:nth-of-type(1){
+				height: 390px;
+			}
+			#shouye ul:nth-of-type(2){
+				vertical-align:bottom;
+			}
+		
+		</style>
+	</head>
+	<body>
+		<div id="shouye">
+			<div>
+				<ul class="licss">
+					<li>今日前台</li>
+					<li>接车台次:</li>
+					<li>结算台次:</li>
+					<li>在修台次:</li>
+					<li>返修台次:</li>
+					<li>站内维修台次:</li>
+					<li>站外维修台次:</li>
+					<li></li>
+					
+					<li>自费维修产值:元</li>
+					<li>保险理赔产值:元</li>
+				</ul>
+				<ul>
+					<li>今日结算</li>
+					<li>现金:</li>
+					<li>微信:</li>
+				</ul>
+			</div>
+			<div>
+				<ul>
+					<li>今日库房</li>
+					<li>现金入库数:</li>
+					<li>现金入库额:</li>
+					<li>挂账入库数:</li>
+					<li>挂账入库额:</li>
+					<li>销售数量:</li>
+					<li>销售金额:</li>
+					<li>自费出库数量:</li>
+					<li>自费出库金额:</li>
+					<li>三包出库数量:</li>
+					<li>三包出库金额:</li>
+					<li>当前库存数量:</li>
+					<li>当前库存金额:</li>
+				</ul>
+				<ul>
+					<li></li>
+					<li>挂账:</li>
+					<li>银行账户:</li>
+				</ul>
+			</div>
+		</div>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/vue.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script>
+			$("#shouye>div>ul>li:even").css("background-color","#E9F0F0");
+			$("#shouye>div>ul>li:nth-of-type(1)").css("background-color","#FFFFFF");
+		</script>
+	</body>
+</html>

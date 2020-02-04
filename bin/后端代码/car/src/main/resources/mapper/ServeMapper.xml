@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.mapper.ServeMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.Serve" >
+    <id column="seeid" property="seeid" jdbcType="VARCHAR" />
+    <result column="seename" property="seename" jdbcType="VARCHAR" />
+    <result column="ineid" property="ineid" jdbcType="INTEGER" />
+    <result column="cayid" property="cayid" jdbcType="VARCHAR" />
+    <result column="seeremark" property="seeremark" jdbcType="VARCHAR" />
+    <result column="seestandard" property="seestandard" jdbcType="INTEGER" />
+    <result column="seemember" property="seemember" jdbcType="INTEGER" />
+    <result column="seevip" property="seevip" jdbcType="INTEGER" />
+    <result column="seedeal" property="seedeal" jdbcType="INTEGER" />
+    <result column="seeclaim" property="seeclaim" jdbcType="INTEGER" />
+    <result column="seeinsurance" property="seeinsurance" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    seeid, seename, ineid, cayid, seeremark, seestandard, seemember, seevip, seedeal, 
+    seeclaim, seeinsurance
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.ServeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from serve
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from serve
+    where seeid = #{seeid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from serve
+    where seeid = #{seeid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.accp.domain.ServeExample" >
+    delete from serve
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.accp.domain.Serve" >
+    insert into serve (seeid, seename, ineid, 
+      cayid, seeremark, seestandard, 
+      seemember, seevip, seedeal, 
+      seeclaim, seeinsurance)
+    values (#{seeid,jdbcType=VARCHAR}, #{seename,jdbcType=VARCHAR}, #{ineid,jdbcType=INTEGER}, 
+      #{cayid,jdbcType=VARCHAR}, #{seeremark,jdbcType=VARCHAR}, #{seestandard,jdbcType=INTEGER}, 
+      #{seemember,jdbcType=INTEGER}, #{seevip,jdbcType=INTEGER}, #{seedeal,jdbcType=INTEGER}, 
+      #{seeclaim,jdbcType=INTEGER}, #{seeinsurance,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.domain.Serve" >
+    insert into serve
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="seeid != null" >
+        seeid,
+      </if>
+      <if test="seename != null" >
+        seename,
+      </if>
+      <if test="ineid != null" >
+        ineid,
+      </if>
+      <if test="cayid != null" >
+        cayid,
+      </if>
+      <if test="seeremark != null" >
+        seeremark,
+      </if>
+      <if test="seestandard != null" >
+        seestandard,
+      </if>
+      <if test="seemember != null" >
+        seemember,
+      </if>
+      <if test="seevip != null" >
+        seevip,
+      </if>
+      <if test="seedeal != null" >
+        seedeal,
+      </if>
+      <if test="seeclaim != null" >
+        seeclaim,
+      </if>
+      <if test="seeinsurance != null" >
+        seeinsurance,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="seeid != null" >
+        #{seeid,jdbcType=VARCHAR},
+      </if>
+      <if test="seename != null" >
+        #{seename,jdbcType=VARCHAR},
+      </if>
+      <if test="ineid != null" >
+        #{ineid,jdbcType=INTEGER},
+      </if>
+      <if test="cayid != null" >
+        #{cayid,jdbcType=VARCHAR},
+      </if>
+      <if test="seeremark != null" >
+        #{seeremark,jdbcType=VARCHAR},
+      </if>
+      <if test="seestandard != null" >
+        #{seestandard,jdbcType=INTEGER},
+      </if>
+      <if test="seemember != null" >
+        #{seemember,jdbcType=INTEGER},
+      </if>
+      <if test="seevip != null" >
+        #{seevip,jdbcType=INTEGER},
+      </if>
+      <if test="seedeal != null" >
+        #{seedeal,jdbcType=INTEGER},
+      </if>
+      <if test="seeclaim != null" >
+        #{seeclaim,jdbcType=INTEGER},
+      </if>
+      <if test="seeinsurance != null" >
+        #{seeinsurance,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.accp.domain.ServeExample" resultType="java.lang.Integer" >
+    select count(*) from serve
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update serve
+    <set >
+      <if test="record.seeid != null" >
+        seeid = #{record.seeid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.seename != null" >
+        seename = #{record.seename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ineid != null" >
+        ineid = #{record.ineid,jdbcType=INTEGER},
+      </if>
+      <if test="record.cayid != null" >
+        cayid = #{record.cayid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.seeremark != null" >
+        seeremark = #{record.seeremark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.seestandard != null" >
+        seestandard = #{record.seestandard,jdbcType=INTEGER},
+      </if>
+      <if test="record.seemember != null" >
+        seemember = #{record.seemember,jdbcType=INTEGER},
+      </if>
+      <if test="record.seevip != null" >
+        seevip = #{record.seevip,jdbcType=INTEGER},
+      </if>
+      <if test="record.seedeal != null" >
+        seedeal = #{record.seedeal,jdbcType=INTEGER},
+      </if>
+      <if test="record.seeclaim != null" >
+        seeclaim = #{record.seeclaim,jdbcType=INTEGER},
+      </if>
+      <if test="record.seeinsurance != null" >
+        seeinsurance = #{record.seeinsurance,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update serve
+    set seeid = #{record.seeid,jdbcType=VARCHAR},
+      seename = #{record.seename,jdbcType=VARCHAR},
+      ineid = #{record.ineid,jdbcType=INTEGER},
+      cayid = #{record.cayid,jdbcType=VARCHAR},
+      seeremark = #{record.seeremark,jdbcType=VARCHAR},
+      seestandard = #{record.seestandard,jdbcType=INTEGER},
+      seemember = #{record.seemember,jdbcType=INTEGER},
+      seevip = #{record.seevip,jdbcType=INTEGER},
+      seedeal = #{record.seedeal,jdbcType=INTEGER},
+      seeclaim = #{record.seeclaim,jdbcType=INTEGER},
+      seeinsurance = #{record.seeinsurance,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.Serve" >
+    update serve
+    <set >
+      <if test="seename != null" >
+        seename = #{seename,jdbcType=VARCHAR},
+      </if>
+      <if test="ineid != null" >
+        ineid = #{ineid,jdbcType=INTEGER},
+      </if>
+      <if test="cayid != null" >
+        cayid = #{cayid,jdbcType=VARCHAR},
+      </if>
+      <if test="seeremark != null" >
+        seeremark = #{seeremark,jdbcType=VARCHAR},
+      </if>
+      <if test="seestandard != null" >
+        seestandard = #{seestandard,jdbcType=INTEGER},
+      </if>
+      <if test="seemember != null" >
+        seemember = #{seemember,jdbcType=INTEGER},
+      </if>
+      <if test="seevip != null" >
+        seevip = #{seevip,jdbcType=INTEGER},
+      </if>
+      <if test="seedeal != null" >
+        seedeal = #{seedeal,jdbcType=INTEGER},
+      </if>
+      <if test="seeclaim != null" >
+        seeclaim = #{seeclaim,jdbcType=INTEGER},
+      </if>
+      <if test="seeinsurance != null" >
+        seeinsurance = #{seeinsurance,jdbcType=INTEGER},
+      </if>
+    </set>
+    where seeid = #{seeid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.domain.Serve" >
+    update serve
+    set seename = #{seename,jdbcType=VARCHAR},
+      ineid = #{ineid,jdbcType=INTEGER},
+      cayid = #{cayid,jdbcType=VARCHAR},
+      seeremark = #{seeremark,jdbcType=VARCHAR},
+      seestandard = #{seestandard,jdbcType=INTEGER},
+      seemember = #{seemember,jdbcType=INTEGER},
+      seevip = #{seevip,jdbcType=INTEGER},
+      seedeal = #{seedeal,jdbcType=INTEGER},
+      seeclaim = #{seeclaim,jdbcType=INTEGER},
+      seeinsurance = #{seeinsurance,jdbcType=INTEGER}
+    where seeid = #{seeid,jdbcType=VARCHAR}
+  </update>
+</mapper>

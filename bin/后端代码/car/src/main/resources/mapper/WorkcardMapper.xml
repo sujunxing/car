@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.mapper.WorkcardMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.Workcard" >
+    <id column="wodid" property="wodid" jdbcType="INTEGER" />
+    <result column="wodlicense" property="wodlicense" jdbcType="VARCHAR" />
+    <result column="wodbrand" property="wodbrand" jdbcType="VARCHAR" />
+    <result column="wodtype" property="wodtype" jdbcType="VARCHAR" />
+    <result column="wodmileage" property="wodmileage" jdbcType="INTEGER" />
+    <result column="temid" property="temid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    wodid, wodlicense, wodbrand, wodtype, wodmileage, temid
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.WorkcardExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from workcard
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from workcard
+    where wodid = #{wodid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from workcard
+    where wodid = #{wodid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.accp.domain.WorkcardExample" >
+    delete from workcard
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.accp.domain.Workcard" >
+    insert into workcard (wodid, wodlicense, wodbrand, 
+      wodtype, wodmileage, temid
+      )
+    values (#{wodid,jdbcType=INTEGER}, #{wodlicense,jdbcType=VARCHAR}, #{wodbrand,jdbcType=VARCHAR}, 
+      #{wodtype,jdbcType=VARCHAR}, #{wodmileage,jdbcType=INTEGER}, #{temid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.domain.Workcard" >
+    insert into workcard
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="wodid != null" >
+        wodid,
+      </if>
+      <if test="wodlicense != null" >
+        wodlicense,
+      </if>
+      <if test="wodbrand != null" >
+        wodbrand,
+      </if>
+      <if test="wodtype != null" >
+        wodtype,
+      </if>
+      <if test="wodmileage != null" >
+        wodmileage,
+      </if>
+      <if test="temid != null" >
+        temid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="wodid != null" >
+        #{wodid,jdbcType=INTEGER},
+      </if>
+      <if test="wodlicense != null" >
+        #{wodlicense,jdbcType=VARCHAR},
+      </if>
+      <if test="wodbrand != null" >
+        #{wodbrand,jdbcType=VARCHAR},
+      </if>
+      <if test="wodtype != null" >
+        #{wodtype,jdbcType=VARCHAR},
+      </if>
+      <if test="wodmileage != null" >
+        #{wodmileage,jdbcType=INTEGER},
+      </if>
+      <if test="temid != null" >
+        #{temid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.accp.domain.WorkcardExample" resultType="java.lang.Integer" >
+    select count(*) from workcard
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update workcard
+    <set >
+      <if test="record.wodid != null" >
+        wodid = #{record.wodid,jdbcType=INTEGER},
+      </if>
+      <if test="record.wodlicense != null" >
+        wodlicense = #{record.wodlicense,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wodbrand != null" >
+        wodbrand = #{record.wodbrand,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wodtype != null" >
+        wodtype = #{record.wodtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wodmileage != null" >
+        wodmileage = #{record.wodmileage,jdbcType=INTEGER},
+      </if>
+      <if test="record.temid != null" >
+        temid = #{record.temid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update workcard
+    set wodid = #{record.wodid,jdbcType=INTEGER},
+      wodlicense = #{record.wodlicense,jdbcType=VARCHAR},
+      wodbrand = #{record.wodbrand,jdbcType=VARCHAR},
+      wodtype = #{record.wodtype,jdbcType=VARCHAR},
+      wodmileage = #{record.wodmileage,jdbcType=INTEGER},
+      temid = #{record.temid,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.Workcard" >
+    update workcard
+    <set >
+      <if test="wodlicense != null" >
+        wodlicense = #{wodlicense,jdbcType=VARCHAR},
+      </if>
+      <if test="wodbrand != null" >
+        wodbrand = #{wodbrand,jdbcType=VARCHAR},
+      </if>
+      <if test="wodtype != null" >
+        wodtype = #{wodtype,jdbcType=VARCHAR},
+      </if>
+      <if test="wodmileage != null" >
+        wodmileage = #{wodmileage,jdbcType=INTEGER},
+      </if>
+      <if test="temid != null" >
+        temid = #{temid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where wodid = #{wodid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.domain.Workcard" >
+    update workcard
+    set wodlicense = #{wodlicense,jdbcType=VARCHAR},
+      wodbrand = #{wodbrand,jdbcType=VARCHAR},
+      wodtype = #{wodtype,jdbcType=VARCHAR},
+      wodmileage = #{wodmileage,jdbcType=INTEGER},
+      temid = #{temid,jdbcType=VARCHAR}
+    where wodid = #{wodid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,575 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.mapper.OrderMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.Order" >
+    <id column="orrid" property="orrid" jdbcType="VARCHAR" />
+    <result column="orrplate" property="orrplate" jdbcType="VARCHAR" />
+    <result column="orrframe" property="orrframe" jdbcType="VARCHAR" />
+    <result column="orrmodel" property="orrmodel" jdbcType="VARCHAR" />
+    <result column="orrbrand" property="orrbrand" jdbcType="VARCHAR" />
+    <result column="orrengine" property="orrengine" jdbcType="VARCHAR" />
+    <result column="endid" property="endid" jdbcType="VARCHAR" />
+    <result column="sid" property="sid" jdbcType="VARCHAR" />
+    <result column="cltid" property="cltid" jdbcType="VARCHAR" />
+    <result column="orrdrive" property="orrdrive" jdbcType="VARCHAR" />
+    <result column="orrphone" property="orrphone" jdbcType="VARCHAR" />
+    <result column="orrmillings" property="orrmillings" jdbcType="VARCHAR" />
+    <result column="orrmass" property="orrmass" jdbcType="VARCHAR" />
+    <result column="orrlast" property="orrlast" jdbcType="VARCHAR" />
+    <result column="orrmilling" property="orrmilling" jdbcType="VARCHAR" />
+    <result column="cayid" property="cayid" jdbcType="VARCHAR" />
+    <result column="orrroad" property="orrroad" jdbcType="VARCHAR" />
+    <result column="orrjoin" property="orrjoin" jdbcType="VARCHAR" />
+    <result column="orrpredict" property="orrpredict" jdbcType="VARCHAR" />
+    <result column="orrclose" property="orrclose" jdbcType="VARCHAR" />
+    <result column="orrreparations" property="orrreparations" jdbcType="VARCHAR" />
+    <result column="orrcomplete" property="orrcomplete" jdbcType="VARCHAR" />
+    <result column="orrmill" property="orrmill" jdbcType="VARCHAR" />
+    <result column="orresprice" property="orresprice" jdbcType="VARCHAR" />
+    <result column="orrremake" property="orrremake" jdbcType="VARCHAR" />
+    <result column="orrdescribe" property="orrdescribe" jdbcType="VARCHAR" />
+    <result column="orrbills" property="orrbills" jdbcType="VARCHAR" />
+    <result column="orrzt" property="orrzt" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    orrid, orrplate, orrframe, orrmodel, orrbrand, orrengine, endid, sid, cltid, orrdrive, 
+    orrphone, orrmillings, orrmass, orrlast, orrmilling, cayid, orrroad, orrjoin, orrpredict, 
+    orrclose, orrreparations, orrcomplete, orrmill, orresprice, orrremake, orrdescribe, 
+    orrbills, orrzt
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.OrderExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from order
+    where orrid = #{orrid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from order
+    where orrid = #{orrid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.accp.domain.OrderExample" >
+    delete from order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.accp.domain.Order" >
+    insert into order (orrid, orrplate, orrframe, 
+      orrmodel, orrbrand, orrengine, 
+      endid, sid, cltid, 
+      orrdrive, orrphone, orrmillings, 
+      orrmass, orrlast, orrmilling, 
+      cayid, orrroad, orrjoin, 
+      orrpredict, orrclose, orrreparations, 
+      orrcomplete, orrmill, orresprice, 
+      orrremake, orrdescribe, orrbills, 
+      orrzt)
+    values (#{orrid,jdbcType=VARCHAR}, #{orrplate,jdbcType=VARCHAR}, #{orrframe,jdbcType=VARCHAR}, 
+      #{orrmodel,jdbcType=VARCHAR}, #{orrbrand,jdbcType=VARCHAR}, #{orrengine,jdbcType=VARCHAR}, 
+      #{endid,jdbcType=VARCHAR}, #{sid,jdbcType=VARCHAR}, #{cltid,jdbcType=VARCHAR}, 
+      #{orrdrive,jdbcType=VARCHAR}, #{orrphone,jdbcType=VARCHAR}, #{orrmillings,jdbcType=VARCHAR}, 
+      #{orrmass,jdbcType=VARCHAR}, #{orrlast,jdbcType=VARCHAR}, #{orrmilling,jdbcType=VARCHAR}, 
+      #{cayid,jdbcType=VARCHAR}, #{orrroad,jdbcType=VARCHAR}, #{orrjoin,jdbcType=VARCHAR}, 
+      #{orrpredict,jdbcType=VARCHAR}, #{orrclose,jdbcType=VARCHAR}, #{orrreparations,jdbcType=VARCHAR}, 
+      #{orrcomplete,jdbcType=VARCHAR}, #{orrmill,jdbcType=VARCHAR}, #{orresprice,jdbcType=VARCHAR}, 
+      #{orrremake,jdbcType=VARCHAR}, #{orrdescribe,jdbcType=VARCHAR}, #{orrbills,jdbcType=VARCHAR}, 
+      #{orrzt,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.domain.Order" >
+    insert into order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orrid != null" >
+        orrid,
+      </if>
+      <if test="orrplate != null" >
+        orrplate,
+      </if>
+      <if test="orrframe != null" >
+        orrframe,
+      </if>
+      <if test="orrmodel != null" >
+        orrmodel,
+      </if>
+      <if test="orrbrand != null" >
+        orrbrand,
+      </if>
+      <if test="orrengine != null" >
+        orrengine,
+      </if>
+      <if test="endid != null" >
+        endid,
+      </if>
+      <if test="sid != null" >
+        sid,
+      </if>
+      <if test="cltid != null" >
+        cltid,
+      </if>
+      <if test="orrdrive != null" >
+        orrdrive,
+      </if>
+      <if test="orrphone != null" >
+        orrphone,
+      </if>
+      <if test="orrmillings != null" >
+        orrmillings,
+      </if>
+      <if test="orrmass != null" >
+        orrmass,
+      </if>
+      <if test="orrlast != null" >
+        orrlast,
+      </if>
+      <if test="orrmilling != null" >
+        orrmilling,
+      </if>
+      <if test="cayid != null" >
+        cayid,
+      </if>
+      <if test="orrroad != null" >
+        orrroad,
+      </if>
+      <if test="orrjoin != null" >
+        orrjoin,
+      </if>
+      <if test="orrpredict != null" >
+        orrpredict,
+      </if>
+      <if test="orrclose != null" >
+        orrclose,
+      </if>
+      <if test="orrreparations != null" >
+        orrreparations,
+      </if>
+      <if test="orrcomplete != null" >
+        orrcomplete,
+      </if>
+      <if test="orrmill != null" >
+        orrmill,
+      </if>
+      <if test="orresprice != null" >
+        orresprice,
+      </if>
+      <if test="orrremake != null" >
+        orrremake,
+      </if>
+      <if test="orrdescribe != null" >
+        orrdescribe,
+      </if>
+      <if test="orrbills != null" >
+        orrbills,
+      </if>
+      <if test="orrzt != null" >
+        orrzt,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orrid != null" >
+        #{orrid,jdbcType=VARCHAR},
+      </if>
+      <if test="orrplate != null" >
+        #{orrplate,jdbcType=VARCHAR},
+      </if>
+      <if test="orrframe != null" >
+        #{orrframe,jdbcType=VARCHAR},
+      </if>
+      <if test="orrmodel != null" >
+        #{orrmodel,jdbcType=VARCHAR},
+      </if>
+      <if test="orrbrand != null" >
+        #{orrbrand,jdbcType=VARCHAR},
+      </if>
+      <if test="orrengine != null" >
+        #{orrengine,jdbcType=VARCHAR},
+      </if>
+      <if test="endid != null" >
+        #{endid,jdbcType=VARCHAR},
+      </if>
+      <if test="sid != null" >
+        #{sid,jdbcType=VARCHAR},
+      </if>
+      <if test="cltid != null" >
+        #{cltid,jdbcType=VARCHAR},
+      </if>
+      <if test="orrdrive != null" >
+        #{orrdrive,jdbcType=VARCHAR},
+      </if>
+      <if test="orrphone != null" >
+        #{orrphone,jdbcType=VARCHAR},
+      </if>
+      <if test="orrmillings != null" >
+        #{orrmillings,jdbcType=VARCHAR},
+      </if>
+      <if test="orrmass != null" >
+        #{orrmass,jdbcType=VARCHAR},
+      </if>
+      <if test="orrlast != null" >
+        #{orrlast,jdbcType=VARCHAR},
+      </if>
+      <if test="orrmilling != null" >
+        #{orrmilling,jdbcType=VARCHAR},
+      </if>
+      <if test="cayid != null" >
+        #{cayid,jdbcType=VARCHAR},
+      </if>
+      <if test="orrroad != null" >
+        #{orrroad,jdbcType=VARCHAR},
+      </if>
+      <if test="orrjoin != null" >
+        #{orrjoin,jdbcType=VARCHAR},
+      </if>
+      <if test="orrpredict != null" >
+        #{orrpredict,jdbcType=VARCHAR},
+      </if>
+      <if test="orrclose != null" >
+        #{orrclose,jdbcType=VARCHAR},
+      </if>
+      <if test="orrreparations != null" >
+        #{orrreparations,jdbcType=VARCHAR},
+      </if>
+      <if test="orrcomplete != null" >
+        #{orrcomplete,jdbcType=VARCHAR},
+      </if>
+      <if test="orrmill != null" >
+        #{orrmill,jdbcType=VARCHAR},
+      </if>
+      <if test="orresprice != null" >
+        #{orresprice,jdbcType=VARCHAR},
+      </if>
+      <if test="orrremake != null" >
+        #{orrremake,jdbcType=VARCHAR},
+      </if>
+      <if test="orrdescribe != null" >
+        #{orrdescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="orrbills != null" >
+        #{orrbills,jdbcType=VARCHAR},
+      </if>
+      <if test="orrzt != null" >
+        #{orrzt,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.accp.domain.OrderExample" resultType="java.lang.Integer" >
+    select count(*) from order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update order
+    <set >
+      <if test="record.orrid != null" >
+        orrid = #{record.orrid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orrplate != null" >
+        orrplate = #{record.orrplate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orrframe != null" >
+        orrframe = #{record.orrframe,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orrmodel != null" >
+        orrmodel = #{record.orrmodel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orrbrand != null" >
+        orrbrand = #{record.orrbrand,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orrengine != null" >
+        orrengine = #{record.orrengine,jdbcType=VARCHAR},
+      </if>
+      <if test="record.endid != null" >
+        endid = #{record.endid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sid != null" >
+        sid = #{record.sid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cltid != null" >
+        cltid = #{record.cltid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orrdrive != null" >
+        orrdrive = #{record.orrdrive,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orrphone != null" >
+        orrphone = #{record.orrphone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orrmillings != null" >
+        orrmillings = #{record.orrmillings,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orrmass != null" >
+        orrmass = #{record.orrmass,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orrlast != null" >
+        orrlast = #{record.orrlast,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orrmilling != null" >
+        orrmilling = #{record.orrmilling,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cayid != null" >
+        cayid = #{record.cayid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orrroad != null" >
+        orrroad = #{record.orrroad,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orrjoin != null" >
+        orrjoin = #{record.orrjoin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orrpredict != null" >
+        orrpredict = #{record.orrpredict,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orrclose != null" >
+        orrclose = #{record.orrclose,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orrreparations != null" >
+        orrreparations = #{record.orrreparations,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orrcomplete != null" >
+        orrcomplete = #{record.orrcomplete,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orrmill != null" >
+        orrmill = #{record.orrmill,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orresprice != null" >
+        orresprice = #{record.orresprice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orrremake != null" >
+        orrremake = #{record.orrremake,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orrdescribe != null" >
+        orrdescribe = #{record.orrdescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orrbills != null" >
+        orrbills = #{record.orrbills,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orrzt != null" >
+        orrzt = #{record.orrzt,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update order
+    set orrid = #{record.orrid,jdbcType=VARCHAR},
+      orrplate = #{record.orrplate,jdbcType=VARCHAR},
+      orrframe = #{record.orrframe,jdbcType=VARCHAR},
+      orrmodel = #{record.orrmodel,jdbcType=VARCHAR},
+      orrbrand = #{record.orrbrand,jdbcType=VARCHAR},
+      orrengine = #{record.orrengine,jdbcType=VARCHAR},
+      endid = #{record.endid,jdbcType=VARCHAR},
+      sid = #{record.sid,jdbcType=VARCHAR},
+      cltid = #{record.cltid,jdbcType=VARCHAR},
+      orrdrive = #{record.orrdrive,jdbcType=VARCHAR},
+      orrphone = #{record.orrphone,jdbcType=VARCHAR},
+      orrmillings = #{record.orrmillings,jdbcType=VARCHAR},
+      orrmass = #{record.orrmass,jdbcType=VARCHAR},
+      orrlast = #{record.orrlast,jdbcType=VARCHAR},
+      orrmilling = #{record.orrmilling,jdbcType=VARCHAR},
+      cayid = #{record.cayid,jdbcType=VARCHAR},
+      orrroad = #{record.orrroad,jdbcType=VARCHAR},
+      orrjoin = #{record.orrjoin,jdbcType=VARCHAR},
+      orrpredict = #{record.orrpredict,jdbcType=VARCHAR},
+      orrclose = #{record.orrclose,jdbcType=VARCHAR},
+      orrreparations = #{record.orrreparations,jdbcType=VARCHAR},
+      orrcomplete = #{record.orrcomplete,jdbcType=VARCHAR},
+      orrmill = #{record.orrmill,jdbcType=VARCHAR},
+      orresprice = #{record.orresprice,jdbcType=VARCHAR},
+      orrremake = #{record.orrremake,jdbcType=VARCHAR},
+      orrdescribe = #{record.orrdescribe,jdbcType=VARCHAR},
+      orrbills = #{record.orrbills,jdbcType=VARCHAR},
+      orrzt = #{record.orrzt,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.Order" >
+    update order
+    <set >
+      <if test="orrplate != null" >
+        orrplate = #{orrplate,jdbcType=VARCHAR},
+      </if>
+      <if test="orrframe != null" >
+        orrframe = #{orrframe,jdbcType=VARCHAR},
+      </if>
+      <if test="orrmodel != null" >
+        orrmodel = #{orrmodel,jdbcType=VARCHAR},
+      </if>
+      <if test="orrbrand != null" >
+        orrbrand = #{orrbrand,jdbcType=VARCHAR},
+      </if>
+      <if test="orrengine != null" >
+        orrengine = #{orrengine,jdbcType=VARCHAR},
+      </if>
+      <if test="endid != null" >
+        endid = #{endid,jdbcType=VARCHAR},
+      </if>
+      <if test="sid != null" >
+        sid = #{sid,jdbcType=VARCHAR},
+      </if>
+      <if test="cltid != null" >
+        cltid = #{cltid,jdbcType=VARCHAR},
+      </if>
+      <if test="orrdrive != null" >
+        orrdrive = #{orrdrive,jdbcType=VARCHAR},
+      </if>
+      <if test="orrphone != null" >
+        orrphone = #{orrphone,jdbcType=VARCHAR},
+      </if>
+      <if test="orrmillings != null" >
+        orrmillings = #{orrmillings,jdbcType=VARCHAR},
+      </if>
+      <if test="orrmass != null" >
+        orrmass = #{orrmass,jdbcType=VARCHAR},
+      </if>
+      <if test="orrlast != null" >
+        orrlast = #{orrlast,jdbcType=VARCHAR},
+      </if>
+      <if test="orrmilling != null" >
+        orrmilling = #{orrmilling,jdbcType=VARCHAR},
+      </if>
+      <if test="cayid != null" >
+        cayid = #{cayid,jdbcType=VARCHAR},
+      </if>
+      <if test="orrroad != null" >
+        orrroad = #{orrroad,jdbcType=VARCHAR},
+      </if>
+      <if test="orrjoin != null" >
+        orrjoin = #{orrjoin,jdbcType=VARCHAR},
+      </if>
+      <if test="orrpredict != null" >
+        orrpredict = #{orrpredict,jdbcType=VARCHAR},
+      </if>
+      <if test="orrclose != null" >
+        orrclose = #{orrclose,jdbcType=VARCHAR},
+      </if>
+      <if test="orrreparations != null" >
+        orrreparations = #{orrreparations,jdbcType=VARCHAR},
+      </if>
+      <if test="orrcomplete != null" >
+        orrcomplete = #{orrcomplete,jdbcType=VARCHAR},
+      </if>
+      <if test="orrmill != null" >
+        orrmill = #{orrmill,jdbcType=VARCHAR},
+      </if>
+      <if test="orresprice != null" >
+        orresprice = #{orresprice,jdbcType=VARCHAR},
+      </if>
+      <if test="orrremake != null" >
+        orrremake = #{orrremake,jdbcType=VARCHAR},
+      </if>
+      <if test="orrdescribe != null" >
+        orrdescribe = #{orrdescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="orrbills != null" >
+        orrbills = #{orrbills,jdbcType=VARCHAR},
+      </if>
+      <if test="orrzt != null" >
+        orrzt = #{orrzt,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where orrid = #{orrid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.domain.Order" >
+    update order
+    set orrplate = #{orrplate,jdbcType=VARCHAR},
+      orrframe = #{orrframe,jdbcType=VARCHAR},
+      orrmodel = #{orrmodel,jdbcType=VARCHAR},
+      orrbrand = #{orrbrand,jdbcType=VARCHAR},
+      orrengine = #{orrengine,jdbcType=VARCHAR},
+      endid = #{endid,jdbcType=VARCHAR},
+      sid = #{sid,jdbcType=VARCHAR},
+      cltid = #{cltid,jdbcType=VARCHAR},
+      orrdrive = #{orrdrive,jdbcType=VARCHAR},
+      orrphone = #{orrphone,jdbcType=VARCHAR},
+      orrmillings = #{orrmillings,jdbcType=VARCHAR},
+      orrmass = #{orrmass,jdbcType=VARCHAR},
+      orrlast = #{orrlast,jdbcType=VARCHAR},
+      orrmilling = #{orrmilling,jdbcType=VARCHAR},
+      cayid = #{cayid,jdbcType=VARCHAR},
+      orrroad = #{orrroad,jdbcType=VARCHAR},
+      orrjoin = #{orrjoin,jdbcType=VARCHAR},
+      orrpredict = #{orrpredict,jdbcType=VARCHAR},
+      orrclose = #{orrclose,jdbcType=VARCHAR},
+      orrreparations = #{orrreparations,jdbcType=VARCHAR},
+      orrcomplete = #{orrcomplete,jdbcType=VARCHAR},
+      orrmill = #{orrmill,jdbcType=VARCHAR},
+      orresprice = #{orresprice,jdbcType=VARCHAR},
+      orrremake = #{orrremake,jdbcType=VARCHAR},
+      orrdescribe = #{orrdescribe,jdbcType=VARCHAR},
+      orrbills = #{orrbills,jdbcType=VARCHAR},
+      orrzt = #{orrzt,jdbcType=VARCHAR}
+    where orrid = #{orrid,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,637 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.mapper.PayoffMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.Payoff" >
+    <id column="pafid" property="pafid" jdbcType="VARCHAR" />
+    <result column="paftype" property="paftype" jdbcType="VARCHAR" />
+    <result column="pafagoprice" property="pafagoprice" jdbcType="REAL" />
+    <result column="paftotalprice" property="paftotalprice" jdbcType="REAL" />
+    <result column="pafmaterials" property="pafmaterials" jdbcType="REAL" />
+    <result column="pafcost" property="pafcost" jdbcType="REAL" />
+    <result column="pafaddition" property="pafaddition" jdbcType="REAL" />
+    <result column="pafclose" property="pafclose" jdbcType="VARCHAR" />
+    <result column="pafperson" property="pafperson" jdbcType="VARCHAR" />
+    <result column="pafcash" property="pafcash" jdbcType="REAL" />
+    <result column="pafbank" property="pafbank" jdbcType="VARCHAR" />
+    <result column="pafbill" property="pafbill" jdbcType="VARCHAR" />
+    <result column="pafbuyer" property="pafbuyer" jdbcType="REAL" />
+    <result column="pafsavings" property="pafsavings" jdbcType="REAL" />
+    <result column="pafearnest" property="pafearnest" jdbcType="REAL" />
+    <result column="paftaxes" property="paftaxes" jdbcType="REAL" />
+    <result column="pafvoucher" property="pafvoucher" jdbcType="REAL" />
+    <result column="pafend" property="pafend" jdbcType="REAL" />
+    <result column="pafinterior" property="pafinterior" jdbcType="REAL" />
+    <result column="pafintegral" property="pafintegral" jdbcType="REAL" />
+    <result column="pafaccount" property="pafaccount" jdbcType="REAL" />
+    <result column="pafkind" property="pafkind" jdbcType="VARCHAR" />
+    <result column="pafinvoice" property="pafinvoice" jdbcType="VARCHAR" />
+    <result column="pafvalue" property="pafvalue" jdbcType="REAL" />
+    <result column="orrid" property="orrid" jdbcType="VARCHAR" />
+    <result column="me2ber" property="me2ber" jdbcType="INTEGER" />
+    <result column="me2ber11" property="me2ber11" jdbcType="VARCHAR" />
+    <result column="me2ber22" property="me2ber22" jdbcType="VARCHAR" />
+    <result column="me2ber33" property="me2ber33" jdbcType="VARCHAR" />
+    <result column="me2ber44" property="me2ber44" jdbcType="VARCHAR" />
+    <result column="me2ber55" property="me2ber55" jdbcType="VARCHAR" />
+    <result column="me2ber66" property="me2ber66" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    pafid, paftype, pafagoprice, paftotalprice, pafmaterials, pafcost, pafaddition, pafclose, 
+    pafperson, pafcash, pafbank, pafbill, pafbuyer, pafsavings, pafearnest, paftaxes, 
+    pafvoucher, pafend, pafinterior, pafintegral, pafaccount, pafkind, pafinvoice, pafvalue, 
+    orrid, me2ber, me2ber11, me2ber22, me2ber33, me2ber44, me2ber55, me2ber66
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.PayoffExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from payoff
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from payoff
+    where pafid = #{pafid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from payoff
+    where pafid = #{pafid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.accp.domain.PayoffExample" >
+    delete from payoff
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.accp.domain.Payoff" >
+    insert into payoff (pafid, paftype, pafagoprice, 
+      paftotalprice, pafmaterials, pafcost, 
+      pafaddition, pafclose, pafperson, 
+      pafcash, pafbank, pafbill, 
+      pafbuyer, pafsavings, pafearnest, 
+      paftaxes, pafvoucher, pafend, 
+      pafinterior, pafintegral, pafaccount, 
+      pafkind, pafinvoice, pafvalue, 
+      orrid, me2ber, me2ber11, 
+      me2ber22, me2ber33, me2ber44, 
+      me2ber55, me2ber66)
+    values (#{pafid,jdbcType=VARCHAR}, #{paftype,jdbcType=VARCHAR}, #{pafagoprice,jdbcType=REAL}, 
+      #{paftotalprice,jdbcType=REAL}, #{pafmaterials,jdbcType=REAL}, #{pafcost,jdbcType=REAL}, 
+      #{pafaddition,jdbcType=REAL}, #{pafclose,jdbcType=VARCHAR}, #{pafperson,jdbcType=VARCHAR}, 
+      #{pafcash,jdbcType=REAL}, #{pafbank,jdbcType=VARCHAR}, #{pafbill,jdbcType=VARCHAR}, 
+      #{pafbuyer,jdbcType=REAL}, #{pafsavings,jdbcType=REAL}, #{pafearnest,jdbcType=REAL}, 
+      #{paftaxes,jdbcType=REAL}, #{pafvoucher,jdbcType=REAL}, #{pafend,jdbcType=REAL}, 
+      #{pafinterior,jdbcType=REAL}, #{pafintegral,jdbcType=REAL}, #{pafaccount,jdbcType=REAL}, 
+      #{pafkind,jdbcType=VARCHAR}, #{pafinvoice,jdbcType=VARCHAR}, #{pafvalue,jdbcType=REAL}, 
+      #{orrid,jdbcType=VARCHAR}, #{me2ber,jdbcType=INTEGER}, #{me2ber11,jdbcType=VARCHAR}, 
+      #{me2ber22,jdbcType=VARCHAR}, #{me2ber33,jdbcType=VARCHAR}, #{me2ber44,jdbcType=VARCHAR}, 
+      #{me2ber55,jdbcType=VARCHAR}, #{me2ber66,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.domain.Payoff" >
+    insert into payoff
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pafid != null" >
+        pafid,
+      </if>
+      <if test="paftype != null" >
+        paftype,
+      </if>
+      <if test="pafagoprice != null" >
+        pafagoprice,
+      </if>
+      <if test="paftotalprice != null" >
+        paftotalprice,
+      </if>
+      <if test="pafmaterials != null" >
+        pafmaterials,
+      </if>
+      <if test="pafcost != null" >
+        pafcost,
+      </if>
+      <if test="pafaddition != null" >
+        pafaddition,
+      </if>
+      <if test="pafclose != null" >
+        pafclose,
+      </if>
+      <if test="pafperson != null" >
+        pafperson,
+      </if>
+      <if test="pafcash != null" >
+        pafcash,
+      </if>
+      <if test="pafbank != null" >
+        pafbank,
+      </if>
+      <if test="pafbill != null" >
+        pafbill,
+      </if>
+      <if test="pafbuyer != null" >
+        pafbuyer,
+      </if>
+      <if test="pafsavings != null" >
+        pafsavings,
+      </if>
+      <if test="pafearnest != null" >
+        pafearnest,
+      </if>
+      <if test="paftaxes != null" >
+        paftaxes,
+      </if>
+      <if test="pafvoucher != null" >
+        pafvoucher,
+      </if>
+      <if test="pafend != null" >
+        pafend,
+      </if>
+      <if test="pafinterior != null" >
+        pafinterior,
+      </if>
+      <if test="pafintegral != null" >
+        pafintegral,
+      </if>
+      <if test="pafaccount != null" >
+        pafaccount,
+      </if>
+      <if test="pafkind != null" >
+        pafkind,
+      </if>
+      <if test="pafinvoice != null" >
+        pafinvoice,
+      </if>
+      <if test="pafvalue != null" >
+        pafvalue,
+      </if>
+      <if test="orrid != null" >
+        orrid,
+      </if>
+      <if test="me2ber != null" >
+        me2ber,
+      </if>
+      <if test="me2ber11 != null" >
+        me2ber11,
+      </if>
+      <if test="me2ber22 != null" >
+        me2ber22,
+      </if>
+      <if test="me2ber33 != null" >
+        me2ber33,
+      </if>
+      <if test="me2ber44 != null" >
+        me2ber44,
+      </if>
+      <if test="me2ber55 != null" >
+        me2ber55,
+      </if>
+      <if test="me2ber66 != null" >
+        me2ber66,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pafid != null" >
+        #{pafid,jdbcType=VARCHAR},
+      </if>
+      <if test="paftype != null" >
+        #{paftype,jdbcType=VARCHAR},
+      </if>
+      <if test="pafagoprice != null" >
+        #{pafagoprice,jdbcType=REAL},
+      </if>
+      <if test="paftotalprice != null" >
+        #{paftotalprice,jdbcType=REAL},
+      </if>
+      <if test="pafmaterials != null" >
+        #{pafmaterials,jdbcType=REAL},
+      </if>
+      <if test="pafcost != null" >
+        #{pafcost,jdbcType=REAL},
+      </if>
+      <if test="pafaddition != null" >
+        #{pafaddition,jdbcType=REAL},
+      </if>
+      <if test="pafclose != null" >
+        #{pafclose,jdbcType=VARCHAR},
+      </if>
+      <if test="pafperson != null" >
+        #{pafperson,jdbcType=VARCHAR},
+      </if>
+      <if test="pafcash != null" >
+        #{pafcash,jdbcType=REAL},
+      </if>
+      <if test="pafbank != null" >
+        #{pafbank,jdbcType=VARCHAR},
+      </if>
+      <if test="pafbill != null" >
+        #{pafbill,jdbcType=VARCHAR},
+      </if>
+      <if test="pafbuyer != null" >
+        #{pafbuyer,jdbcType=REAL},
+      </if>
+      <if test="pafsavings != null" >
+        #{pafsavings,jdbcType=REAL},
+      </if>
+      <if test="pafearnest != null" >
+        #{pafearnest,jdbcType=REAL},
+      </if>
+      <if test="paftaxes != null" >
+        #{paftaxes,jdbcType=REAL},
+      </if>
+      <if test="pafvoucher != null" >
+        #{pafvoucher,jdbcType=REAL},
+      </if>
+      <if test="pafend != null" >
+        #{pafend,jdbcType=REAL},
+      </if>
+      <if test="pafinterior != null" >
+        #{pafinterior,jdbcType=REAL},
+      </if>
+      <if test="pafintegral != null" >
+        #{pafintegral,jdbcType=REAL},
+      </if>
+      <if test="pafaccount != null" >
+        #{pafaccount,jdbcType=REAL},
+      </if>
+      <if test="pafkind != null" >
+        #{pafkind,jdbcType=VARCHAR},
+      </if>
+      <if test="pafinvoice != null" >
+        #{pafinvoice,jdbcType=VARCHAR},
+      </if>
+      <if test="pafvalue != null" >
+        #{pafvalue,jdbcType=REAL},
+      </if>
+      <if test="orrid != null" >
+        #{orrid,jdbcType=VARCHAR},
+      </if>
+      <if test="me2ber != null" >
+        #{me2ber,jdbcType=INTEGER},
+      </if>
+      <if test="me2ber11 != null" >
+        #{me2ber11,jdbcType=VARCHAR},
+      </if>
+      <if test="me2ber22 != null" >
+        #{me2ber22,jdbcType=VARCHAR},
+      </if>
+      <if test="me2ber33 != null" >
+        #{me2ber33,jdbcType=VARCHAR},
+      </if>
+      <if test="me2ber44 != null" >
+        #{me2ber44,jdbcType=VARCHAR},
+      </if>
+      <if test="me2ber55 != null" >
+        #{me2ber55,jdbcType=VARCHAR},
+      </if>
+      <if test="me2ber66 != null" >
+        #{me2ber66,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.accp.domain.PayoffExample" resultType="java.lang.Integer" >
+    select count(*) from payoff
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update payoff
+    <set >
+      <if test="record.pafid != null" >
+        pafid = #{record.pafid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paftype != null" >
+        paftype = #{record.paftype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pafagoprice != null" >
+        pafagoprice = #{record.pafagoprice,jdbcType=REAL},
+      </if>
+      <if test="record.paftotalprice != null" >
+        paftotalprice = #{record.paftotalprice,jdbcType=REAL},
+      </if>
+      <if test="record.pafmaterials != null" >
+        pafmaterials = #{record.pafmaterials,jdbcType=REAL},
+      </if>
+      <if test="record.pafcost != null" >
+        pafcost = #{record.pafcost,jdbcType=REAL},
+      </if>
+      <if test="record.pafaddition != null" >
+        pafaddition = #{record.pafaddition,jdbcType=REAL},
+      </if>
+      <if test="record.pafclose != null" >
+        pafclose = #{record.pafclose,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pafperson != null" >
+        pafperson = #{record.pafperson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pafcash != null" >
+        pafcash = #{record.pafcash,jdbcType=REAL},
+      </if>
+      <if test="record.pafbank != null" >
+        pafbank = #{record.pafbank,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pafbill != null" >
+        pafbill = #{record.pafbill,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pafbuyer != null" >
+        pafbuyer = #{record.pafbuyer,jdbcType=REAL},
+      </if>
+      <if test="record.pafsavings != null" >
+        pafsavings = #{record.pafsavings,jdbcType=REAL},
+      </if>
+      <if test="record.pafearnest != null" >
+        pafearnest = #{record.pafearnest,jdbcType=REAL},
+      </if>
+      <if test="record.paftaxes != null" >
+        paftaxes = #{record.paftaxes,jdbcType=REAL},
+      </if>
+      <if test="record.pafvoucher != null" >
+        pafvoucher = #{record.pafvoucher,jdbcType=REAL},
+      </if>
+      <if test="record.pafend != null" >
+        pafend = #{record.pafend,jdbcType=REAL},
+      </if>
+      <if test="record.pafinterior != null" >
+        pafinterior = #{record.pafinterior,jdbcType=REAL},
+      </if>
+      <if test="record.pafintegral != null" >
+        pafintegral = #{record.pafintegral,jdbcType=REAL},
+      </if>
+      <if test="record.pafaccount != null" >
+        pafaccount = #{record.pafaccount,jdbcType=REAL},
+      </if>
+      <if test="record.pafkind != null" >
+        pafkind = #{record.pafkind,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pafinvoice != null" >
+        pafinvoice = #{record.pafinvoice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pafvalue != null" >
+        pafvalue = #{record.pafvalue,jdbcType=REAL},
+      </if>
+      <if test="record.orrid != null" >
+        orrid = #{record.orrid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.me2ber != null" >
+        me2ber = #{record.me2ber,jdbcType=INTEGER},
+      </if>
+      <if test="record.me2ber11 != null" >
+        me2ber11 = #{record.me2ber11,jdbcType=VARCHAR},
+      </if>
+      <if test="record.me2ber22 != null" >
+        me2ber22 = #{record.me2ber22,jdbcType=VARCHAR},
+      </if>
+      <if test="record.me2ber33 != null" >
+        me2ber33 = #{record.me2ber33,jdbcType=VARCHAR},
+      </if>
+      <if test="record.me2ber44 != null" >
+        me2ber44 = #{record.me2ber44,jdbcType=VARCHAR},
+      </if>
+      <if test="record.me2ber55 != null" >
+        me2ber55 = #{record.me2ber55,jdbcType=VARCHAR},
+      </if>
+      <if test="record.me2ber66 != null" >
+        me2ber66 = #{record.me2ber66,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update payoff
+    set pafid = #{record.pafid,jdbcType=VARCHAR},
+      paftype = #{record.paftype,jdbcType=VARCHAR},
+      pafagoprice = #{record.pafagoprice,jdbcType=REAL},
+      paftotalprice = #{record.paftotalprice,jdbcType=REAL},
+      pafmaterials = #{record.pafmaterials,jdbcType=REAL},
+      pafcost = #{record.pafcost,jdbcType=REAL},
+      pafaddition = #{record.pafaddition,jdbcType=REAL},
+      pafclose = #{record.pafclose,jdbcType=VARCHAR},
+      pafperson = #{record.pafperson,jdbcType=VARCHAR},
+      pafcash = #{record.pafcash,jdbcType=REAL},
+      pafbank = #{record.pafbank,jdbcType=VARCHAR},
+      pafbill = #{record.pafbill,jdbcType=VARCHAR},
+      pafbuyer = #{record.pafbuyer,jdbcType=REAL},
+      pafsavings = #{record.pafsavings,jdbcType=REAL},
+      pafearnest = #{record.pafearnest,jdbcType=REAL},
+      paftaxes = #{record.paftaxes,jdbcType=REAL},
+      pafvoucher = #{record.pafvoucher,jdbcType=REAL},
+      pafend = #{record.pafend,jdbcType=REAL},
+      pafinterior = #{record.pafinterior,jdbcType=REAL},
+      pafintegral = #{record.pafintegral,jdbcType=REAL},
+      pafaccount = #{record.pafaccount,jdbcType=REAL},
+      pafkind = #{record.pafkind,jdbcType=VARCHAR},
+      pafinvoice = #{record.pafinvoice,jdbcType=VARCHAR},
+      pafvalue = #{record.pafvalue,jdbcType=REAL},
+      orrid = #{record.orrid,jdbcType=VARCHAR},
+      me2ber = #{record.me2ber,jdbcType=INTEGER},
+      me2ber11 = #{record.me2ber11,jdbcType=VARCHAR},
+      me2ber22 = #{record.me2ber22,jdbcType=VARCHAR},
+      me2ber33 = #{record.me2ber33,jdbcType=VARCHAR},
+      me2ber44 = #{record.me2ber44,jdbcType=VARCHAR},
+      me2ber55 = #{record.me2ber55,jdbcType=VARCHAR},
+      me2ber66 = #{record.me2ber66,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.Payoff" >
+    update payoff
+    <set >
+      <if test="paftype != null" >
+        paftype = #{paftype,jdbcType=VARCHAR},
+      </if>
+      <if test="pafagoprice != null" >
+        pafagoprice = #{pafagoprice,jdbcType=REAL},
+      </if>
+      <if test="paftotalprice != null" >
+        paftotalprice = #{paftotalprice,jdbcType=REAL},
+      </if>
+      <if test="pafmaterials != null" >
+        pafmaterials = #{pafmaterials,jdbcType=REAL},
+      </if>
+      <if test="pafcost != null" >
+        pafcost = #{pafcost,jdbcType=REAL},
+      </if>
+      <if test="pafaddition != null" >
+        pafaddition = #{pafaddition,jdbcType=REAL},
+      </if>
+      <if test="pafclose != null" >
+        pafclose = #{pafclose,jdbcType=VARCHAR},
+      </if>
+      <if test="pafperson != null" >
+        pafperson = #{pafperson,jdbcType=VARCHAR},
+      </if>
+      <if test="pafcash != null" >
+        pafcash = #{pafcash,jdbcType=REAL},
+      </if>
+      <if test="pafbank != null" >
+        pafbank = #{pafbank,jdbcType=VARCHAR},
+      </if>
+      <if test="pafbill != null" >
+        pafbill = #{pafbill,jdbcType=VARCHAR},
+      </if>
+      <if test="pafbuyer != null" >
+        pafbuyer = #{pafbuyer,jdbcType=REAL},
+      </if>
+      <if test="pafsavings != null" >
+        pafsavings = #{pafsavings,jdbcType=REAL},
+      </if>
+      <if test="pafearnest != null" >
+        pafearnest = #{pafearnest,jdbcType=REAL},
+      </if>
+      <if test="paftaxes != null" >
+        paftaxes = #{paftaxes,jdbcType=REAL},
+      </if>
+      <if test="pafvoucher != null" >
+        pafvoucher = #{pafvoucher,jdbcType=REAL},
+      </if>
+      <if test="pafend != null" >
+        pafend = #{pafend,jdbcType=REAL},
+      </if>
+      <if test="pafinterior != null" >
+        pafinterior = #{pafinterior,jdbcType=REAL},
+      </if>
+      <if test="pafintegral != null" >
+        pafintegral = #{pafintegral,jdbcType=REAL},
+      </if>
+      <if test="pafaccount != null" >
+        pafaccount = #{pafaccount,jdbcType=REAL},
+      </if>
+      <if test="pafkind != null" >
+        pafkind = #{pafkind,jdbcType=VARCHAR},
+      </if>
+      <if test="pafinvoice != null" >
+        pafinvoice = #{pafinvoice,jdbcType=VARCHAR},
+      </if>
+      <if test="pafvalue != null" >
+        pafvalue = #{pafvalue,jdbcType=REAL},
+      </if>
+      <if test="orrid != null" >
+        orrid = #{orrid,jdbcType=VARCHAR},
+      </if>
+      <if test="me2ber != null" >
+        me2ber = #{me2ber,jdbcType=INTEGER},
+      </if>
+      <if test="me2ber11 != null" >
+        me2ber11 = #{me2ber11,jdbcType=VARCHAR},
+      </if>
+      <if test="me2ber22 != null" >
+        me2ber22 = #{me2ber22,jdbcType=VARCHAR},
+      </if>
+      <if test="me2ber33 != null" >
+        me2ber33 = #{me2ber33,jdbcType=VARCHAR},
+      </if>
+      <if test="me2ber44 != null" >
+        me2ber44 = #{me2ber44,jdbcType=VARCHAR},
+      </if>
+      <if test="me2ber55 != null" >
+        me2ber55 = #{me2ber55,jdbcType=VARCHAR},
+      </if>
+      <if test="me2ber66 != null" >
+        me2ber66 = #{me2ber66,jdbcType=INTEGER},
+      </if>
+    </set>
+    where pafid = #{pafid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.domain.Payoff" >
+    update payoff
+    set paftype = #{paftype,jdbcType=VARCHAR},
+      pafagoprice = #{pafagoprice,jdbcType=REAL},
+      paftotalprice = #{paftotalprice,jdbcType=REAL},
+      pafmaterials = #{pafmaterials,jdbcType=REAL},
+      pafcost = #{pafcost,jdbcType=REAL},
+      pafaddition = #{pafaddition,jdbcType=REAL},
+      pafclose = #{pafclose,jdbcType=VARCHAR},
+      pafperson = #{pafperson,jdbcType=VARCHAR},
+      pafcash = #{pafcash,jdbcType=REAL},
+      pafbank = #{pafbank,jdbcType=VARCHAR},
+      pafbill = #{pafbill,jdbcType=VARCHAR},
+      pafbuyer = #{pafbuyer,jdbcType=REAL},
+      pafsavings = #{pafsavings,jdbcType=REAL},
+      pafearnest = #{pafearnest,jdbcType=REAL},
+      paftaxes = #{paftaxes,jdbcType=REAL},
+      pafvoucher = #{pafvoucher,jdbcType=REAL},
+      pafend = #{pafend,jdbcType=REAL},
+      pafinterior = #{pafinterior,jdbcType=REAL},
+      pafintegral = #{pafintegral,jdbcType=REAL},
+      pafaccount = #{pafaccount,jdbcType=REAL},
+      pafkind = #{pafkind,jdbcType=VARCHAR},
+      pafinvoice = #{pafinvoice,jdbcType=VARCHAR},
+      pafvalue = #{pafvalue,jdbcType=REAL},
+      orrid = #{orrid,jdbcType=VARCHAR},
+      me2ber = #{me2ber,jdbcType=INTEGER},
+      me2ber11 = #{me2ber11,jdbcType=VARCHAR},
+      me2ber22 = #{me2ber22,jdbcType=VARCHAR},
+      me2ber33 = #{me2ber33,jdbcType=VARCHAR},
+      me2ber44 = #{me2ber44,jdbcType=VARCHAR},
+      me2ber55 = #{me2ber55,jdbcType=VARCHAR},
+      me2ber66 = #{me2ber66,jdbcType=INTEGER}
+    where pafid = #{pafid,jdbcType=VARCHAR}
+  </update>
+</mapper>

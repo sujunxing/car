@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.mapper.ArtisangradeMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.Artisangrade" >
+    <id column="areid" property="areid" jdbcType="INTEGER" />
+    <result column="arename" property="arename" jdbcType="VARCHAR" />
+    <result column="areweight" property="areweight" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    areid, arename, areweight
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.ArtisangradeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from artisangrade
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from artisangrade
+    where areid = #{areid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from artisangrade
+    where areid = #{areid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.accp.domain.ArtisangradeExample" >
+    delete from artisangrade
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.accp.domain.Artisangrade" >
+    insert into artisangrade (areid, arename, areweight
+      )
+    values (#{areid,jdbcType=INTEGER}, #{arename,jdbcType=VARCHAR}, #{areweight,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.domain.Artisangrade" >
+    insert into artisangrade
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="areid != null" >
+        areid,
+      </if>
+      <if test="arename != null" >
+        arename,
+      </if>
+      <if test="areweight != null" >
+        areweight,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="areid != null" >
+        #{areid,jdbcType=INTEGER},
+      </if>
+      <if test="arename != null" >
+        #{arename,jdbcType=VARCHAR},
+      </if>
+      <if test="areweight != null" >
+        #{areweight,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.accp.domain.ArtisangradeExample" resultType="java.lang.Integer" >
+    select count(*) from artisangrade
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update artisangrade
+    <set >
+      <if test="record.areid != null" >
+        areid = #{record.areid,jdbcType=INTEGER},
+      </if>
+      <if test="record.arename != null" >
+        arename = #{record.arename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areweight != null" >
+        areweight = #{record.areweight,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update artisangrade
+    set areid = #{record.areid,jdbcType=INTEGER},
+      arename = #{record.arename,jdbcType=VARCHAR},
+      areweight = #{record.areweight,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.Artisangrade" >
+    update artisangrade
+    <set >
+      <if test="arename != null" >
+        arename = #{arename,jdbcType=VARCHAR},
+      </if>
+      <if test="areweight != null" >
+        areweight = #{areweight,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where areid = #{areid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.domain.Artisangrade" >
+    update artisangrade
+    set arename = #{arename,jdbcType=VARCHAR},
+      areweight = #{areweight,jdbcType=VARCHAR}
+    where areid = #{areid,jdbcType=INTEGER}
+  </update>
+</mapper>

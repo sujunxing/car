@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.mapper.Me2waterMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.Me2water" >
+    <id column="me2waterid" property="me2waterid" jdbcType="INTEGER" />
+    <result column="me2berid" property="me2berid" jdbcType="INTEGER" />
+    <result column="Me2ber1" property="me2ber1" jdbcType="VARCHAR" />
+    <result column="Me2ber2" property="me2ber2" jdbcType="VARCHAR" />
+    <result column="Me2ber3" property="me2ber3" jdbcType="VARCHAR" />
+    <result column="Me2ber4" property="me2ber4" jdbcType="VARCHAR" />
+    <result column="Me2ber5" property="me2ber5" jdbcType="REAL" />
+    <result column="Me2ber6" property="me2ber6" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    me2waterid, me2berid, Me2ber1, Me2ber2, Me2ber3, Me2ber4, Me2ber5, Me2ber6
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.Me2waterExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from me2water
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from me2water
+    where me2waterid = #{me2waterid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from me2water
+    where me2waterid = #{me2waterid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.accp.domain.Me2waterExample" >
+    delete from me2water
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.accp.domain.Me2water" >
+    insert into me2water (me2waterid, me2berid, Me2ber1, 
+      Me2ber2, Me2ber3, Me2ber4, 
+      Me2ber5, Me2ber6)
+    values (#{me2waterid,jdbcType=INTEGER}, #{me2berid,jdbcType=INTEGER}, #{me2ber1,jdbcType=VARCHAR}, 
+      #{me2ber2,jdbcType=VARCHAR}, #{me2ber3,jdbcType=VARCHAR}, #{me2ber4,jdbcType=VARCHAR}, 
+      #{me2ber5,jdbcType=REAL}, #{me2ber6,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.domain.Me2water" >
+    insert into me2water
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="me2waterid != null" >
+        me2waterid,
+      </if>
+      <if test="me2berid != null" >
+        me2berid,
+      </if>
+      <if test="me2ber1 != null" >
+        Me2ber1,
+      </if>
+      <if test="me2ber2 != null" >
+        Me2ber2,
+      </if>
+      <if test="me2ber3 != null" >
+        Me2ber3,
+      </if>
+      <if test="me2ber4 != null" >
+        Me2ber4,
+      </if>
+      <if test="me2ber5 != null" >
+        Me2ber5,
+      </if>
+      <if test="me2ber6 != null" >
+        Me2ber6,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="me2waterid != null" >
+        #{me2waterid,jdbcType=INTEGER},
+      </if>
+      <if test="me2berid != null" >
+        #{me2berid,jdbcType=INTEGER},
+      </if>
+      <if test="me2ber1 != null" >
+        #{me2ber1,jdbcType=VARCHAR},
+      </if>
+      <if test="me2ber2 != null" >
+        #{me2ber2,jdbcType=VARCHAR},
+      </if>
+      <if test="me2ber3 != null" >
+        #{me2ber3,jdbcType=VARCHAR},
+      </if>
+      <if test="me2ber4 != null" >
+        #{me2ber4,jdbcType=VARCHAR},
+      </if>
+      <if test="me2ber5 != null" >
+        #{me2ber5,jdbcType=REAL},
+      </if>
+      <if test="me2ber6 != null" >
+        #{me2ber6,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.accp.domain.Me2waterExample" resultType="java.lang.Integer" >
+    select count(*) from me2water
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update me2water
+    <set >
+      <if test="record.me2waterid != null" >
+        me2waterid = #{record.me2waterid,jdbcType=INTEGER},
+      </if>
+      <if test="record.me2berid != null" >
+        me2berid = #{record.me2berid,jdbcType=INTEGER},
+      </if>
+      <if test="record.me2ber1 != null" >
+        Me2ber1 = #{record.me2ber1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.me2ber2 != null" >
+        Me2ber2 = #{record.me2ber2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.me2ber3 != null" >
+        Me2ber3 = #{record.me2ber3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.me2ber4 != null" >
+        Me2ber4 = #{record.me2ber4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.me2ber5 != null" >
+        Me2ber5 = #{record.me2ber5,jdbcType=REAL},
+      </if>
+      <if test="record.me2ber6 != null" >
+        Me2ber6 = #{record.me2ber6,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update me2water
+    set me2waterid = #{record.me2waterid,jdbcType=INTEGER},
+      me2berid = #{record.me2berid,jdbcType=INTEGER},
+      Me2ber1 = #{record.me2ber1,jdbcType=VARCHAR},
+      Me2ber2 = #{record.me2ber2,jdbcType=VARCHAR},
+      Me2ber3 = #{record.me2ber3,jdbcType=VARCHAR},
+      Me2ber4 = #{record.me2ber4,jdbcType=VARCHAR},
+      Me2ber5 = #{record.me2ber5,jdbcType=REAL},
+      Me2ber6 = #{record.me2ber6,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.Me2water" >
+    update me2water
+    <set >
+      <if test="me2berid != null" >
+        me2berid = #{me2berid,jdbcType=INTEGER},
+      </if>
+      <if test="me2ber1 != null" >
+        Me2ber1 = #{me2ber1,jdbcType=VARCHAR},
+      </if>
+      <if test="me2ber2 != null" >
+        Me2ber2 = #{me2ber2,jdbcType=VARCHAR},
+      </if>
+      <if test="me2ber3 != null" >
+        Me2ber3 = #{me2ber3,jdbcType=VARCHAR},
+      </if>
+      <if test="me2ber4 != null" >
+        Me2ber4 = #{me2ber4,jdbcType=VARCHAR},
+      </if>
+      <if test="me2ber5 != null" >
+        Me2ber5 = #{me2ber5,jdbcType=REAL},
+      </if>
+      <if test="me2ber6 != null" >
+        Me2ber6 = #{me2ber6,jdbcType=INTEGER},
+      </if>
+    </set>
+    where me2waterid = #{me2waterid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.domain.Me2water" >
+    update me2water
+    set me2berid = #{me2berid,jdbcType=INTEGER},
+      Me2ber1 = #{me2ber1,jdbcType=VARCHAR},
+      Me2ber2 = #{me2ber2,jdbcType=VARCHAR},
+      Me2ber3 = #{me2ber3,jdbcType=VARCHAR},
+      Me2ber4 = #{me2ber4,jdbcType=VARCHAR},
+      Me2ber5 = #{me2ber5,jdbcType=REAL},
+      Me2ber6 = #{me2ber6,jdbcType=INTEGER}
+    where me2waterid = #{me2waterid,jdbcType=INTEGER}
+  </update>
+</mapper>

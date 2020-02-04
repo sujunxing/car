@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>角色权限控制</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="css/bootstrapStyle/bootstrapStyle.css" type="text/css">
+	</head>
+	<body>
+		<div class="container-fluid">
+			<div class="row" style="background-color: #DFF0D8;">
+				<div class="col-xs-4">
+					<h2>角色权限控制</h2>
+				</div>
+				<div class="col-xs-4 col-xs-offset-4">
+					<div style="float: right;margin-top: 20px;">
+						<button class="btn btn-success"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;保存</button>
+						<button class="btn btn-default">关闭</button>
+					</div>
+				</div>
+			</div>
+			<div class="row" style="background-color: #F5F5F5;">
+				<div class="col-xs-6">
+					<div class="btn-group" role="group" aria-label="..."style="height: 50px;margin-top: 20px;">
+					  <span style="width: 100px;" type="button" class="btn btn-default">角色名称：</span>
+					  <div class="btn-group" role="group">
+					    <button style="width: 200px;" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					      	请选择
+					      <span class="caret"></span>
+					    </button>
+					    <ul style="width: 200px;" class="dropdown-menu">
+					      <li><a href="#">总经理</a></li>
+					    <li><a href="#">站长</a></li>
+					    <li><a href="#">技术顾问</a></li>
+					    <li><a href="#">技术经理</a></li>
+					    </ul>
+					  </div>
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<div style="margin-top: 20px;float: right;">
+						<button class="btn btn-success"><span class="glyphicon glyphicon-book"></span>&nbsp;全部选择</button>
+						<button class="btn btn-success"><span class="glyphicon glyphicon-check"></span>&nbsp;全部取消</button>
+						<button class="btn btn-success" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;角色定义</button>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<h2>模块权限</h2>
+				<ul id="treeDemo" class="ztree"></ul>
+			</div>
+			<!-- 角色定义模态框 -->
+			<div class="modal fade" data-backdrop="static" data-keyboard="false"  id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header" style="background-color: #DFF0D8;">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="btn btn-default">关闭</span></button>
+			        <h3 class="modal-title" id="myModalLabel">角色定义</h3>
+			      </div>
+			      <div class="modal-body">
+			        <div class="row text-right" style="margin-bottom: 10px;">
+			        	<button class="btn btn-success"><span class="glyphicon glyphicon-book"></span>&nbsp;增加</button>
+						<button class="btn btn-success"><span class="glyphicon glyphicon-check"></span>&nbsp;删除</button>
+						<button class="btn btn-success" style="margin-right: 15px;"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;保存</button>
+			        </div>
+			        <div class="row" style="padding-bottom: 10px;">
+			        	<!--
+                        	作者：1795022470@qq.com
+                        	时间：2019-12-31
+                        	描述：模态框中新增修改角色
+                        -->
+			        	<div class="row" style="margin-left: 4px;">
+						  <div class="col-lg-5">
+						    <div class="input-group">
+						      <span class="input-group-addon">
+						        角色代码
+						      </span>
+						      <input type="text" class="form-control" aria-label="...">
+						    </div><!-- /input-group -->
+						  </div><!-- /.col-lg-6 -->
+						  <div class="col-lg-5">
+						    <div class="input-group">
+						      <span class="input-group-addon">
+						       角色名称
+						      </span>
+						      <input type="text" class="form-control" aria-label="...">
+						    </div><!-- /input-group -->
+						  </div><!-- /.col-lg-6 -->
+						</div><!-- /.row -->
+			        </div>
+			        <div class="row ">
+			        	<div class="col-xs-8">
+			        		<table border="" cellspacing="" cellpadding="" class="table table-bordered">
+					        	<tr>
+					        		<th>Header</th>
+					        		<th>Header</th>
+					        	</tr>
+								<tr>
+					        		<td>Data</td>
+					        		<td>Data</td>
+					        	</tr>
+					        </table>
+			        	</div>
+			        	
+			        </div>
+			        
+			      </div>
+			      <div class="modal-footer" style="background-color: white;">
+			      <p style="text-align: left;margin-top: 10px;">合计：15条记录</p>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+			
+		</div>
+	
+		<script src="js/jquery-1.12.4.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="js/jquery.ztree.core.js"></script>
+		<!--
+        	作者：1795022470@qq.com
+        	时间：2020-01-01
+        	描述：树状菜单栏
+        -->
+		<script type="text/javascript">
+		var setting = {
+			check: {
+				enable: true
+			},
+			data: {
+				simpleData: {
+					enable: true
+				}
+			},
+			edit: {
+				enable: true
+			}
+		};
+		//数据结构，从后台查询数据进行赋值就可使用
+		var zNodes =[
+			{id:1, pId:0, name:"[core] 基本功能 演示", open:false},
+		{id:101, pId:1, name:"最简单的树 --  标准 JSON 数据"},
+		{id:102, pId:1, name:"最简单的树 --  简单 JSON 数据"},
+		{id:103, pId:1, name:"不显示 连接线"},
+		{id:104, pId:1, name:"不显示 节点 图标"},
+		{id:108, pId:1, name:"异步加载 节点数据"},
+		{id:109, pId:1, name:"用 zTree 方法 异步加载 节点数据"},
+		{id:110, pId:1, name:"用 zTree 方法 更新 节点数据"},
+		{id:111, pId:1, name:"单击 节点 控制"},
+		{id:112, pId:1, name:"展开 / 折叠 父节点 控制"},
+		{id:113, pId:1, name:"根据 参数 查找 节点"},
+		{id:114, pId:1, name:"其他 鼠标 事件监听"},
+		
+		{id:2, pId:0, name:"[excheck] 复/单选框功能 演示", open:false},
+		{id:201, pId:2, name:"Checkbox 勾选操作"},
+		{id:206, pId:2, name:"Checkbox nocheck 演示"},
+		{id:207, pId:2, name:"Checkbox chkDisabled 演示"},
+		{id:208, pId:2, name:"Checkbox halfCheck 演示"},
+		{id:202, pId:2, name:"Checkbox 勾选统计"},
+		{id:203, pId:2, name:"用 zTree 方法 勾选 Checkbox"},
+		{id:204, pId:2, name:"Radio 勾选操作"},
+		{id:209, pId:2, name:"Radio nocheck 演示"},
+		{id:210, pId:2, name:"Radio chkDisabled 演示"},
+		{id:211, pId:2, name:"Radio halfCheck 演示"},
+		{id:205, pId:2, name:"用 zTree 方法 勾选 Radio"},
+	
+		];
+	
+		$(document).ready(function(){
+			$.fn.zTree.init($("#treeDemo"), setting, zNodes);
+		});
+		//-->
+	</script>
+	</body>
+</html>

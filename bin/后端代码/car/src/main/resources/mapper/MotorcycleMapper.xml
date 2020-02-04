@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.mapper.MotorcycleMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.Motorcycle" >
+    <id column="moeid" property="moeid" jdbcType="VARCHAR" />
+    <result column="trkid" property="trkid" jdbcType="VARCHAR" />
+    <result column="moename" property="moename" jdbcType="VARCHAR" />
+    <result column="moesource" property="moesource" jdbcType="VARCHAR" />
+    <result column="moeprice" property="moeprice" jdbcType="INTEGER" />
+    <result column="moeyear" property="moeyear" jdbcType="VARCHAR" />
+    <result column="moepower" property="moepower" jdbcType="VARCHAR" />
+    <result column="moegrade" property="moegrade" jdbcType="VARCHAR" />
+    <result column="moeload" property="moeload" jdbcType="VARCHAR" />
+    <result column="endid" property="endid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    moeid, trkid, moename, moesource, moeprice, moeyear, moepower, moegrade, moeload, 
+    endid
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.MotorcycleExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from motorcycle
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from motorcycle
+    where moeid = #{moeid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from motorcycle
+    where moeid = #{moeid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.accp.domain.MotorcycleExample" >
+    delete from motorcycle
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.accp.domain.Motorcycle" >
+    insert into motorcycle (moeid, trkid, moename, 
+      moesource, moeprice, moeyear, 
+      moepower, moegrade, moeload, 
+      endid)
+    values (#{moeid,jdbcType=VARCHAR}, #{trkid,jdbcType=VARCHAR}, #{moename,jdbcType=VARCHAR}, 
+      #{moesource,jdbcType=VARCHAR}, #{moeprice,jdbcType=INTEGER}, #{moeyear,jdbcType=VARCHAR}, 
+      #{moepower,jdbcType=VARCHAR}, #{moegrade,jdbcType=VARCHAR}, #{moeload,jdbcType=VARCHAR}, 
+      #{endid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.domain.Motorcycle" >
+    insert into motorcycle
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="moeid != null" >
+        moeid,
+      </if>
+      <if test="trkid != null" >
+        trkid,
+      </if>
+      <if test="moename != null" >
+        moename,
+      </if>
+      <if test="moesource != null" >
+        moesource,
+      </if>
+      <if test="moeprice != null" >
+        moeprice,
+      </if>
+      <if test="moeyear != null" >
+        moeyear,
+      </if>
+      <if test="moepower != null" >
+        moepower,
+      </if>
+      <if test="moegrade != null" >
+        moegrade,
+      </if>
+      <if test="moeload != null" >
+        moeload,
+      </if>
+      <if test="endid != null" >
+        endid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="moeid != null" >
+        #{moeid,jdbcType=VARCHAR},
+      </if>
+      <if test="trkid != null" >
+        #{trkid,jdbcType=VARCHAR},
+      </if>
+      <if test="moename != null" >
+        #{moename,jdbcType=VARCHAR},
+      </if>
+      <if test="moesource != null" >
+        #{moesource,jdbcType=VARCHAR},
+      </if>
+      <if test="moeprice != null" >
+        #{moeprice,jdbcType=INTEGER},
+      </if>
+      <if test="moeyear != null" >
+        #{moeyear,jdbcType=VARCHAR},
+      </if>
+      <if test="moepower != null" >
+        #{moepower,jdbcType=VARCHAR},
+      </if>
+      <if test="moegrade != null" >
+        #{moegrade,jdbcType=VARCHAR},
+      </if>
+      <if test="moeload != null" >
+        #{moeload,jdbcType=VARCHAR},
+      </if>
+      <if test="endid != null" >
+        #{endid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.accp.domain.MotorcycleExample" resultType="java.lang.Integer" >
+    select count(*) from motorcycle
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update motorcycle
+    <set >
+      <if test="record.moeid != null" >
+        moeid = #{record.moeid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.trkid != null" >
+        trkid = #{record.trkid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.moename != null" >
+        moename = #{record.moename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.moesource != null" >
+        moesource = #{record.moesource,jdbcType=VARCHAR},
+      </if>
+      <if test="record.moeprice != null" >
+        moeprice = #{record.moeprice,jdbcType=INTEGER},
+      </if>
+      <if test="record.moeyear != null" >
+        moeyear = #{record.moeyear,jdbcType=VARCHAR},
+      </if>
+      <if test="record.moepower != null" >
+        moepower = #{record.moepower,jdbcType=VARCHAR},
+      </if>
+      <if test="record.moegrade != null" >
+        moegrade = #{record.moegrade,jdbcType=VARCHAR},
+      </if>
+      <if test="record.moeload != null" >
+        moeload = #{record.moeload,jdbcType=VARCHAR},
+      </if>
+      <if test="record.endid != null" >
+        endid = #{record.endid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update motorcycle
+    set moeid = #{record.moeid,jdbcType=VARCHAR},
+      trkid = #{record.trkid,jdbcType=VARCHAR},
+      moename = #{record.moename,jdbcType=VARCHAR},
+      moesource = #{record.moesource,jdbcType=VARCHAR},
+      moeprice = #{record.moeprice,jdbcType=INTEGER},
+      moeyear = #{record.moeyear,jdbcType=VARCHAR},
+      moepower = #{record.moepower,jdbcType=VARCHAR},
+      moegrade = #{record.moegrade,jdbcType=VARCHAR},
+      moeload = #{record.moeload,jdbcType=VARCHAR},
+      endid = #{record.endid,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.Motorcycle" >
+    update motorcycle
+    <set >
+      <if test="trkid != null" >
+        trkid = #{trkid,jdbcType=VARCHAR},
+      </if>
+      <if test="moename != null" >
+        moename = #{moename,jdbcType=VARCHAR},
+      </if>
+      <if test="moesource != null" >
+        moesource = #{moesource,jdbcType=VARCHAR},
+      </if>
+      <if test="moeprice != null" >
+        moeprice = #{moeprice,jdbcType=INTEGER},
+      </if>
+      <if test="moeyear != null" >
+        moeyear = #{moeyear,jdbcType=VARCHAR},
+      </if>
+      <if test="moepower != null" >
+        moepower = #{moepower,jdbcType=VARCHAR},
+      </if>
+      <if test="moegrade != null" >
+        moegrade = #{moegrade,jdbcType=VARCHAR},
+      </if>
+      <if test="moeload != null" >
+        moeload = #{moeload,jdbcType=VARCHAR},
+      </if>
+      <if test="endid != null" >
+        endid = #{endid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where moeid = #{moeid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.domain.Motorcycle" >
+    update motorcycle
+    set trkid = #{trkid,jdbcType=VARCHAR},
+      moename = #{moename,jdbcType=VARCHAR},
+      moesource = #{moesource,jdbcType=VARCHAR},
+      moeprice = #{moeprice,jdbcType=INTEGER},
+      moeyear = #{moeyear,jdbcType=VARCHAR},
+      moepower = #{moepower,jdbcType=VARCHAR},
+      moegrade = #{moegrade,jdbcType=VARCHAR},
+      moeload = #{moeload,jdbcType=VARCHAR},
+      endid = #{endid,jdbcType=VARCHAR}
+    where moeid = #{moeid,jdbcType=VARCHAR}
+  </update>
+</mapper>

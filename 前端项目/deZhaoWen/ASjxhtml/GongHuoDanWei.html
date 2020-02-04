@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#gonghuodanwei>div:nth-of-type(1){
+				font-size: 27px;
+				padding: 5px;
+				background-color: #F7FFFF;
+				color: #6B696B;
+			}
+			body{
+				background-color: #F7F4F0;
+			}
+			#gonghuodanwei>div:nth-of-type(1)>p{
+				font-size: 18px;
+				display: inline-block;
+				float: right;
+			}
+			#gonghuodanwei>div>p{
+				font-size: 18px;
+				text-align:right;
+			}
+			#gonghuodanwei>div>p:nth-of-type(1){
+				margin: 10px 0 0;
+				
+			}
+			#gonghuodanwei>div>p>span{
+				margin:0 20px 0 0;
+			}
+			#gonghuodanwei>div>p>span>span{
+				color: #F7A621;
+			}
+			#gonghuodanwei>div>p>button{
+				width: 70px;
+				font-size: 14px;
+				height: 30px;
+			}
+			#gonghuodanwei>div:nth-of-type(2)>div:nth-of-type(1) ul{
+				list-style-type:none;
+				font-size: 16px;
+			}
+			#gonghuodanwei>div:nth-of-type(2)>div:nth-of-type(1)>ul ul{
+				margin: 0 0 0 15px;
+			}
+			#gonghuodanwei>div:nth-of-type(2)>div:nth-of-type(1){
+				height: 100%;
+				background-color: #FFFFFF;
+			}
+			#gonghuodanwei>div:nth-of-type(2){
+				height: 550px;
+			}
+			#gonghuodanwei>div:nth-of-type(2)>div:nth-of-type(2){
+				background-color: #FFFFFF;
+			}
+			#gonghuodanwei>div:nth-of-type(2)>div:nth-of-type(2) *{
+				margin: 0;
+				padding: 5px 0;
+			}
+			#gonghuodanwei>div:nth-of-type(2)>div:nth-of-type(2){
+				margin: 0;
+				padding: 0;
+				height: 550px;
+				border-left: 1px solid #C4C4C4;
+			}
+
+			#gonghuodanwei>div:nth-of-type(2)>div:nth-of-type(2)>div:nth-of-type(1){
+
+				height: 300px;
+			}
+			#gonghuodanwei>div:nth-of-type(2)>div:nth-of-type(2)>div:nth-of-type(2){
+				
+				height: 150px;
+			}
+			#gonghuodanwei>div:nth-of-type(1)>div:nth-of-type(1){
+				margin: 0 5px 0 0;
+			}
+			#gonghuodanwei>div:nth-of-type(1)>div:nth-of-type(2){
+				margin: 0 0 0 5px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="gonghuodanwei">
+			<div>
+				供货单位
+				<p>
+					<input placeholder="匹配 编号/名称/名称简码"/>
+					<button>搜索</button>
+				</p>
+			</div>
+			<div class="container-fluid">
+				<p>
+					<span data-toggle="modal" data-target="#zhenjiashangping"><span class="tubiao glyphicon glyphicon-menu-hamburger"></span>增加</span>
+					<span data-toggle="modal" data-target="#zhenjiashangping"><span class="tubiao glyphicon glyphicon-edit"></span>修改</span>
+					<span><span class="tubiao glyphicon glyphicon-remove"></span>删除</span>
+					<span><span class="tubiao glyphicon glyphicon-search"></span>查询</span>
+					<span><span class="tubiao glyphicon glyphicon-floppy-open"></span>导出</span>
+					<span><span class="tubiao glyphicon glyphicon-picture"></span>图片</span>
+					<span><span class="tubiao glyphicon glyphicon-user"></span>联系人</span>
+					<span><span class="tubiao glyphicon glyphicon-cog"></span>字段设置</span>
+				</p>
+				<div class="col-md-2">
+					<kuangjia :daohangs="daohangs"></kuangjia>
+				</div>
+				<div class="col-md-10" >
+					<div>
+						<table class="table table-hover text-center">
+							<thead style="background-color: #39C9DE; color: #FFFFFF;">
+								<tr>
+									<th class="text-center">工厂代码</th>
+									<th class="text-center">工厂名称</th>
+									<th class="text-center">地址</th>
+									<th class="text-center">经营情况</th>
+									<th class="text-center">网址</th>
+									<th class="text-center">开户行</th>
+									<th class="text-center">银行账号</th>
+									
+								</tr>
+							</thead>
+							<tbody>
+								
+							</tbody>
+						</table>
+					</div>
+					<div>
+						<table class="table table-hover text-center">
+							<thead style="background-color: #39C9DE; color: #FFFFFF;">
+								<tr>
+									<th class="text-center">联系人</th>
+									<th class="text-center">职位</th>
+									<th class="text-center">手机</th>
+									<th class="text-center">电话</th>
+									<th class="text-center">Email</th>
+								</tr>
+							</thead>
+							<tbody>
+								
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		
+			<div class="modal fade" id="zhenjiashangping" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			  <div class="modal-dialog" role="document" style="width: 400px;">
+				<div class="modal-content">
+				  <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h3 class="modal-title" id="myModalLabel">商品定义</h3>
+				  </div>
+				  <div class="modal-body">
+					<table style="font-size: 18px;" class="table-condensed">
+						<tr>
+							<td>分类编码:</td>
+							<td><input></td>
+						</tr>
+						<tr>
+							<td>分类名称:</td>
+							<td><input></td>
+						</tr>
+					</table>
+				  </div>
+				  <div class="modal-footer">
+					<button type="button" class="btn btn-primary">保存</button>
+				  </div>
+				</div>
+			  </div>
+			</div>
+		
+		</div>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/vue.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script>
+			Vue.component('kuangjia',{
+				props:["daohangs"],
+				template:`				
+					<ul>
+						<li v-for="item in daohangs">
+							<span class="glyphicon glyphicon-plus" style="font-size: 12px;" v-if="item.daohangs!=null&&item.daohangs[0].daohangs!=null"></span>
+							<span style="width: 15px;display:inline-block;" v-else></span>
+							<span class="abq" panduan="true" onclick="xsyc(this)">{{item.name}}</span>
+							<kuangjia :daohangs="item.daohangs"></kuangjia>
+						</li>
+					</ul>
+				`,
+				methods:{
+				}
+			});
+			var vm=new Vue({
+				el:"#gonghuodanwei",
+				data(){
+					return{
+						daohangs:[{
+							id:1,name:"维修",
+							url:"",
+							shuoshuid:0,
+							daohangs:[{
+								id:5,name:"维修救援",url:"",daohangs:[{id:6,name:"竣工检查",url:"aaa",daohangs:[{id:6,name:"车辆资料",url:"aaa"},{id:7,name:"客户资料",url:"aaa"}]},{id:7,name:"维修接车",url:"aaa"}]
+							}]
+						},{
+							id:2,name:"前台",url:"",
+							daohangs:[{
+								id:5,name:"客户档案",url:"",daohangs:[{id:6,name:"竣工检查",url:"aaa",daohangs:[{id:6,name:"车辆资料",url:"aaa"},{id:7,name:"客户资料",url:"aaa"}]},{id:7,name:"维修接车",url:"aaa"}]
+							}]
+						},{
+							id:3,name:"客服",url:"",
+							daohangs:[{
+								id:5,name:"客户档案",url:"",daohangs:[{id:6,name:"车辆资料",url:"aaa",daohangs:[{id:6,name:"车辆资料",url:"aaa"},{id:7,name:"客户资料",url:"aaa"}]},{id:7,name:"客户资料",url:"aaa"}]
+							}]
+						}]
+					}
+				},
+				methods:{
+					
+				}
+			});
+			$(function (){
+				$("ul li span").siblings("ul").css("display","none");
+			});
+		
+
+			var xsyc=function(kj){ 
+				var pd=$(kj).attr("panduan");
+				if(pd=="true"){
+					$(kj).attr("panduan",false);
+					$(kj).siblings("span").attr("class","glyphicon glyphicon-minus");
+					$(kj).siblings("ul").show();
+				}else{
+					$(kj).attr("panduan",true);
+					$(kj).siblings("span").attr("class","glyphicon glyphicon-plus");
+					$(kj).siblings("ul").hide();
+				}
+			}
+		</script>
+	</body>
+</html>

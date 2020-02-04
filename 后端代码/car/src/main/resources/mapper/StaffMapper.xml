@@ -1,0 +1,874 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.mapper.StaffMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.Staff" >
+    <id column="sid" property="sid" jdbcType="VARCHAR" />
+    <result column="sname" property="sname" jdbcType="VARCHAR" />
+    <result column="ssex" property="ssex" jdbcType="VARCHAR" />
+    <result column="shpid" property="shpid" jdbcType="INTEGER" />
+    <result column="detid" property="detid" jdbcType="INTEGER" />
+    <result column="susername" property="susername" jdbcType="VARCHAR" />
+    <result column="stnid" property="stnid" jdbcType="INTEGER" />
+    <result column="sbody" property="sbody" jdbcType="VARCHAR" />
+    <result column="sheight" property="sheight" jdbcType="VARCHAR" />
+    <result column="snative" property="snative" jdbcType="VARCHAR" />
+    <result column="snation" property="snation" jdbcType="VARCHAR" />
+    <result column="smarriage" property="smarriage" jdbcType="VARCHAR" />
+    <result column="seducation" property="seducation" jdbcType="VARCHAR" />
+    <result column="sschool" property="sschool" jdbcType="VARCHAR" />
+    <result column="smajor" property="smajor" jdbcType="VARCHAR" />
+    <result column="sstatus" property="sstatus" jdbcType="VARCHAR" />
+    <result column="sproperty" property="sproperty" jdbcType="VARCHAR" />
+    <result column="sdegree" property="sdegree" jdbcType="VARCHAR" />
+    <result column="sauthorized" property="sauthorized" jdbcType="VARCHAR" />
+    <result column="sidentity" property="sidentity" jdbcType="VARCHAR" />
+    <result column="sregistered" property="sregistered" jdbcType="VARCHAR" />
+    <result column="spresent" property="spresent" jdbcType="VARCHAR" />
+    <result column="sphone" property="sphone" jdbcType="VARCHAR" />
+    <result column="snumber" property="snumber" jdbcType="VARCHAR" />
+    <result column="semail" property="semail" jdbcType="VARCHAR" />
+    <result column="sbank" property="sbank" jdbcType="VARCHAR" />
+    <result column="sbankaccount" property="sbankaccount" jdbcType="VARCHAR" />
+    <result column="surgency" property="surgency" jdbcType="VARCHAR" />
+    <result column="surgencyphone" property="surgencyphone" jdbcType="VARCHAR" />
+    <result column="shiredate" property="shiredate" jdbcType="VARCHAR" />
+    <result column="sexpiration" property="sexpiration" jdbcType="VARCHAR" />
+    <result column="sbirth" property="sbirth" jdbcType="VARCHAR" />
+    <result column="sstart" property="sstart" jdbcType="VARCHAR" />
+    <result column="sfinish" property="sfinish" jdbcType="VARCHAR" />
+    <result column="sselfmotion" property="sselfmotion" jdbcType="VARCHAR" />
+    <result column="sinterior" property="sinterior" jdbcType="VARCHAR" />
+    <result column="sreferrer" property="sreferrer" jdbcType="VARCHAR" />
+    <result column="selement" property="selement" jdbcType="VARCHAR" />
+    <result column="stime" property="stime" jdbcType="VARCHAR" />
+    <result column="scommodity" property="scommodity" jdbcType="VARCHAR" />
+    <result column="mitigate" property="mitigate" jdbcType="VARCHAR" />
+    <result column="sphotopath" property="sphotopath" jdbcType="VARCHAR" />
+    <result column="smitigate" property="smitigate" jdbcType="VARCHAR" />
+    <result column="seducations" property="seducations" jdbcType="VARCHAR" />
+    <result column="sfamily" property="sfamily" jdbcType="VARCHAR" />
+    <result column="sreward" property="sreward" jdbcType="VARCHAR" />
+    <result column="sopinion" property="sopinion" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    sid, sname, ssex, shpid, detid, susername, stnid, sbody, sheight, snative, snation, 
+    smarriage, seducation, sschool, smajor, sstatus, sproperty, sdegree, sauthorized, 
+    sidentity, sregistered, spresent, sphone, snumber, semail, sbank, sbankaccount, surgency, 
+    surgencyphone, shiredate, sexpiration, sbirth, sstart, sfinish, sselfmotion, sinterior, 
+    sreferrer, selement, stime, scommodity, mitigate, sphotopath, smitigate, seducations, 
+    sfamily, sreward, sopinion
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.StaffExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from staff
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from staff
+    where sid = #{sid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from staff
+    where sid = #{sid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.accp.domain.StaffExample" >
+    delete from staff
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.accp.domain.Staff" >
+    insert into staff (sid, sname, ssex, 
+      shpid, detid, susername, 
+      stnid, sbody, sheight, 
+      snative, snation, smarriage, 
+      seducation, sschool, smajor, 
+      sstatus, sproperty, sdegree, 
+      sauthorized, sidentity, sregistered, 
+      spresent, sphone, snumber, 
+      semail, sbank, sbankaccount, 
+      surgency, surgencyphone, shiredate, 
+      sexpiration, sbirth, sstart, 
+      sfinish, sselfmotion, sinterior, 
+      sreferrer, selement, stime, 
+      scommodity, mitigate, sphotopath, 
+      smitigate, seducations, sfamily, 
+      sreward, sopinion)
+    values (#{sid,jdbcType=VARCHAR}, #{sname,jdbcType=VARCHAR}, #{ssex,jdbcType=VARCHAR}, 
+      #{shpid,jdbcType=INTEGER}, #{detid,jdbcType=INTEGER}, #{susername,jdbcType=VARCHAR}, 
+      #{stnid,jdbcType=INTEGER}, #{sbody,jdbcType=VARCHAR}, #{sheight,jdbcType=VARCHAR}, 
+      #{snative,jdbcType=VARCHAR}, #{snation,jdbcType=VARCHAR}, #{smarriage,jdbcType=VARCHAR}, 
+      #{seducation,jdbcType=VARCHAR}, #{sschool,jdbcType=VARCHAR}, #{smajor,jdbcType=VARCHAR}, 
+      #{sstatus,jdbcType=VARCHAR}, #{sproperty,jdbcType=VARCHAR}, #{sdegree,jdbcType=VARCHAR}, 
+      #{sauthorized,jdbcType=VARCHAR}, #{sidentity,jdbcType=VARCHAR}, #{sregistered,jdbcType=VARCHAR}, 
+      #{spresent,jdbcType=VARCHAR}, #{sphone,jdbcType=VARCHAR}, #{snumber,jdbcType=VARCHAR}, 
+      #{semail,jdbcType=VARCHAR}, #{sbank,jdbcType=VARCHAR}, #{sbankaccount,jdbcType=VARCHAR}, 
+      #{surgency,jdbcType=VARCHAR}, #{surgencyphone,jdbcType=VARCHAR}, #{shiredate,jdbcType=VARCHAR}, 
+      #{sexpiration,jdbcType=VARCHAR}, #{sbirth,jdbcType=VARCHAR}, #{sstart,jdbcType=VARCHAR}, 
+      #{sfinish,jdbcType=VARCHAR}, #{sselfmotion,jdbcType=VARCHAR}, #{sinterior,jdbcType=VARCHAR}, 
+      #{sreferrer,jdbcType=VARCHAR}, #{selement,jdbcType=VARCHAR}, #{stime,jdbcType=VARCHAR}, 
+      #{scommodity,jdbcType=VARCHAR}, #{mitigate,jdbcType=VARCHAR}, #{sphotopath,jdbcType=VARCHAR}, 
+      #{smitigate,jdbcType=VARCHAR}, #{seducations,jdbcType=VARCHAR}, #{sfamily,jdbcType=VARCHAR}, 
+      #{sreward,jdbcType=VARCHAR}, #{sopinion,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.domain.Staff" >
+    insert into staff
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sid != null" >
+        sid,
+      </if>
+      <if test="sname != null" >
+        sname,
+      </if>
+      <if test="ssex != null" >
+        ssex,
+      </if>
+      <if test="shpid != null" >
+        shpid,
+      </if>
+      <if test="detid != null" >
+        detid,
+      </if>
+      <if test="susername != null" >
+        susername,
+      </if>
+      <if test="stnid != null" >
+        stnid,
+      </if>
+      <if test="sbody != null" >
+        sbody,
+      </if>
+      <if test="sheight != null" >
+        sheight,
+      </if>
+      <if test="snative != null" >
+        snative,
+      </if>
+      <if test="snation != null" >
+        snation,
+      </if>
+      <if test="smarriage != null" >
+        smarriage,
+      </if>
+      <if test="seducation != null" >
+        seducation,
+      </if>
+      <if test="sschool != null" >
+        sschool,
+      </if>
+      <if test="smajor != null" >
+        smajor,
+      </if>
+      <if test="sstatus != null" >
+        sstatus,
+      </if>
+      <if test="sproperty != null" >
+        sproperty,
+      </if>
+      <if test="sdegree != null" >
+        sdegree,
+      </if>
+      <if test="sauthorized != null" >
+        sauthorized,
+      </if>
+      <if test="sidentity != null" >
+        sidentity,
+      </if>
+      <if test="sregistered != null" >
+        sregistered,
+      </if>
+      <if test="spresent != null" >
+        spresent,
+      </if>
+      <if test="sphone != null" >
+        sphone,
+      </if>
+      <if test="snumber != null" >
+        snumber,
+      </if>
+      <if test="semail != null" >
+        semail,
+      </if>
+      <if test="sbank != null" >
+        sbank,
+      </if>
+      <if test="sbankaccount != null" >
+        sbankaccount,
+      </if>
+      <if test="surgency != null" >
+        surgency,
+      </if>
+      <if test="surgencyphone != null" >
+        surgencyphone,
+      </if>
+      <if test="shiredate != null" >
+        shiredate,
+      </if>
+      <if test="sexpiration != null" >
+        sexpiration,
+      </if>
+      <if test="sbirth != null" >
+        sbirth,
+      </if>
+      <if test="sstart != null" >
+        sstart,
+      </if>
+      <if test="sfinish != null" >
+        sfinish,
+      </if>
+      <if test="sselfmotion != null" >
+        sselfmotion,
+      </if>
+      <if test="sinterior != null" >
+        sinterior,
+      </if>
+      <if test="sreferrer != null" >
+        sreferrer,
+      </if>
+      <if test="selement != null" >
+        selement,
+      </if>
+      <if test="stime != null" >
+        stime,
+      </if>
+      <if test="scommodity != null" >
+        scommodity,
+      </if>
+      <if test="mitigate != null" >
+        mitigate,
+      </if>
+      <if test="sphotopath != null" >
+        sphotopath,
+      </if>
+      <if test="smitigate != null" >
+        smitigate,
+      </if>
+      <if test="seducations != null" >
+        seducations,
+      </if>
+      <if test="sfamily != null" >
+        sfamily,
+      </if>
+      <if test="sreward != null" >
+        sreward,
+      </if>
+      <if test="sopinion != null" >
+        sopinion,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sid != null" >
+        #{sid,jdbcType=VARCHAR},
+      </if>
+      <if test="sname != null" >
+        #{sname,jdbcType=VARCHAR},
+      </if>
+      <if test="ssex != null" >
+        #{ssex,jdbcType=VARCHAR},
+      </if>
+      <if test="shpid != null" >
+        #{shpid,jdbcType=INTEGER},
+      </if>
+      <if test="detid != null" >
+        #{detid,jdbcType=INTEGER},
+      </if>
+      <if test="susername != null" >
+        #{susername,jdbcType=VARCHAR},
+      </if>
+      <if test="stnid != null" >
+        #{stnid,jdbcType=INTEGER},
+      </if>
+      <if test="sbody != null" >
+        #{sbody,jdbcType=VARCHAR},
+      </if>
+      <if test="sheight != null" >
+        #{sheight,jdbcType=VARCHAR},
+      </if>
+      <if test="snative != null" >
+        #{snative,jdbcType=VARCHAR},
+      </if>
+      <if test="snation != null" >
+        #{snation,jdbcType=VARCHAR},
+      </if>
+      <if test="smarriage != null" >
+        #{smarriage,jdbcType=VARCHAR},
+      </if>
+      <if test="seducation != null" >
+        #{seducation,jdbcType=VARCHAR},
+      </if>
+      <if test="sschool != null" >
+        #{sschool,jdbcType=VARCHAR},
+      </if>
+      <if test="smajor != null" >
+        #{smajor,jdbcType=VARCHAR},
+      </if>
+      <if test="sstatus != null" >
+        #{sstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="sproperty != null" >
+        #{sproperty,jdbcType=VARCHAR},
+      </if>
+      <if test="sdegree != null" >
+        #{sdegree,jdbcType=VARCHAR},
+      </if>
+      <if test="sauthorized != null" >
+        #{sauthorized,jdbcType=VARCHAR},
+      </if>
+      <if test="sidentity != null" >
+        #{sidentity,jdbcType=VARCHAR},
+      </if>
+      <if test="sregistered != null" >
+        #{sregistered,jdbcType=VARCHAR},
+      </if>
+      <if test="spresent != null" >
+        #{spresent,jdbcType=VARCHAR},
+      </if>
+      <if test="sphone != null" >
+        #{sphone,jdbcType=VARCHAR},
+      </if>
+      <if test="snumber != null" >
+        #{snumber,jdbcType=VARCHAR},
+      </if>
+      <if test="semail != null" >
+        #{semail,jdbcType=VARCHAR},
+      </if>
+      <if test="sbank != null" >
+        #{sbank,jdbcType=VARCHAR},
+      </if>
+      <if test="sbankaccount != null" >
+        #{sbankaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="surgency != null" >
+        #{surgency,jdbcType=VARCHAR},
+      </if>
+      <if test="surgencyphone != null" >
+        #{surgencyphone,jdbcType=VARCHAR},
+      </if>
+      <if test="shiredate != null" >
+        #{shiredate,jdbcType=VARCHAR},
+      </if>
+      <if test="sexpiration != null" >
+        #{sexpiration,jdbcType=VARCHAR},
+      </if>
+      <if test="sbirth != null" >
+        #{sbirth,jdbcType=VARCHAR},
+      </if>
+      <if test="sstart != null" >
+        #{sstart,jdbcType=VARCHAR},
+      </if>
+      <if test="sfinish != null" >
+        #{sfinish,jdbcType=VARCHAR},
+      </if>
+      <if test="sselfmotion != null" >
+        #{sselfmotion,jdbcType=VARCHAR},
+      </if>
+      <if test="sinterior != null" >
+        #{sinterior,jdbcType=VARCHAR},
+      </if>
+      <if test="sreferrer != null" >
+        #{sreferrer,jdbcType=VARCHAR},
+      </if>
+      <if test="selement != null" >
+        #{selement,jdbcType=VARCHAR},
+      </if>
+      <if test="stime != null" >
+        #{stime,jdbcType=VARCHAR},
+      </if>
+      <if test="scommodity != null" >
+        #{scommodity,jdbcType=VARCHAR},
+      </if>
+      <if test="mitigate != null" >
+        #{mitigate,jdbcType=VARCHAR},
+      </if>
+      <if test="sphotopath != null" >
+        #{sphotopath,jdbcType=VARCHAR},
+      </if>
+      <if test="smitigate != null" >
+        #{smitigate,jdbcType=VARCHAR},
+      </if>
+      <if test="seducations != null" >
+        #{seducations,jdbcType=VARCHAR},
+      </if>
+      <if test="sfamily != null" >
+        #{sfamily,jdbcType=VARCHAR},
+      </if>
+      <if test="sreward != null" >
+        #{sreward,jdbcType=VARCHAR},
+      </if>
+      <if test="sopinion != null" >
+        #{sopinion,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.accp.domain.StaffExample" resultType="java.lang.Integer" >
+    select count(*) from staff
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update staff
+    <set >
+      <if test="record.sid != null" >
+        sid = #{record.sid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sname != null" >
+        sname = #{record.sname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ssex != null" >
+        ssex = #{record.ssex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shpid != null" >
+        shpid = #{record.shpid,jdbcType=INTEGER},
+      </if>
+      <if test="record.detid != null" >
+        detid = #{record.detid,jdbcType=INTEGER},
+      </if>
+      <if test="record.susername != null" >
+        susername = #{record.susername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stnid != null" >
+        stnid = #{record.stnid,jdbcType=INTEGER},
+      </if>
+      <if test="record.sbody != null" >
+        sbody = #{record.sbody,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sheight != null" >
+        sheight = #{record.sheight,jdbcType=VARCHAR},
+      </if>
+      <if test="record.snative != null" >
+        snative = #{record.snative,jdbcType=VARCHAR},
+      </if>
+      <if test="record.snation != null" >
+        snation = #{record.snation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.smarriage != null" >
+        smarriage = #{record.smarriage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.seducation != null" >
+        seducation = #{record.seducation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sschool != null" >
+        sschool = #{record.sschool,jdbcType=VARCHAR},
+      </if>
+      <if test="record.smajor != null" >
+        smajor = #{record.smajor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sstatus != null" >
+        sstatus = #{record.sstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sproperty != null" >
+        sproperty = #{record.sproperty,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sdegree != null" >
+        sdegree = #{record.sdegree,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sauthorized != null" >
+        sauthorized = #{record.sauthorized,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sidentity != null" >
+        sidentity = #{record.sidentity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sregistered != null" >
+        sregistered = #{record.sregistered,jdbcType=VARCHAR},
+      </if>
+      <if test="record.spresent != null" >
+        spresent = #{record.spresent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sphone != null" >
+        sphone = #{record.sphone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.snumber != null" >
+        snumber = #{record.snumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.semail != null" >
+        semail = #{record.semail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sbank != null" >
+        sbank = #{record.sbank,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sbankaccount != null" >
+        sbankaccount = #{record.sbankaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.surgency != null" >
+        surgency = #{record.surgency,jdbcType=VARCHAR},
+      </if>
+      <if test="record.surgencyphone != null" >
+        surgencyphone = #{record.surgencyphone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shiredate != null" >
+        shiredate = #{record.shiredate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sexpiration != null" >
+        sexpiration = #{record.sexpiration,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sbirth != null" >
+        sbirth = #{record.sbirth,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sstart != null" >
+        sstart = #{record.sstart,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sfinish != null" >
+        sfinish = #{record.sfinish,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sselfmotion != null" >
+        sselfmotion = #{record.sselfmotion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sinterior != null" >
+        sinterior = #{record.sinterior,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sreferrer != null" >
+        sreferrer = #{record.sreferrer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.selement != null" >
+        selement = #{record.selement,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stime != null" >
+        stime = #{record.stime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.scommodity != null" >
+        scommodity = #{record.scommodity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mitigate != null" >
+        mitigate = #{record.mitigate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sphotopath != null" >
+        sphotopath = #{record.sphotopath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.smitigate != null" >
+        smitigate = #{record.smitigate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.seducations != null" >
+        seducations = #{record.seducations,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sfamily != null" >
+        sfamily = #{record.sfamily,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sreward != null" >
+        sreward = #{record.sreward,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sopinion != null" >
+        sopinion = #{record.sopinion,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update staff
+    set sid = #{record.sid,jdbcType=VARCHAR},
+      sname = #{record.sname,jdbcType=VARCHAR},
+      ssex = #{record.ssex,jdbcType=VARCHAR},
+      shpid = #{record.shpid,jdbcType=INTEGER},
+      detid = #{record.detid,jdbcType=INTEGER},
+      susername = #{record.susername,jdbcType=VARCHAR},
+      stnid = #{record.stnid,jdbcType=INTEGER},
+      sbody = #{record.sbody,jdbcType=VARCHAR},
+      sheight = #{record.sheight,jdbcType=VARCHAR},
+      snative = #{record.snative,jdbcType=VARCHAR},
+      snation = #{record.snation,jdbcType=VARCHAR},
+      smarriage = #{record.smarriage,jdbcType=VARCHAR},
+      seducation = #{record.seducation,jdbcType=VARCHAR},
+      sschool = #{record.sschool,jdbcType=VARCHAR},
+      smajor = #{record.smajor,jdbcType=VARCHAR},
+      sstatus = #{record.sstatus,jdbcType=VARCHAR},
+      sproperty = #{record.sproperty,jdbcType=VARCHAR},
+      sdegree = #{record.sdegree,jdbcType=VARCHAR},
+      sauthorized = #{record.sauthorized,jdbcType=VARCHAR},
+      sidentity = #{record.sidentity,jdbcType=VARCHAR},
+      sregistered = #{record.sregistered,jdbcType=VARCHAR},
+      spresent = #{record.spresent,jdbcType=VARCHAR},
+      sphone = #{record.sphone,jdbcType=VARCHAR},
+      snumber = #{record.snumber,jdbcType=VARCHAR},
+      semail = #{record.semail,jdbcType=VARCHAR},
+      sbank = #{record.sbank,jdbcType=VARCHAR},
+      sbankaccount = #{record.sbankaccount,jdbcType=VARCHAR},
+      surgency = #{record.surgency,jdbcType=VARCHAR},
+      surgencyphone = #{record.surgencyphone,jdbcType=VARCHAR},
+      shiredate = #{record.shiredate,jdbcType=VARCHAR},
+      sexpiration = #{record.sexpiration,jdbcType=VARCHAR},
+      sbirth = #{record.sbirth,jdbcType=VARCHAR},
+      sstart = #{record.sstart,jdbcType=VARCHAR},
+      sfinish = #{record.sfinish,jdbcType=VARCHAR},
+      sselfmotion = #{record.sselfmotion,jdbcType=VARCHAR},
+      sinterior = #{record.sinterior,jdbcType=VARCHAR},
+      sreferrer = #{record.sreferrer,jdbcType=VARCHAR},
+      selement = #{record.selement,jdbcType=VARCHAR},
+      stime = #{record.stime,jdbcType=VARCHAR},
+      scommodity = #{record.scommodity,jdbcType=VARCHAR},
+      mitigate = #{record.mitigate,jdbcType=VARCHAR},
+      sphotopath = #{record.sphotopath,jdbcType=VARCHAR},
+      smitigate = #{record.smitigate,jdbcType=VARCHAR},
+      seducations = #{record.seducations,jdbcType=VARCHAR},
+      sfamily = #{record.sfamily,jdbcType=VARCHAR},
+      sreward = #{record.sreward,jdbcType=VARCHAR},
+      sopinion = #{record.sopinion,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.Staff" >
+    update staff
+    <set >
+      <if test="sname != null" >
+        sname = #{sname,jdbcType=VARCHAR},
+      </if>
+      <if test="ssex != null" >
+        ssex = #{ssex,jdbcType=VARCHAR},
+      </if>
+      <if test="shpid != null" >
+        shpid = #{shpid,jdbcType=INTEGER},
+      </if>
+      <if test="detid != null" >
+        detid = #{detid,jdbcType=INTEGER},
+      </if>
+      <if test="susername != null" >
+        susername = #{susername,jdbcType=VARCHAR},
+      </if>
+      <if test="stnid != null" >
+        stnid = #{stnid,jdbcType=INTEGER},
+      </if>
+      <if test="sbody != null" >
+        sbody = #{sbody,jdbcType=VARCHAR},
+      </if>
+      <if test="sheight != null" >
+        sheight = #{sheight,jdbcType=VARCHAR},
+      </if>
+      <if test="snative != null" >
+        snative = #{snative,jdbcType=VARCHAR},
+      </if>
+      <if test="snation != null" >
+        snation = #{snation,jdbcType=VARCHAR},
+      </if>
+      <if test="smarriage != null" >
+        smarriage = #{smarriage,jdbcType=VARCHAR},
+      </if>
+      <if test="seducation != null" >
+        seducation = #{seducation,jdbcType=VARCHAR},
+      </if>
+      <if test="sschool != null" >
+        sschool = #{sschool,jdbcType=VARCHAR},
+      </if>
+      <if test="smajor != null" >
+        smajor = #{smajor,jdbcType=VARCHAR},
+      </if>
+      <if test="sstatus != null" >
+        sstatus = #{sstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="sproperty != null" >
+        sproperty = #{sproperty,jdbcType=VARCHAR},
+      </if>
+      <if test="sdegree != null" >
+        sdegree = #{sdegree,jdbcType=VARCHAR},
+      </if>
+      <if test="sauthorized != null" >
+        sauthorized = #{sauthorized,jdbcType=VARCHAR},
+      </if>
+      <if test="sidentity != null" >
+        sidentity = #{sidentity,jdbcType=VARCHAR},
+      </if>
+      <if test="sregistered != null" >
+        sregistered = #{sregistered,jdbcType=VARCHAR},
+      </if>
+      <if test="spresent != null" >
+        spresent = #{spresent,jdbcType=VARCHAR},
+      </if>
+      <if test="sphone != null" >
+        sphone = #{sphone,jdbcType=VARCHAR},
+      </if>
+      <if test="snumber != null" >
+        snumber = #{snumber,jdbcType=VARCHAR},
+      </if>
+      <if test="semail != null" >
+        semail = #{semail,jdbcType=VARCHAR},
+      </if>
+      <if test="sbank != null" >
+        sbank = #{sbank,jdbcType=VARCHAR},
+      </if>
+      <if test="sbankaccount != null" >
+        sbankaccount = #{sbankaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="surgency != null" >
+        surgency = #{surgency,jdbcType=VARCHAR},
+      </if>
+      <if test="surgencyphone != null" >
+        surgencyphone = #{surgencyphone,jdbcType=VARCHAR},
+      </if>
+      <if test="shiredate != null" >
+        shiredate = #{shiredate,jdbcType=VARCHAR},
+      </if>
+      <if test="sexpiration != null" >
+        sexpiration = #{sexpiration,jdbcType=VARCHAR},
+      </if>
+      <if test="sbirth != null" >
+        sbirth = #{sbirth,jdbcType=VARCHAR},
+      </if>
+      <if test="sstart != null" >
+        sstart = #{sstart,jdbcType=VARCHAR},
+      </if>
+      <if test="sfinish != null" >
+        sfinish = #{sfinish,jdbcType=VARCHAR},
+      </if>
+      <if test="sselfmotion != null" >
+        sselfmotion = #{sselfmotion,jdbcType=VARCHAR},
+      </if>
+      <if test="sinterior != null" >
+        sinterior = #{sinterior,jdbcType=VARCHAR},
+      </if>
+      <if test="sreferrer != null" >
+        sreferrer = #{sreferrer,jdbcType=VARCHAR},
+      </if>
+      <if test="selement != null" >
+        selement = #{selement,jdbcType=VARCHAR},
+      </if>
+      <if test="stime != null" >
+        stime = #{stime,jdbcType=VARCHAR},
+      </if>
+      <if test="scommodity != null" >
+        scommodity = #{scommodity,jdbcType=VARCHAR},
+      </if>
+      <if test="mitigate != null" >
+        mitigate = #{mitigate,jdbcType=VARCHAR},
+      </if>
+      <if test="sphotopath != null" >
+        sphotopath = #{sphotopath,jdbcType=VARCHAR},
+      </if>
+      <if test="smitigate != null" >
+        smitigate = #{smitigate,jdbcType=VARCHAR},
+      </if>
+      <if test="seducations != null" >
+        seducations = #{seducations,jdbcType=VARCHAR},
+      </if>
+      <if test="sfamily != null" >
+        sfamily = #{sfamily,jdbcType=VARCHAR},
+      </if>
+      <if test="sreward != null" >
+        sreward = #{sreward,jdbcType=VARCHAR},
+      </if>
+      <if test="sopinion != null" >
+        sopinion = #{sopinion,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sid = #{sid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.domain.Staff" >
+    update staff
+    set sname = #{sname,jdbcType=VARCHAR},
+      ssex = #{ssex,jdbcType=VARCHAR},
+      shpid = #{shpid,jdbcType=INTEGER},
+      detid = #{detid,jdbcType=INTEGER},
+      susername = #{susername,jdbcType=VARCHAR},
+      stnid = #{stnid,jdbcType=INTEGER},
+      sbody = #{sbody,jdbcType=VARCHAR},
+      sheight = #{sheight,jdbcType=VARCHAR},
+      snative = #{snative,jdbcType=VARCHAR},
+      snation = #{snation,jdbcType=VARCHAR},
+      smarriage = #{smarriage,jdbcType=VARCHAR},
+      seducation = #{seducation,jdbcType=VARCHAR},
+      sschool = #{sschool,jdbcType=VARCHAR},
+      smajor = #{smajor,jdbcType=VARCHAR},
+      sstatus = #{sstatus,jdbcType=VARCHAR},
+      sproperty = #{sproperty,jdbcType=VARCHAR},
+      sdegree = #{sdegree,jdbcType=VARCHAR},
+      sauthorized = #{sauthorized,jdbcType=VARCHAR},
+      sidentity = #{sidentity,jdbcType=VARCHAR},
+      sregistered = #{sregistered,jdbcType=VARCHAR},
+      spresent = #{spresent,jdbcType=VARCHAR},
+      sphone = #{sphone,jdbcType=VARCHAR},
+      snumber = #{snumber,jdbcType=VARCHAR},
+      semail = #{semail,jdbcType=VARCHAR},
+      sbank = #{sbank,jdbcType=VARCHAR},
+      sbankaccount = #{sbankaccount,jdbcType=VARCHAR},
+      surgency = #{surgency,jdbcType=VARCHAR},
+      surgencyphone = #{surgencyphone,jdbcType=VARCHAR},
+      shiredate = #{shiredate,jdbcType=VARCHAR},
+      sexpiration = #{sexpiration,jdbcType=VARCHAR},
+      sbirth = #{sbirth,jdbcType=VARCHAR},
+      sstart = #{sstart,jdbcType=VARCHAR},
+      sfinish = #{sfinish,jdbcType=VARCHAR},
+      sselfmotion = #{sselfmotion,jdbcType=VARCHAR},
+      sinterior = #{sinterior,jdbcType=VARCHAR},
+      sreferrer = #{sreferrer,jdbcType=VARCHAR},
+      selement = #{selement,jdbcType=VARCHAR},
+      stime = #{stime,jdbcType=VARCHAR},
+      scommodity = #{scommodity,jdbcType=VARCHAR},
+      mitigate = #{mitigate,jdbcType=VARCHAR},
+      sphotopath = #{sphotopath,jdbcType=VARCHAR},
+      smitigate = #{smitigate,jdbcType=VARCHAR},
+      seducations = #{seducations,jdbcType=VARCHAR},
+      sfamily = #{sfamily,jdbcType=VARCHAR},
+      sreward = #{sreward,jdbcType=VARCHAR},
+      sopinion = #{sopinion,jdbcType=VARCHAR}
+    where sid = #{sid,jdbcType=VARCHAR}
+  </update>
+</mapper>

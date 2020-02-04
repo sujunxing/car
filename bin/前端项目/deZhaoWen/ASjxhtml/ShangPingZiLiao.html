@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#gonghuodanwei>div:nth-of-type(1){
+				font-size: 27px;
+				padding: 5px;
+				background-color: #F7FFFF;
+				color: #6B696B;
+			}
+			body{
+				background-color: #F7F4F0;
+			}
+			#gonghuodanwei>div:nth-of-type(1)>p{
+				font-size: 18px;
+				display: inline-block;
+				float: right;
+			}
+			#gonghuodanwei>div>p{
+				font-size: 18px;
+			}
+			#gonghuodanwei>div>p:nth-of-type(1){
+				margin: 10px 0 0;
+				
+			}
+			#gonghuodanwei>div>p>span{
+				margin:0 20px 0 0;
+			}
+			#gonghuodanwei>div>p>span>span{
+				color: #F7A621;
+			}
+			#gonghuodanwei>div>p>button{
+				width: 70px;
+				font-size: 14px;
+				height: 30px;
+			}
+			#gonghuodanwei>div:nth-of-type(2)>div:nth-of-type(1) ul{
+				list-style-type:none;
+				font-size: 16px;
+			}
+			#gonghuodanwei>div:nth-of-type(2)>div:nth-of-type(1)>ul ul{
+				margin: 0 0 0 15px;
+			}
+			#gonghuodanwei>div:nth-of-type(2)>div:nth-of-type(1){
+				height: 100%;
+				background-color: #FFFFFF;
+			}
+			#gonghuodanwei>div:nth-of-type(2){
+				height: 550px;
+			}
+			#gonghuodanwei>div:nth-of-type(2)>div:nth-of-type(2){
+				background-color: #FFFFFF;
+			}
+			#gonghuodanwei>div:nth-of-type(2)>div:nth-of-type(2) *{
+				margin: 0;
+				padding: 5px 0;
+			}
+			#gonghuodanwei>div:nth-of-type(2)>div:nth-of-type(2){
+				margin: 0;
+				padding: 0;
+				height: 550px;
+				border-left: 1px solid #C4C4C4;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div id="gonghuodanwei">
+			<div>
+				商品资料
+				<p>
+					<input placeholder="匹配 编号/名称/名称简码"/>
+					<button>搜索</button>
+				</p>
+			</div>
+			<div class="container-fluid">
+				<p>
+					<span data-toggle="modal" data-target="#zhenjiacengjia"><span class="tubiao glyphicon glyphicon-menu-hamburger"></span>增加</span>
+					<span data-toggle="modal" data-target="#zhenjiacengjia"><span class="tubiao glyphicon glyphicon-edit"></span>修改</span>
+					<span><span class="tubiao glyphicon glyphicon-remove"></span>删除</span>
+					<span><span class="tubiao glyphicon glyphicon-search"></span>查询</span>
+					<span><span class="tubiao glyphicon glyphicon-arrow-down"></span>下页</span>
+					<span><span class="tubiao glyphicon glyphicon-floppy-open"></span>导出</span>
+					<span><span class="tubiao glyphicon glyphicon-picture"></span>图片</span>
+					<span><span class="tubiao glyphicon glyphicon-barcode"></span>条码</span>
+					<span><span class="tubiao glyphicon glyphicon-shopping-cart"></span>套件商品</span>
+					<span><span class="tubiao glyphicon glyphicon-align-left"></span>分类设置</span>
+					<span><span class="tubiao glyphicon glyphicon-cog"></span>字段设置</span>
+				</p>
+				<div class="col-md-12" >
+					<div>
+						<table class="table table-hover text-center">
+							<thead style="background-color: #39C9DE; color: #FFFFFF;">
+								<tr>
+									<th class="text-center">登记门店</th>
+									<th class="text-center">照片名</th>
+									<th class="text-center">商品编码</th>
+									<th class="text-center">商品名称</th>
+									<th class="text-center">商品品牌</th>
+									<th class="text-center">适用车型</th>
+									<th class="text-center">数量单位</th>
+									<th class="text-center">商品大类</th>
+									<th class="text-center">商品中类</th>
+									<th class="text-center">商品小类</th>
+									
+								</tr>
+							</thead>
+							<tbody>
+								
+							</tbody>
+						</table>
+					</div>
+					
+				</div>
+			</div>
+			
+			<div class="modal fade" id="zhenjiacengjia" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			  <div class="modal-dialog" role="document" style="width: 1000px;">
+				<div class="modal-content">
+				  <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h3 class="modal-title" id="myModalLabel">车型定义</h3>
+				  </div>
+				  <div class="modal-body">
+					<table style="font-size: 16px;" class="table-condensed">
+						<tr>
+							<td>商品编码:</td>
+							<td><input style="width: 100px;"/></td>
+							<td>商品名称:</td>
+							<td ><input style="width: 100px;"/> </td>
+							<td>商品品牌:</td>
+							<td><input style="width: 100px;"/> </td>
+						</tr>
+						<tr>
+							<td>适用车型:</td><td><input style="width: 100px;"/></td>
+							<td>数量单位:</td><td><input style="width: 100px;"/></td>
+							<td>商品大类:</td><td><input style="width: 100px;"/></td>
+						</tr>
+						<tr>
+							<td>收入分类:</td><td  data-toggle="modal" data-target="#jinkouguo"><input></td>
+							<td>原厂副厂:</td><td><input style="width: 100px;"/></td>
+							<td>商品等级:</td><td><input style="width: 100px;"/></td>
+							<td>商品产地:</td><td><input style="width: 100px;"/></td>
+						</tr>
+						<tr>
+							<td>厂商名称:</td><td ><input style="width: 100px;"/></td>
+							<td>原厂编码:</td><td><input style="width: 100px;"/></td>
+							<td>条形码:</td><td><input style="width: 100px;"/></td>
+						</tr>
+						<tr>
+							<td>包装规格:</td><td><input style="width: 100px;"/></td>
+							<td>体积:</td><td><input style="width: 100px;"/></td>
+							<td>毛重:</td><td><input style="width: 100px;"/></td>
+							<td>净重:</td><td><input style="width: 100px;"/></td>
+						</tr>
+						<tr>
+							<td>进货价:</td><td><input style="width: 100px;"/></td>
+							<td>售价按:</td><td><input style="width: 100px;"/></td>
+							<td>加价率:</td><td><input style="width: 100px;"/></td>
+						</tr>
+						<tr>
+							<td>互换码:</td><td><input style="width: 100px;"/></td>
+						</tr>
+						<tr>
+							<td>标准价:</td><td><input style="width: 100px;"/></td>
+							<td>会员价:</td><td><input style="width: 100px;"/></td>
+							<td>VIP价:</td><td><input style="width: 100px;"/></td>
+							<td>协议价:</td><td><input style="width: 100px;"/></td>
+						</tr>
+						<tr>
+							<td>索赔价:</td><td><input style="width: 100px;"/></td>
+							<td>保险价:</td><td><input style="width: 100px;"/></td>
+						</tr>
+					</table>
+				  </div>
+				  <div class="modal-footer">
+					<button type="button" class="btn btn-primary">保存</button>
+				  </div>
+				</div>
+			  </div>
+			</div>
+		
+		
+		</div>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/vue.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script>
+			
+		</script>
+	</body>
+</html>

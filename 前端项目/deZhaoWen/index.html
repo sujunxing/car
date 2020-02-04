@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+				user-select: none;
+			}
+
+			#hezi>div:nth-of-type(1) {
+				font-size: 1.7rem;
+				background-color: #204D74;
+				padding: 0;
+				margin: 0;
+				color: #FFFFFF;
+			}
+
+			#hezi {
+				margin: 0;
+				padding: 0;
+				overflow-x: hidden;
+			}
+
+			#hezi>div:nth-of-type(1)>ul {
+				display: inline-block;
+				list-style-type: none;
+				margin: 0;
+				padding: 0;
+			}
+
+			#hezi>div:nth-of-type(1)>ul>li {
+				padding: 5px 13px 5px 10px;
+				display: inline-block;
+				border-right: #FFFFFF 1px solid;
+				margin: 0;
+			}
+
+			#hezi>div:nth-of-type(1)>span {
+				display: inline-block;
+				width: 150px;
+				margin: 0 20px 0 10px;
+			}
+
+			#diaohaong>div:nth-of-type(1)>.nav-pills li ul {
+				display: none;
+			}
+
+			#diaohaong>div:nth-of-type(2) {
+				background-color: rgb(240, 255, 245, 0.9);
+			}
+
+			#diaohaong>div:nth-of-type(1) {
+				padding: 0;
+				height: 618px;
+				background-color: #122B40;
+				color: #FFFFFF;
+			}
+
+			#diaohaong>div:nth-of-type(1) .nav-pills li a {
+				font-size: 16px;
+				border-radius: 0;
+				color: #FFFFFF;
+			}
+
+			#diaohaong>div:nth-of-type(1) .nav-pills li a:hover {
+				background-color: #5AA0F8;
+			}
+
+			#diaohaong .nav-pills a {
+				padding: 5px;
+			}
+
+			#diaohaong>div:nth-of-type(1)>.nav-pills>li .nav-pills {
+				font-size: 16px;
+			}
+
+			#diaohaong>div:nth-of-type(1) .nav-pills {
+				padding: 0 0 0 15px;
+			}
+
+			#diaohaong>div:nth-of-type(1)>div:nth-of-type(1) {
+				height: 70px;
+			}
+
+			#hezi>div:nth-of-type(1) ul li:hover {
+				background-color: #0086B3;
+			}
+
+			/* #diaohaong>div:nth-of-type(1){
+				float: right;
+				
+			} */
+		</style>
+	</head>
+	<body>
+		<div id="hezi" class="container-fluid">
+			<div>
+				<span>重庆成高</span>
+				<ul>
+					<li v-for="item in daohangs" @click="zongfengleidanji(item,this)">{{item.name}}</li>
+				</ul>
+			</div>
+			<div class="row" id="diaohaong">
+				<div class="col-md-2">
+					<ul class="nav nav-pills nav-stacked">
+						<li data-id="shouye" class="dropdown active" onclick="shouye()">
+							<a>首页</a>
+						</li>
+					</ul>
+					<kuangjia :daohangs="daohang"></kuangjia>
+
+				</div>
+
+				<div class="col-md-10">
+					<ul class="nav nav-tabs">
+						<li role="presentation" class="dropdown active" data-id="shouye" onclick="shouye()">
+							<a>首页</a>
+						</li>
+					</ul>
+					<div class="tab-content">
+						<iframe class='tab-pane active' src="to?dizhi=shouye1" style="width: 100%; height: 575px;"></iframe>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<script src="./js/jquery.min.js"></script>
+		<script src="./js/vue.js"></script>
+		<script src="./js/bootstrap.min.js"></script>
+		<script>
+			Vue.component('kuangjia', {
+				props: ["daohangs"],
+				template: `				
+					<ul class="nav nav-pills nav-stacked">
+						<li v-for="item in daohangs" :data-id="'navid'+item.id">
+							<a class="abq" panduan="true" onclick="xsyc(this)" style="user-select: none;" @click="danji(item)" >{{item.name}}</a>
+							<kuangjia :daohangs="item.daohangs"></kuangjia>
+						</li>
+					</ul>
+				`,
+				methods: {
+					danji: function(item) {
+						if (item.url != "" && item.url != null) {
+							var id = "navid" + item.id;
+							var pd = $(".nav-tabs [data-id='" + id + "']")[0];
+							if (pd) {
+								$(".active").removeClass("active");
+								$("[data-id='" + id + "']").addClass("active");
+								return;
+							}
+							var neirong = item.name;
+							var bq1 = $(`<li role="presentation" class="dropdown" data-id="` + id + `" onclick="anniu(this)"><a>` +
+								neirong + `</a></li>`);
+							$(".nav-tabs").append(bq1);
+							$("iframe").attr("src", item.url);
+							$(".active").removeClass("active");
+							$("[data-id='" + id + "']").addClass("active");
+						}
+					}
+				}
+			});
+			var vm = new Vue({
+				el: "#hezi",
+				data() {
+					return {
+						daohangs: [{
+							id: 1,
+							name: "维修",
+							url: "",
+							shuoshuid: 0,
+							daohangs: [{
+								id: 5,
+								name: "维修救援",
+								url: "",
+								daohangs: [{
+									id: 6,
+									name: "竣工检查",
+									url: "aaa"
+								}, {
+									id: 7,
+									name: "维修接车",
+									url: "aaa"
+								}]
+							}]
+						}, {
+							id: 8,
+							name: "前台",
+							url: "",
+							daohangs: [{
+								id: 10,
+								name: "客户档案",
+								url: "",
+								daohangs: [{
+									id: 11,
+									name: "竣工检查",
+									url: "aaa"
+								}, {
+									id: 11,
+									name: "竣工检查",
+									url: "aaa"
+								}, {
+									id: 12,
+									name: "维修接车",
+									url: "aaa"
+								}]
+							}]
+						}, {
+							id: 16,
+							name: "客服",
+							url: "",
+							daohangs: [{
+								id: 13,
+								name: "客户档案",
+								url: "",
+								daohangs: [{
+									id: 14,
+									name: "车辆资料",
+									url: "aaa"
+								}, {
+									id: 15,
+									name: "客户资料",
+									url: "aaa"
+								}]
+							}]
+						}],
+						daohang: []
+					}
+				},
+				methods: {
+					zongfengleidanji: function(item, kj) {
+						$(".nav-pills li a").siblings("ul").css("display", "none");
+						$(".nav-pills li").attr("panduan");
+						vm.daohang = item.daohangs;
+						shouye();
+					}
+				}
+			});
+			$(function() {
+				vm.daohang = vm.daohangs[0].daohangs;
+				$("#hezi>div:nth-of-type(1) ul li:eq(0)").css("background-color", "#5AA0F8");
+				$("#hezi>div:nth-of-type(1) ul li").click(function() {
+					$("#hezi>div:nth-of-type(1) ul li").css("background-color", "#204D74");
+					$(this).css("background-color", "#5AA0F8");
+				});
+			});
+			var shouye = function() {
+				$(".active").removeClass("active");
+				$("[data-id='shouye']").addClass("active");
+				$("iframe").attr("src", "shuj");
+			}
+
+			function anniu(e) {
+				var id = $(e).attr('data-id');
+				$(".active").removeClass("active");
+				$("[data-id='" + id + "']").addClass("active");
+			}
+			var xsyc = function(kj) {
+				var pd = $(kj).attr("panduan");
+				if (pd == "true") {
+					$(kj).attr("panduan", false);
+					$(kj).siblings("ul").show();
+				} else {
+					$(kj).attr("panduan", true);
+					$(kj).siblings("ul").hide();
+				}
+			}
+		</script>
+	</body>
+</html>

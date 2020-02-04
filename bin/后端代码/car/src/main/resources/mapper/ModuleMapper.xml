@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.mapper.ModuleMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.Module" >
+    <id column="moeid" property="moeid" jdbcType="INTEGER" />
+    <result column="moename" property="moename" jdbcType="VARCHAR" />
+    <result column="monid" property="monid" jdbcType="INTEGER" />
+    <result column="moetype" property="moetype" jdbcType="INTEGER" />
+    <result column="path" property="path" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    moeid, moename, monid, moetype, path
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.ModuleExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from module
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from module
+    where moeid = #{moeid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from module
+    where moeid = #{moeid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.accp.domain.ModuleExample" >
+    delete from module
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.accp.domain.Module" >
+    insert into module (moeid, moename, monid, 
+      moetype, path)
+    values (#{moeid,jdbcType=INTEGER}, #{moename,jdbcType=VARCHAR}, #{monid,jdbcType=INTEGER}, 
+      #{moetype,jdbcType=INTEGER}, #{path,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.domain.Module" >
+    insert into module
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="moeid != null" >
+        moeid,
+      </if>
+      <if test="moename != null" >
+        moename,
+      </if>
+      <if test="monid != null" >
+        monid,
+      </if>
+      <if test="moetype != null" >
+        moetype,
+      </if>
+      <if test="path != null" >
+        path,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="moeid != null" >
+        #{moeid,jdbcType=INTEGER},
+      </if>
+      <if test="moename != null" >
+        #{moename,jdbcType=VARCHAR},
+      </if>
+      <if test="monid != null" >
+        #{monid,jdbcType=INTEGER},
+      </if>
+      <if test="moetype != null" >
+        #{moetype,jdbcType=INTEGER},
+      </if>
+      <if test="path != null" >
+        #{path,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.accp.domain.ModuleExample" resultType="java.lang.Integer" >
+    select count(*) from module
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update module
+    <set >
+      <if test="record.moeid != null" >
+        moeid = #{record.moeid,jdbcType=INTEGER},
+      </if>
+      <if test="record.moename != null" >
+        moename = #{record.moename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.monid != null" >
+        monid = #{record.monid,jdbcType=INTEGER},
+      </if>
+      <if test="record.moetype != null" >
+        moetype = #{record.moetype,jdbcType=INTEGER},
+      </if>
+      <if test="record.path != null" >
+        path = #{record.path,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update module
+    set moeid = #{record.moeid,jdbcType=INTEGER},
+      moename = #{record.moename,jdbcType=VARCHAR},
+      monid = #{record.monid,jdbcType=INTEGER},
+      moetype = #{record.moetype,jdbcType=INTEGER},
+      path = #{record.path,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.Module" >
+    update module
+    <set >
+      <if test="moename != null" >
+        moename = #{moename,jdbcType=VARCHAR},
+      </if>
+      <if test="monid != null" >
+        monid = #{monid,jdbcType=INTEGER},
+      </if>
+      <if test="moetype != null" >
+        moetype = #{moetype,jdbcType=INTEGER},
+      </if>
+      <if test="path != null" >
+        path = #{path,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where moeid = #{moeid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.domain.Module" >
+    update module
+    set moename = #{moename,jdbcType=VARCHAR},
+      monid = #{monid,jdbcType=INTEGER},
+      moetype = #{moetype,jdbcType=INTEGER},
+      path = #{path,jdbcType=VARCHAR}
+    where moeid = #{moeid,jdbcType=INTEGER}
+  </update>
+</mapper>

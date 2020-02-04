@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.mapper.MaterialMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.Material" >
+    <id column="maiid" property="maiid" jdbcType="VARCHAR" />
+    <result column="orrid" property="orrid" jdbcType="VARCHAR" />
+    <result column="mainame" property="mainame" jdbcType="VARCHAR" />
+    <result column="maibrand" property="maibrand" jdbcType="VARCHAR" />
+    <result column="maitype" property="maitype" jdbcType="VARCHAR" />
+    <result column="maiunit" property="maiunit" jdbcType="VARCHAR" />
+    <result column="maiptype" property="maiptype" jdbcType="VARCHAR" />
+    <result column="maientrepot" property="maientrepot" jdbcType="VARCHAR" />
+    <result column="maiavoid" property="maiavoid" jdbcType="VARCHAR" />
+    <result column="maibefore" property="maibefore" jdbcType="INTEGER" />
+    <result column="mailater" property="mailater" jdbcType="INTEGER" />
+    <result column="mainum" property="mainum" jdbcType="INTEGER" />
+    <result column="maiproject" property="maiproject" jdbcType="VARCHAR" />
+    <result column="maiinventory" property="maiinventory" jdbcType="INTEGER" />
+    <result column="maimaterial" property="maimaterial" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    maiid, orrid, mainame, maibrand, maitype, maiunit, maiptype, maientrepot, maiavoid, 
+    maibefore, mailater, mainum, maiproject, maiinventory, maimaterial
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.MaterialExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from material
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from material
+    where maiid = #{maiid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from material
+    where maiid = #{maiid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.accp.domain.MaterialExample" >
+    delete from material
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.accp.domain.Material" >
+    insert into material (maiid, orrid, mainame, 
+      maibrand, maitype, maiunit, 
+      maiptype, maientrepot, maiavoid, 
+      maibefore, mailater, mainum, 
+      maiproject, maiinventory, maimaterial
+      )
+    values (#{maiid,jdbcType=VARCHAR}, #{orrid,jdbcType=VARCHAR}, #{mainame,jdbcType=VARCHAR}, 
+      #{maibrand,jdbcType=VARCHAR}, #{maitype,jdbcType=VARCHAR}, #{maiunit,jdbcType=VARCHAR}, 
+      #{maiptype,jdbcType=VARCHAR}, #{maientrepot,jdbcType=VARCHAR}, #{maiavoid,jdbcType=VARCHAR}, 
+      #{maibefore,jdbcType=INTEGER}, #{mailater,jdbcType=INTEGER}, #{mainum,jdbcType=INTEGER}, 
+      #{maiproject,jdbcType=VARCHAR}, #{maiinventory,jdbcType=INTEGER}, #{maimaterial,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.domain.Material" >
+    insert into material
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="maiid != null" >
+        maiid,
+      </if>
+      <if test="orrid != null" >
+        orrid,
+      </if>
+      <if test="mainame != null" >
+        mainame,
+      </if>
+      <if test="maibrand != null" >
+        maibrand,
+      </if>
+      <if test="maitype != null" >
+        maitype,
+      </if>
+      <if test="maiunit != null" >
+        maiunit,
+      </if>
+      <if test="maiptype != null" >
+        maiptype,
+      </if>
+      <if test="maientrepot != null" >
+        maientrepot,
+      </if>
+      <if test="maiavoid != null" >
+        maiavoid,
+      </if>
+      <if test="maibefore != null" >
+        maibefore,
+      </if>
+      <if test="mailater != null" >
+        mailater,
+      </if>
+      <if test="mainum != null" >
+        mainum,
+      </if>
+      <if test="maiproject != null" >
+        maiproject,
+      </if>
+      <if test="maiinventory != null" >
+        maiinventory,
+      </if>
+      <if test="maimaterial != null" >
+        maimaterial,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="maiid != null" >
+        #{maiid,jdbcType=VARCHAR},
+      </if>
+      <if test="orrid != null" >
+        #{orrid,jdbcType=VARCHAR},
+      </if>
+      <if test="mainame != null" >
+        #{mainame,jdbcType=VARCHAR},
+      </if>
+      <if test="maibrand != null" >
+        #{maibrand,jdbcType=VARCHAR},
+      </if>
+      <if test="maitype != null" >
+        #{maitype,jdbcType=VARCHAR},
+      </if>
+      <if test="maiunit != null" >
+        #{maiunit,jdbcType=VARCHAR},
+      </if>
+      <if test="maiptype != null" >
+        #{maiptype,jdbcType=VARCHAR},
+      </if>
+      <if test="maientrepot != null" >
+        #{maientrepot,jdbcType=VARCHAR},
+      </if>
+      <if test="maiavoid != null" >
+        #{maiavoid,jdbcType=VARCHAR},
+      </if>
+      <if test="maibefore != null" >
+        #{maibefore,jdbcType=INTEGER},
+      </if>
+      <if test="mailater != null" >
+        #{mailater,jdbcType=INTEGER},
+      </if>
+      <if test="mainum != null" >
+        #{mainum,jdbcType=INTEGER},
+      </if>
+      <if test="maiproject != null" >
+        #{maiproject,jdbcType=VARCHAR},
+      </if>
+      <if test="maiinventory != null" >
+        #{maiinventory,jdbcType=INTEGER},
+      </if>
+      <if test="maimaterial != null" >
+        #{maimaterial,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.accp.domain.MaterialExample" resultType="java.lang.Integer" >
+    select count(*) from material
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update material
+    <set >
+      <if test="record.maiid != null" >
+        maiid = #{record.maiid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orrid != null" >
+        orrid = #{record.orrid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mainame != null" >
+        mainame = #{record.mainame,jdbcType=VARCHAR},
+      </if>
+      <if test="record.maibrand != null" >
+        maibrand = #{record.maibrand,jdbcType=VARCHAR},
+      </if>
+      <if test="record.maitype != null" >
+        maitype = #{record.maitype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.maiunit != null" >
+        maiunit = #{record.maiunit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.maiptype != null" >
+        maiptype = #{record.maiptype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.maientrepot != null" >
+        maientrepot = #{record.maientrepot,jdbcType=VARCHAR},
+      </if>
+      <if test="record.maiavoid != null" >
+        maiavoid = #{record.maiavoid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.maibefore != null" >
+        maibefore = #{record.maibefore,jdbcType=INTEGER},
+      </if>
+      <if test="record.mailater != null" >
+        mailater = #{record.mailater,jdbcType=INTEGER},
+      </if>
+      <if test="record.mainum != null" >
+        mainum = #{record.mainum,jdbcType=INTEGER},
+      </if>
+      <if test="record.maiproject != null" >
+        maiproject = #{record.maiproject,jdbcType=VARCHAR},
+      </if>
+      <if test="record.maiinventory != null" >
+        maiinventory = #{record.maiinventory,jdbcType=INTEGER},
+      </if>
+      <if test="record.maimaterial != null" >
+        maimaterial = #{record.maimaterial,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update material
+    set maiid = #{record.maiid,jdbcType=VARCHAR},
+      orrid = #{record.orrid,jdbcType=VARCHAR},
+      mainame = #{record.mainame,jdbcType=VARCHAR},
+      maibrand = #{record.maibrand,jdbcType=VARCHAR},
+      maitype = #{record.maitype,jdbcType=VARCHAR},
+      maiunit = #{record.maiunit,jdbcType=VARCHAR},
+      maiptype = #{record.maiptype,jdbcType=VARCHAR},
+      maientrepot = #{record.maientrepot,jdbcType=VARCHAR},
+      maiavoid = #{record.maiavoid,jdbcType=VARCHAR},
+      maibefore = #{record.maibefore,jdbcType=INTEGER},
+      mailater = #{record.mailater,jdbcType=INTEGER},
+      mainum = #{record.mainum,jdbcType=INTEGER},
+      maiproject = #{record.maiproject,jdbcType=VARCHAR},
+      maiinventory = #{record.maiinventory,jdbcType=INTEGER},
+      maimaterial = #{record.maimaterial,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.Material" >
+    update material
+    <set >
+      <if test="orrid != null" >
+        orrid = #{orrid,jdbcType=VARCHAR},
+      </if>
+      <if test="mainame != null" >
+        mainame = #{mainame,jdbcType=VARCHAR},
+      </if>
+      <if test="maibrand != null" >
+        maibrand = #{maibrand,jdbcType=VARCHAR},
+      </if>
+      <if test="maitype != null" >
+        maitype = #{maitype,jdbcType=VARCHAR},
+      </if>
+      <if test="maiunit != null" >
+        maiunit = #{maiunit,jdbcType=VARCHAR},
+      </if>
+      <if test="maiptype != null" >
+        maiptype = #{maiptype,jdbcType=VARCHAR},
+      </if>
+      <if test="maientrepot != null" >
+        maientrepot = #{maientrepot,jdbcType=VARCHAR},
+      </if>
+      <if test="maiavoid != null" >
+        maiavoid = #{maiavoid,jdbcType=VARCHAR},
+      </if>
+      <if test="maibefore != null" >
+        maibefore = #{maibefore,jdbcType=INTEGER},
+      </if>
+      <if test="mailater != null" >
+        mailater = #{mailater,jdbcType=INTEGER},
+      </if>
+      <if test="mainum != null" >
+        mainum = #{mainum,jdbcType=INTEGER},
+      </if>
+      <if test="maiproject != null" >
+        maiproject = #{maiproject,jdbcType=VARCHAR},
+      </if>
+      <if test="maiinventory != null" >
+        maiinventory = #{maiinventory,jdbcType=INTEGER},
+      </if>
+      <if test="maimaterial != null" >
+        maimaterial = #{maimaterial,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where maiid = #{maiid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.domain.Material" >
+    update material
+    set orrid = #{orrid,jdbcType=VARCHAR},
+      mainame = #{mainame,jdbcType=VARCHAR},
+      maibrand = #{maibrand,jdbcType=VARCHAR},
+      maitype = #{maitype,jdbcType=VARCHAR},
+      maiunit = #{maiunit,jdbcType=VARCHAR},
+      maiptype = #{maiptype,jdbcType=VARCHAR},
+      maientrepot = #{maientrepot,jdbcType=VARCHAR},
+      maiavoid = #{maiavoid,jdbcType=VARCHAR},
+      maibefore = #{maibefore,jdbcType=INTEGER},
+      mailater = #{mailater,jdbcType=INTEGER},
+      mainum = #{mainum,jdbcType=INTEGER},
+      maiproject = #{maiproject,jdbcType=VARCHAR},
+      maiinventory = #{maiinventory,jdbcType=INTEGER},
+      maimaterial = #{maimaterial,jdbcType=VARCHAR}
+    where maiid = #{maiid,jdbcType=VARCHAR}
+  </update>
+</mapper>

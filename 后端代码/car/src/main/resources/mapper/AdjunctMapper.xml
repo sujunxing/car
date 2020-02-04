@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.mapper.AdjunctMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.Adjunct" >
+    <id column="adtid" property="adtid" jdbcType="VARCHAR" />
+    <result column="adtname" property="adtname" jdbcType="VARCHAR" />
+    <result column="adtcla" property="adtcla" jdbcType="VARCHAR" />
+    <result column="adtprice" property="adtprice" jdbcType="INTEGER" />
+    <result column="adtremake" property="adtremake" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    adtid, adtname, adtcla, adtprice, adtremake
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.AdjunctExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from adjunct
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from adjunct
+    where adtid = #{adtid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from adjunct
+    where adtid = #{adtid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.accp.domain.AdjunctExample" >
+    delete from adjunct
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.accp.domain.Adjunct" >
+    insert into adjunct (adtid, adtname, adtcla, 
+      adtprice, adtremake)
+    values (#{adtid,jdbcType=VARCHAR}, #{adtname,jdbcType=VARCHAR}, #{adtcla,jdbcType=VARCHAR}, 
+      #{adtprice,jdbcType=INTEGER}, #{adtremake,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.domain.Adjunct" >
+    insert into adjunct
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="adtid != null" >
+        adtid,
+      </if>
+      <if test="adtname != null" >
+        adtname,
+      </if>
+      <if test="adtcla != null" >
+        adtcla,
+      </if>
+      <if test="adtprice != null" >
+        adtprice,
+      </if>
+      <if test="adtremake != null" >
+        adtremake,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="adtid != null" >
+        #{adtid,jdbcType=VARCHAR},
+      </if>
+      <if test="adtname != null" >
+        #{adtname,jdbcType=VARCHAR},
+      </if>
+      <if test="adtcla != null" >
+        #{adtcla,jdbcType=VARCHAR},
+      </if>
+      <if test="adtprice != null" >
+        #{adtprice,jdbcType=INTEGER},
+      </if>
+      <if test="adtremake != null" >
+        #{adtremake,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.accp.domain.AdjunctExample" resultType="java.lang.Integer" >
+    select count(*) from adjunct
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update adjunct
+    <set >
+      <if test="record.adtid != null" >
+        adtid = #{record.adtid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adtname != null" >
+        adtname = #{record.adtname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adtcla != null" >
+        adtcla = #{record.adtcla,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adtprice != null" >
+        adtprice = #{record.adtprice,jdbcType=INTEGER},
+      </if>
+      <if test="record.adtremake != null" >
+        adtremake = #{record.adtremake,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update adjunct
+    set adtid = #{record.adtid,jdbcType=VARCHAR},
+      adtname = #{record.adtname,jdbcType=VARCHAR},
+      adtcla = #{record.adtcla,jdbcType=VARCHAR},
+      adtprice = #{record.adtprice,jdbcType=INTEGER},
+      adtremake = #{record.adtremake,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.Adjunct" >
+    update adjunct
+    <set >
+      <if test="adtname != null" >
+        adtname = #{adtname,jdbcType=VARCHAR},
+      </if>
+      <if test="adtcla != null" >
+        adtcla = #{adtcla,jdbcType=VARCHAR},
+      </if>
+      <if test="adtprice != null" >
+        adtprice = #{adtprice,jdbcType=INTEGER},
+      </if>
+      <if test="adtremake != null" >
+        adtremake = #{adtremake,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where adtid = #{adtid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.domain.Adjunct" >
+    update adjunct
+    set adtname = #{adtname,jdbcType=VARCHAR},
+      adtcla = #{adtcla,jdbcType=VARCHAR},
+      adtprice = #{adtprice,jdbcType=INTEGER},
+      adtremake = #{adtremake,jdbcType=VARCHAR}
+    where adtid = #{adtid,jdbcType=VARCHAR}
+  </update>
+</mapper>

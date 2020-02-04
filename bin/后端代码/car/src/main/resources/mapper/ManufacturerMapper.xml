@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.mapper.ManufacturerMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.Manufacturer" >
+    <id column="marid" property="marid" jdbcType="VARCHAR" />
+    <result column="marname" property="marname" jdbcType="VARCHAR" />
+    <result column="maraddress" property="maraddress" jdbcType="VARCHAR" />
+    <result column="marmanage" property="marmanage" jdbcType="VARCHAR" />
+    <result column="marurl" property="marurl" jdbcType="VARCHAR" />
+    <result column="maropen" property="maropen" jdbcType="VARCHAR" />
+    <result column="maraccount" property="maraccount" jdbcType="VARCHAR" />
+    <result column="marway" property="marway" jdbcType="VARCHAR" />
+    <result column="marlevel" property="marlevel" jdbcType="VARCHAR" />
+    <result column="marbrand" property="marbrand" jdbcType="VARCHAR" />
+    <result column="maeid" property="maeid" jdbcType="INTEGER" />
+    <result column="marrelation" property="marrelation" jdbcType="VARCHAR" />
+    <result column="marphone" property="marphone" jdbcType="VARCHAR" />
+    <result column="marcard" property="marcard" jdbcType="VARCHAR" />
+    <result column="maremail" property="maremail" jdbcType="VARCHAR" />
+    <result column="marpayment" property="marpayment" jdbcType="VARCHAR" />
+    <result column="maremark" property="maremark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    marid, marname, maraddress, marmanage, marurl, maropen, maraccount, marway, marlevel, 
+    marbrand, maeid, marrelation, marphone, marcard, maremail, marpayment, maremark
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.ManufacturerExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from manufacturer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from manufacturer
+    where marid = #{marid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from manufacturer
+    where marid = #{marid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.accp.domain.ManufacturerExample" >
+    delete from manufacturer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.accp.domain.Manufacturer" >
+    insert into manufacturer (marid, marname, maraddress, 
+      marmanage, marurl, maropen, 
+      maraccount, marway, marlevel, 
+      marbrand, maeid, marrelation, 
+      marphone, marcard, maremail, 
+      marpayment, maremark)
+    values (#{marid,jdbcType=VARCHAR}, #{marname,jdbcType=VARCHAR}, #{maraddress,jdbcType=VARCHAR}, 
+      #{marmanage,jdbcType=VARCHAR}, #{marurl,jdbcType=VARCHAR}, #{maropen,jdbcType=VARCHAR}, 
+      #{maraccount,jdbcType=VARCHAR}, #{marway,jdbcType=VARCHAR}, #{marlevel,jdbcType=VARCHAR}, 
+      #{marbrand,jdbcType=VARCHAR}, #{maeid,jdbcType=INTEGER}, #{marrelation,jdbcType=VARCHAR}, 
+      #{marphone,jdbcType=VARCHAR}, #{marcard,jdbcType=VARCHAR}, #{maremail,jdbcType=VARCHAR}, 
+      #{marpayment,jdbcType=VARCHAR}, #{maremark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.domain.Manufacturer" >
+    insert into manufacturer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="marid != null" >
+        marid,
+      </if>
+      <if test="marname != null" >
+        marname,
+      </if>
+      <if test="maraddress != null" >
+        maraddress,
+      </if>
+      <if test="marmanage != null" >
+        marmanage,
+      </if>
+      <if test="marurl != null" >
+        marurl,
+      </if>
+      <if test="maropen != null" >
+        maropen,
+      </if>
+      <if test="maraccount != null" >
+        maraccount,
+      </if>
+      <if test="marway != null" >
+        marway,
+      </if>
+      <if test="marlevel != null" >
+        marlevel,
+      </if>
+      <if test="marbrand != null" >
+        marbrand,
+      </if>
+      <if test="maeid != null" >
+        maeid,
+      </if>
+      <if test="marrelation != null" >
+        marrelation,
+      </if>
+      <if test="marphone != null" >
+        marphone,
+      </if>
+      <if test="marcard != null" >
+        marcard,
+      </if>
+      <if test="maremail != null" >
+        maremail,
+      </if>
+      <if test="marpayment != null" >
+        marpayment,
+      </if>
+      <if test="maremark != null" >
+        maremark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="marid != null" >
+        #{marid,jdbcType=VARCHAR},
+      </if>
+      <if test="marname != null" >
+        #{marname,jdbcType=VARCHAR},
+      </if>
+      <if test="maraddress != null" >
+        #{maraddress,jdbcType=VARCHAR},
+      </if>
+      <if test="marmanage != null" >
+        #{marmanage,jdbcType=VARCHAR},
+      </if>
+      <if test="marurl != null" >
+        #{marurl,jdbcType=VARCHAR},
+      </if>
+      <if test="maropen != null" >
+        #{maropen,jdbcType=VARCHAR},
+      </if>
+      <if test="maraccount != null" >
+        #{maraccount,jdbcType=VARCHAR},
+      </if>
+      <if test="marway != null" >
+        #{marway,jdbcType=VARCHAR},
+      </if>
+      <if test="marlevel != null" >
+        #{marlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="marbrand != null" >
+        #{marbrand,jdbcType=VARCHAR},
+      </if>
+      <if test="maeid != null" >
+        #{maeid,jdbcType=INTEGER},
+      </if>
+      <if test="marrelation != null" >
+        #{marrelation,jdbcType=VARCHAR},
+      </if>
+      <if test="marphone != null" >
+        #{marphone,jdbcType=VARCHAR},
+      </if>
+      <if test="marcard != null" >
+        #{marcard,jdbcType=VARCHAR},
+      </if>
+      <if test="maremail != null" >
+        #{maremail,jdbcType=VARCHAR},
+      </if>
+      <if test="marpayment != null" >
+        #{marpayment,jdbcType=VARCHAR},
+      </if>
+      <if test="maremark != null" >
+        #{maremark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.accp.domain.ManufacturerExample" resultType="java.lang.Integer" >
+    select count(*) from manufacturer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update manufacturer
+    <set >
+      <if test="record.marid != null" >
+        marid = #{record.marid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marname != null" >
+        marname = #{record.marname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.maraddress != null" >
+        maraddress = #{record.maraddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marmanage != null" >
+        marmanage = #{record.marmanage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marurl != null" >
+        marurl = #{record.marurl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.maropen != null" >
+        maropen = #{record.maropen,jdbcType=VARCHAR},
+      </if>
+      <if test="record.maraccount != null" >
+        maraccount = #{record.maraccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marway != null" >
+        marway = #{record.marway,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marlevel != null" >
+        marlevel = #{record.marlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marbrand != null" >
+        marbrand = #{record.marbrand,jdbcType=VARCHAR},
+      </if>
+      <if test="record.maeid != null" >
+        maeid = #{record.maeid,jdbcType=INTEGER},
+      </if>
+      <if test="record.marrelation != null" >
+        marrelation = #{record.marrelation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marphone != null" >
+        marphone = #{record.marphone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marcard != null" >
+        marcard = #{record.marcard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.maremail != null" >
+        maremail = #{record.maremail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marpayment != null" >
+        marpayment = #{record.marpayment,jdbcType=VARCHAR},
+      </if>
+      <if test="record.maremark != null" >
+        maremark = #{record.maremark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update manufacturer
+    set marid = #{record.marid,jdbcType=VARCHAR},
+      marname = #{record.marname,jdbcType=VARCHAR},
+      maraddress = #{record.maraddress,jdbcType=VARCHAR},
+      marmanage = #{record.marmanage,jdbcType=VARCHAR},
+      marurl = #{record.marurl,jdbcType=VARCHAR},
+      maropen = #{record.maropen,jdbcType=VARCHAR},
+      maraccount = #{record.maraccount,jdbcType=VARCHAR},
+      marway = #{record.marway,jdbcType=VARCHAR},
+      marlevel = #{record.marlevel,jdbcType=VARCHAR},
+      marbrand = #{record.marbrand,jdbcType=VARCHAR},
+      maeid = #{record.maeid,jdbcType=INTEGER},
+      marrelation = #{record.marrelation,jdbcType=VARCHAR},
+      marphone = #{record.marphone,jdbcType=VARCHAR},
+      marcard = #{record.marcard,jdbcType=VARCHAR},
+      maremail = #{record.maremail,jdbcType=VARCHAR},
+      marpayment = #{record.marpayment,jdbcType=VARCHAR},
+      maremark = #{record.maremark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.Manufacturer" >
+    update manufacturer
+    <set >
+      <if test="marname != null" >
+        marname = #{marname,jdbcType=VARCHAR},
+      </if>
+      <if test="maraddress != null" >
+        maraddress = #{maraddress,jdbcType=VARCHAR},
+      </if>
+      <if test="marmanage != null" >
+        marmanage = #{marmanage,jdbcType=VARCHAR},
+      </if>
+      <if test="marurl != null" >
+        marurl = #{marurl,jdbcType=VARCHAR},
+      </if>
+      <if test="maropen != null" >
+        maropen = #{maropen,jdbcType=VARCHAR},
+      </if>
+      <if test="maraccount != null" >
+        maraccount = #{maraccount,jdbcType=VARCHAR},
+      </if>
+      <if test="marway != null" >
+        marway = #{marway,jdbcType=VARCHAR},
+      </if>
+      <if test="marlevel != null" >
+        marlevel = #{marlevel,jdbcType=VARCHAR},
+      </if>
+      <if test="marbrand != null" >
+        marbrand = #{marbrand,jdbcType=VARCHAR},
+      </if>
+      <if test="maeid != null" >
+        maeid = #{maeid,jdbcType=INTEGER},
+      </if>
+      <if test="marrelation != null" >
+        marrelation = #{marrelation,jdbcType=VARCHAR},
+      </if>
+      <if test="marphone != null" >
+        marphone = #{marphone,jdbcType=VARCHAR},
+      </if>
+      <if test="marcard != null" >
+        marcard = #{marcard,jdbcType=VARCHAR},
+      </if>
+      <if test="maremail != null" >
+        maremail = #{maremail,jdbcType=VARCHAR},
+      </if>
+      <if test="marpayment != null" >
+        marpayment = #{marpayment,jdbcType=VARCHAR},
+      </if>
+      <if test="maremark != null" >
+        maremark = #{maremark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where marid = #{marid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.domain.Manufacturer" >
+    update manufacturer
+    set marname = #{marname,jdbcType=VARCHAR},
+      maraddress = #{maraddress,jdbcType=VARCHAR},
+      marmanage = #{marmanage,jdbcType=VARCHAR},
+      marurl = #{marurl,jdbcType=VARCHAR},
+      maropen = #{maropen,jdbcType=VARCHAR},
+      maraccount = #{maraccount,jdbcType=VARCHAR},
+      marway = #{marway,jdbcType=VARCHAR},
+      marlevel = #{marlevel,jdbcType=VARCHAR},
+      marbrand = #{marbrand,jdbcType=VARCHAR},
+      maeid = #{maeid,jdbcType=INTEGER},
+      marrelation = #{marrelation,jdbcType=VARCHAR},
+      marphone = #{marphone,jdbcType=VARCHAR},
+      marcard = #{marcard,jdbcType=VARCHAR},
+      maremail = #{maremail,jdbcType=VARCHAR},
+      marpayment = #{marpayment,jdbcType=VARCHAR},
+      maremark = #{maremark,jdbcType=VARCHAR}
+    where marid = #{marid,jdbcType=VARCHAR}
+  </update>
+</mapper>

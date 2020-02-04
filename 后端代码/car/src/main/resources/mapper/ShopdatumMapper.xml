@@ -1,0 +1,560 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.mapper.ShopdatumMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.domain.Shopdatum" >
+    <id column="shmid" property="shmid" jdbcType="VARCHAR" />
+    <result column="shmname" property="shmname" jdbcType="VARCHAR" />
+    <result column="shmbrand" property="shmbrand" jdbcType="VARCHAR" />
+    <result column="shmtype" property="shmtype" jdbcType="VARCHAR" />
+    <result column="shmnum" property="shmnum" jdbcType="VARCHAR" />
+    <result column="shlid" property="shlid" jdbcType="VARCHAR" />
+    <result column="ineid" property="ineid" jdbcType="INTEGER" />
+    <result column="shmchang" property="shmchang" jdbcType="VARCHAR" />
+    <result column="shmlevl" property="shmlevl" jdbcType="VARCHAR" />
+    <result column="shmplace" property="shmplace" jdbcType="VARCHAR" />
+    <result column="marid" property="marid" jdbcType="VARCHAR" />
+    <result column="shmcoding" property="shmcoding" jdbcType="VARCHAR" />
+    <result column="shmcode" property="shmcode" jdbcType="VARCHAR" />
+    <result column="shmspecification" property="shmspecification" jdbcType="VARCHAR" />
+    <result column="shmbulk" property="shmbulk" jdbcType="VARCHAR" />
+    <result column="shmrough" property="shmrough" jdbcType="INTEGER" />
+    <result column="shmnet" property="shmnet" jdbcType="INTEGER" />
+    <result column="shmstock" property="shmstock" jdbcType="INTEGER" />
+    <result column="shmselling" property="shmselling" jdbcType="VARCHAR" />
+    <result column="shmraise" property="shmraise" jdbcType="INTEGER" />
+    <result column="shmexchange" property="shmexchange" jdbcType="VARCHAR" />
+    <result column="shmstandard" property="shmstandard" jdbcType="INTEGER" />
+    <result column="shmmember" property="shmmember" jdbcType="INTEGER" />
+    <result column="shmvip" property="shmvip" jdbcType="INTEGER" />
+    <result column="shmdeal" property="shmdeal" jdbcType="INTEGER" />
+    <result column="shmclaim" property="shmclaim" jdbcType="INTEGER" />
+    <result column="shminsurance" property="shminsurance" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    shmid, shmname, shmbrand, shmtype, shmnum, shlid, ineid, shmchang, shmlevl, shmplace, 
+    marid, shmcoding, shmcode, shmspecification, shmbulk, shmrough, shmnet, shmstock, 
+    shmselling, shmraise, shmexchange, shmstandard, shmmember, shmvip, shmdeal, shmclaim, 
+    shminsurance
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.accp.domain.ShopdatumExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from shopdatum
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from shopdatum
+    where shmid = #{shmid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from shopdatum
+    where shmid = #{shmid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.accp.domain.ShopdatumExample" >
+    delete from shopdatum
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.accp.domain.Shopdatum" >
+    insert into shopdatum (shmid, shmname, shmbrand, 
+      shmtype, shmnum, shlid, 
+      ineid, shmchang, shmlevl, 
+      shmplace, marid, shmcoding, 
+      shmcode, shmspecification, shmbulk, 
+      shmrough, shmnet, shmstock, 
+      shmselling, shmraise, shmexchange, 
+      shmstandard, shmmember, shmvip, 
+      shmdeal, shmclaim, shminsurance
+      )
+    values (#{shmid,jdbcType=VARCHAR}, #{shmname,jdbcType=VARCHAR}, #{shmbrand,jdbcType=VARCHAR}, 
+      #{shmtype,jdbcType=VARCHAR}, #{shmnum,jdbcType=VARCHAR}, #{shlid,jdbcType=VARCHAR}, 
+      #{ineid,jdbcType=INTEGER}, #{shmchang,jdbcType=VARCHAR}, #{shmlevl,jdbcType=VARCHAR}, 
+      #{shmplace,jdbcType=VARCHAR}, #{marid,jdbcType=VARCHAR}, #{shmcoding,jdbcType=VARCHAR}, 
+      #{shmcode,jdbcType=VARCHAR}, #{shmspecification,jdbcType=VARCHAR}, #{shmbulk,jdbcType=VARCHAR}, 
+      #{shmrough,jdbcType=INTEGER}, #{shmnet,jdbcType=INTEGER}, #{shmstock,jdbcType=INTEGER}, 
+      #{shmselling,jdbcType=VARCHAR}, #{shmraise,jdbcType=INTEGER}, #{shmexchange,jdbcType=VARCHAR}, 
+      #{shmstandard,jdbcType=INTEGER}, #{shmmember,jdbcType=INTEGER}, #{shmvip,jdbcType=INTEGER}, 
+      #{shmdeal,jdbcType=INTEGER}, #{shmclaim,jdbcType=INTEGER}, #{shminsurance,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.domain.Shopdatum" >
+    insert into shopdatum
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="shmid != null" >
+        shmid,
+      </if>
+      <if test="shmname != null" >
+        shmname,
+      </if>
+      <if test="shmbrand != null" >
+        shmbrand,
+      </if>
+      <if test="shmtype != null" >
+        shmtype,
+      </if>
+      <if test="shmnum != null" >
+        shmnum,
+      </if>
+      <if test="shlid != null" >
+        shlid,
+      </if>
+      <if test="ineid != null" >
+        ineid,
+      </if>
+      <if test="shmchang != null" >
+        shmchang,
+      </if>
+      <if test="shmlevl != null" >
+        shmlevl,
+      </if>
+      <if test="shmplace != null" >
+        shmplace,
+      </if>
+      <if test="marid != null" >
+        marid,
+      </if>
+      <if test="shmcoding != null" >
+        shmcoding,
+      </if>
+      <if test="shmcode != null" >
+        shmcode,
+      </if>
+      <if test="shmspecification != null" >
+        shmspecification,
+      </if>
+      <if test="shmbulk != null" >
+        shmbulk,
+      </if>
+      <if test="shmrough != null" >
+        shmrough,
+      </if>
+      <if test="shmnet != null" >
+        shmnet,
+      </if>
+      <if test="shmstock != null" >
+        shmstock,
+      </if>
+      <if test="shmselling != null" >
+        shmselling,
+      </if>
+      <if test="shmraise != null" >
+        shmraise,
+      </if>
+      <if test="shmexchange != null" >
+        shmexchange,
+      </if>
+      <if test="shmstandard != null" >
+        shmstandard,
+      </if>
+      <if test="shmmember != null" >
+        shmmember,
+      </if>
+      <if test="shmvip != null" >
+        shmvip,
+      </if>
+      <if test="shmdeal != null" >
+        shmdeal,
+      </if>
+      <if test="shmclaim != null" >
+        shmclaim,
+      </if>
+      <if test="shminsurance != null" >
+        shminsurance,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="shmid != null" >
+        #{shmid,jdbcType=VARCHAR},
+      </if>
+      <if test="shmname != null" >
+        #{shmname,jdbcType=VARCHAR},
+      </if>
+      <if test="shmbrand != null" >
+        #{shmbrand,jdbcType=VARCHAR},
+      </if>
+      <if test="shmtype != null" >
+        #{shmtype,jdbcType=VARCHAR},
+      </if>
+      <if test="shmnum != null" >
+        #{shmnum,jdbcType=VARCHAR},
+      </if>
+      <if test="shlid != null" >
+        #{shlid,jdbcType=VARCHAR},
+      </if>
+      <if test="ineid != null" >
+        #{ineid,jdbcType=INTEGER},
+      </if>
+      <if test="shmchang != null" >
+        #{shmchang,jdbcType=VARCHAR},
+      </if>
+      <if test="shmlevl != null" >
+        #{shmlevl,jdbcType=VARCHAR},
+      </if>
+      <if test="shmplace != null" >
+        #{shmplace,jdbcType=VARCHAR},
+      </if>
+      <if test="marid != null" >
+        #{marid,jdbcType=VARCHAR},
+      </if>
+      <if test="shmcoding != null" >
+        #{shmcoding,jdbcType=VARCHAR},
+      </if>
+      <if test="shmcode != null" >
+        #{shmcode,jdbcType=VARCHAR},
+      </if>
+      <if test="shmspecification != null" >
+        #{shmspecification,jdbcType=VARCHAR},
+      </if>
+      <if test="shmbulk != null" >
+        #{shmbulk,jdbcType=VARCHAR},
+      </if>
+      <if test="shmrough != null" >
+        #{shmrough,jdbcType=INTEGER},
+      </if>
+      <if test="shmnet != null" >
+        #{shmnet,jdbcType=INTEGER},
+      </if>
+      <if test="shmstock != null" >
+        #{shmstock,jdbcType=INTEGER},
+      </if>
+      <if test="shmselling != null" >
+        #{shmselling,jdbcType=VARCHAR},
+      </if>
+      <if test="shmraise != null" >
+        #{shmraise,jdbcType=INTEGER},
+      </if>
+      <if test="shmexchange != null" >
+        #{shmexchange,jdbcType=VARCHAR},
+      </if>
+      <if test="shmstandard != null" >
+        #{shmstandard,jdbcType=INTEGER},
+      </if>
+      <if test="shmmember != null" >
+        #{shmmember,jdbcType=INTEGER},
+      </if>
+      <if test="shmvip != null" >
+        #{shmvip,jdbcType=INTEGER},
+      </if>
+      <if test="shmdeal != null" >
+        #{shmdeal,jdbcType=INTEGER},
+      </if>
+      <if test="shmclaim != null" >
+        #{shmclaim,jdbcType=INTEGER},
+      </if>
+      <if test="shminsurance != null" >
+        #{shminsurance,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.accp.domain.ShopdatumExample" resultType="java.lang.Integer" >
+    select count(*) from shopdatum
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update shopdatum
+    <set >
+      <if test="record.shmid != null" >
+        shmid = #{record.shmid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shmname != null" >
+        shmname = #{record.shmname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shmbrand != null" >
+        shmbrand = #{record.shmbrand,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shmtype != null" >
+        shmtype = #{record.shmtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shmnum != null" >
+        shmnum = #{record.shmnum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shlid != null" >
+        shlid = #{record.shlid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ineid != null" >
+        ineid = #{record.ineid,jdbcType=INTEGER},
+      </if>
+      <if test="record.shmchang != null" >
+        shmchang = #{record.shmchang,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shmlevl != null" >
+        shmlevl = #{record.shmlevl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shmplace != null" >
+        shmplace = #{record.shmplace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marid != null" >
+        marid = #{record.marid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shmcoding != null" >
+        shmcoding = #{record.shmcoding,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shmcode != null" >
+        shmcode = #{record.shmcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shmspecification != null" >
+        shmspecification = #{record.shmspecification,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shmbulk != null" >
+        shmbulk = #{record.shmbulk,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shmrough != null" >
+        shmrough = #{record.shmrough,jdbcType=INTEGER},
+      </if>
+      <if test="record.shmnet != null" >
+        shmnet = #{record.shmnet,jdbcType=INTEGER},
+      </if>
+      <if test="record.shmstock != null" >
+        shmstock = #{record.shmstock,jdbcType=INTEGER},
+      </if>
+      <if test="record.shmselling != null" >
+        shmselling = #{record.shmselling,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shmraise != null" >
+        shmraise = #{record.shmraise,jdbcType=INTEGER},
+      </if>
+      <if test="record.shmexchange != null" >
+        shmexchange = #{record.shmexchange,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shmstandard != null" >
+        shmstandard = #{record.shmstandard,jdbcType=INTEGER},
+      </if>
+      <if test="record.shmmember != null" >
+        shmmember = #{record.shmmember,jdbcType=INTEGER},
+      </if>
+      <if test="record.shmvip != null" >
+        shmvip = #{record.shmvip,jdbcType=INTEGER},
+      </if>
+      <if test="record.shmdeal != null" >
+        shmdeal = #{record.shmdeal,jdbcType=INTEGER},
+      </if>
+      <if test="record.shmclaim != null" >
+        shmclaim = #{record.shmclaim,jdbcType=INTEGER},
+      </if>
+      <if test="record.shminsurance != null" >
+        shminsurance = #{record.shminsurance,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update shopdatum
+    set shmid = #{record.shmid,jdbcType=VARCHAR},
+      shmname = #{record.shmname,jdbcType=VARCHAR},
+      shmbrand = #{record.shmbrand,jdbcType=VARCHAR},
+      shmtype = #{record.shmtype,jdbcType=VARCHAR},
+      shmnum = #{record.shmnum,jdbcType=VARCHAR},
+      shlid = #{record.shlid,jdbcType=VARCHAR},
+      ineid = #{record.ineid,jdbcType=INTEGER},
+      shmchang = #{record.shmchang,jdbcType=VARCHAR},
+      shmlevl = #{record.shmlevl,jdbcType=VARCHAR},
+      shmplace = #{record.shmplace,jdbcType=VARCHAR},
+      marid = #{record.marid,jdbcType=VARCHAR},
+      shmcoding = #{record.shmcoding,jdbcType=VARCHAR},
+      shmcode = #{record.shmcode,jdbcType=VARCHAR},
+      shmspecification = #{record.shmspecification,jdbcType=VARCHAR},
+      shmbulk = #{record.shmbulk,jdbcType=VARCHAR},
+      shmrough = #{record.shmrough,jdbcType=INTEGER},
+      shmnet = #{record.shmnet,jdbcType=INTEGER},
+      shmstock = #{record.shmstock,jdbcType=INTEGER},
+      shmselling = #{record.shmselling,jdbcType=VARCHAR},
+      shmraise = #{record.shmraise,jdbcType=INTEGER},
+      shmexchange = #{record.shmexchange,jdbcType=VARCHAR},
+      shmstandard = #{record.shmstandard,jdbcType=INTEGER},
+      shmmember = #{record.shmmember,jdbcType=INTEGER},
+      shmvip = #{record.shmvip,jdbcType=INTEGER},
+      shmdeal = #{record.shmdeal,jdbcType=INTEGER},
+      shmclaim = #{record.shmclaim,jdbcType=INTEGER},
+      shminsurance = #{record.shminsurance,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.domain.Shopdatum" >
+    update shopdatum
+    <set >
+      <if test="shmname != null" >
+        shmname = #{shmname,jdbcType=VARCHAR},
+      </if>
+      <if test="shmbrand != null" >
+        shmbrand = #{shmbrand,jdbcType=VARCHAR},
+      </if>
+      <if test="shmtype != null" >
+        shmtype = #{shmtype,jdbcType=VARCHAR},
+      </if>
+      <if test="shmnum != null" >
+        shmnum = #{shmnum,jdbcType=VARCHAR},
+      </if>
+      <if test="shlid != null" >
+        shlid = #{shlid,jdbcType=VARCHAR},
+      </if>
+      <if test="ineid != null" >
+        ineid = #{ineid,jdbcType=INTEGER},
+      </if>
+      <if test="shmchang != null" >
+        shmchang = #{shmchang,jdbcType=VARCHAR},
+      </if>
+      <if test="shmlevl != null" >
+        shmlevl = #{shmlevl,jdbcType=VARCHAR},
+      </if>
+      <if test="shmplace != null" >
+        shmplace = #{shmplace,jdbcType=VARCHAR},
+      </if>
+      <if test="marid != null" >
+        marid = #{marid,jdbcType=VARCHAR},
+      </if>
+      <if test="shmcoding != null" >
+        shmcoding = #{shmcoding,jdbcType=VARCHAR},
+      </if>
+      <if test="shmcode != null" >
+        shmcode = #{shmcode,jdbcType=VARCHAR},
+      </if>
+      <if test="shmspecification != null" >
+        shmspecification = #{shmspecification,jdbcType=VARCHAR},
+      </if>
+      <if test="shmbulk != null" >
+        shmbulk = #{shmbulk,jdbcType=VARCHAR},
+      </if>
+      <if test="shmrough != null" >
+        shmrough = #{shmrough,jdbcType=INTEGER},
+      </if>
+      <if test="shmnet != null" >
+        shmnet = #{shmnet,jdbcType=INTEGER},
+      </if>
+      <if test="shmstock != null" >
+        shmstock = #{shmstock,jdbcType=INTEGER},
+      </if>
+      <if test="shmselling != null" >
+        shmselling = #{shmselling,jdbcType=VARCHAR},
+      </if>
+      <if test="shmraise != null" >
+        shmraise = #{shmraise,jdbcType=INTEGER},
+      </if>
+      <if test="shmexchange != null" >
+        shmexchange = #{shmexchange,jdbcType=VARCHAR},
+      </if>
+      <if test="shmstandard != null" >
+        shmstandard = #{shmstandard,jdbcType=INTEGER},
+      </if>
+      <if test="shmmember != null" >
+        shmmember = #{shmmember,jdbcType=INTEGER},
+      </if>
+      <if test="shmvip != null" >
+        shmvip = #{shmvip,jdbcType=INTEGER},
+      </if>
+      <if test="shmdeal != null" >
+        shmdeal = #{shmdeal,jdbcType=INTEGER},
+      </if>
+      <if test="shmclaim != null" >
+        shmclaim = #{shmclaim,jdbcType=INTEGER},
+      </if>
+      <if test="shminsurance != null" >
+        shminsurance = #{shminsurance,jdbcType=INTEGER},
+      </if>
+    </set>
+    where shmid = #{shmid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.domain.Shopdatum" >
+    update shopdatum
+    set shmname = #{shmname,jdbcType=VARCHAR},
+      shmbrand = #{shmbrand,jdbcType=VARCHAR},
+      shmtype = #{shmtype,jdbcType=VARCHAR},
+      shmnum = #{shmnum,jdbcType=VARCHAR},
+      shlid = #{shlid,jdbcType=VARCHAR},
+      ineid = #{ineid,jdbcType=INTEGER},
+      shmchang = #{shmchang,jdbcType=VARCHAR},
+      shmlevl = #{shmlevl,jdbcType=VARCHAR},
+      shmplace = #{shmplace,jdbcType=VARCHAR},
+      marid = #{marid,jdbcType=VARCHAR},
+      shmcoding = #{shmcoding,jdbcType=VARCHAR},
+      shmcode = #{shmcode,jdbcType=VARCHAR},
+      shmspecification = #{shmspecification,jdbcType=VARCHAR},
+      shmbulk = #{shmbulk,jdbcType=VARCHAR},
+      shmrough = #{shmrough,jdbcType=INTEGER},
+      shmnet = #{shmnet,jdbcType=INTEGER},
+      shmstock = #{shmstock,jdbcType=INTEGER},
+      shmselling = #{shmselling,jdbcType=VARCHAR},
+      shmraise = #{shmraise,jdbcType=INTEGER},
+      shmexchange = #{shmexchange,jdbcType=VARCHAR},
+      shmstandard = #{shmstandard,jdbcType=INTEGER},
+      shmmember = #{shmmember,jdbcType=INTEGER},
+      shmvip = #{shmvip,jdbcType=INTEGER},
+      shmdeal = #{shmdeal,jdbcType=INTEGER},
+      shmclaim = #{shmclaim,jdbcType=INTEGER},
+      shminsurance = #{shminsurance,jdbcType=INTEGER}
+    where shmid = #{shmid,jdbcType=VARCHAR}
+  </update>
+</mapper>

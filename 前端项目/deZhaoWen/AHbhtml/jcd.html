@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>接车单</title>
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"/>
+		<style type="text/css">
+			*{
+				margin: 0px;
+				padding: 0px;
+			}
+			a{
+				text-decoration: none;
+				color: #334354;
+			}
+			a:hover{
+				text-decoration: none;
+			}
+			#content{
+				background-color: #F7F7F7;
+			}
+			#header{
+				background-color: #F7FFFF;
+				height: 37px;
+			}
+			.orans a:hover{
+				color: orange;
+			}
+			.trs{
+				color: #40CEE3;
+				font-size: 16px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="ctx" class="container">
+			<!--头部1-->
+			<div class="row" id="header">
+				<div class="col-sm-2" style="padding-top: 4px;"><strong style="font-size: 17px;">接车登记</strong></div>
+				<div class="col-sm-offset-3 col-sm-5">
+					<input type="text" class="form-control" placeholder="匹配车牌号/车架号/手机/客户"/>
+				</div>
+				<div class="col-sm-2">
+				<button type="button" class="btn btn-warning">搜索</button>
+				<button class="btn btn-group">关闭</button>
+				</div>
+			</div>
+			<!--主要跳转-->
+			<div class="row" id="content">
+				<div class="row">
+					<div class="col-md-3 col-md-offset-9 orans" style="font-size: 17px;">
+						<a class="glyphicon glyphicon-wrench" href="wxd.html"><strong>维修接车</strong></a>&nbsp;&nbsp;&nbsp;
+						<a class="glyphicon glyphicon-screenshot"><strong>救援开单</strong></a>
+					</div>
+				</div>
+			</div>
+			<!--内容-->
+			<div class="row" id="neirong" style="border-top: 2px solid #40CEE3;">
+				<div class="col-md-4">
+					<table id="tabs">
+						<tr class="trs">
+							<td>公众号会员码</td>
+							<td>&nbsp;</td>
+							<td>车牌号<a href="javascript:void(0)" class="caret"></a></td>
+						</tr>
+						<tr class="trs">
+							<td><input type="text" style="border:none;border-bottom: 1px solid #C7C7C7;"></td>
+							<td>&nbsp;</td>
+							<td><input type="text" style="border:none;border-bottom: 1px solid #C7C7C7;"></td>
+						</tr>
+						<tr class="trs" style="font-size: 14px;">
+							<td>车主信息</td>
+							<td>&nbsp;</td>
+							<td>车辆信息</td>
+						</tr>
+						<tr>
+							<td>姓名：<span>--</span></td>
+							<td>&nbsp;</td>
+							<td>品牌：<span>--</span></td>
+						</tr>
+						<tr>
+							<td>地址：<span>--</span></td>
+							<td>&nbsp;</td>
+							<td>发动机：<span>--</span></td>
+						</tr>
+						<tr>
+							<td>驾驶员：<span>--</span></td>
+							<td>&nbsp;</td>
+							<td>保养日期：<span>--</span></td>
+						</tr>
+					</table>
+				</div>
+				
+				<div class="col-md-3 col-md-offset-1" style="color: red;font-size: 14px;margin-top: 35px;">
+					<table>
+						<tr>
+							<td>积分:0分</td>
+						</tr>
+						<tr>
+							<td>储蓄卡余额:0.00元</td>
+						</tr>
+						<tr>
+							<td>挂账余额:0.00元</td>
+						</tr>
+						<tr>
+							<td>订单余额:0.00元</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class="row">
+				<ul class="nav nav-tabs">
+				  <li class="ulclick active" role="presentation"><a href="#">维修历史</a></li>
+				  <li class="ulclick" role="presentation"><a href="#">维修项目</a></li>
+				  <li class="ulclick" role="presentation"><a href="#">领料情况</a></li>
+				  <li class="ulclick" role="presentation"><a href="#">历史回访</a></li>
+				</ul>
+			</div>
+			<div class="row">
+				<tables :jdheader="jdheader" :jdcontent="jdcontent"></tables>
+			</div>
+		</div>
+		<script src="../js/jquery-1.12.4.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			Vue.component("tables",{
+				template:`
+					<table class="table table-hover table-bordered text-center">
+						<tr>
+							<td v-for="item in jdheader" style="border:1px solid #DDDDDD;background-color:#39CEDE;height: 37px;">{{item}}</td>
+							<td style="border:1px solid #DDDDDD;background-color:#39CEDE;height: 37px;">操作</td>
+						</tr>
+						<tbody>
+							<tr v-for="(data,index) in jdcontent">
+								<td>{{data.zt}}</td>
+								<td>{{data.lx}}</td>
+								<td>{{data.lx}}</td>
+								<td>{{data.kh}}</td>
+								<td>{{data.sj}}</td>
+								<td>{{data.kh}}</td>
+								<td>{{data.wx}}</td>
+								<td>{{data.dj}}</td>
+								<td>{{data.kd}}</td>
+								<td>{{data.yj}}</td>
+								<td id="count_(index)">{{data.js}}</td>
+								<td><a href="javascript:void(0)" style="color:green;">作废单据</a></td>
+							</tr>
+						</tbody>
+					</table>
+				`,
+				props:["jdheader","jdcontent"],
+				methods:{
+					
+				}
+			});
+			var vm = new Vue({
+				el:"#ctx",
+				data(){
+					return{
+						jdheader:["单据状态","业务类型","客户名称","车牌号","手机","会员卡号","维修单号","单据类型","开单时间","预计完工","结算时间"],
+						jdcontent:[
+							{
+								zt:"接车1",
+								lx:"中国重汽1",
+								kh:"张三1",
+								cp:"黑123451",
+								sj:"132985461311",
+								hy:"544121",
+								wx:"1234567891234567891",
+								dj:"救援1",
+								kd:"2019-12-31 10:441",
+								yj:"",
+								wg:"2020-1-2 8:00",
+								js:""
+							},{
+								zt:"接车2",
+								lx:"中国重汽2",
+								kh:"张三2",
+								cp:"黑123452",
+								sj:"132985461312",
+								hy:"544122",
+								wx:"1234567891234567892",
+								dj:"救援2",
+								kd:"2019-12-31 10:44",
+								yj:"",
+								wg:"2020-1-2 8:00",
+								js:""
+							},{
+								zt:"接车3",
+								lx:"中国重汽3",
+								kh:"张三3",
+								cp:"黑123453",
+								sj:"132985461313",
+								hy:"544123",
+								wx:"1234567891234567893",
+								dj:"救援3",
+								kd:"2019-12-31 10:44",
+								yj:"",
+								wg:"2020-1-2 8:00",
+								js:""
+							}
+						]
+					}
+				},
+				methods:{
+					
+				}
+				
+			});
+			
+			$(function(){
+				
+				$(".ulclick").click(function(){
+					$(".ulclick").removeClass("active");
+					$(this).addClass("active");
+				});
+			});
+		</script>
+	</body>
+</html>
