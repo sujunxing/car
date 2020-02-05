@@ -1,10 +1,24 @@
 package com.accp.domain;
 
+/**
+ * 区类
+ * @author 小朱
+ *
+ */
 public class District {
+	/**
+	 * 区id
+	 */
     private Integer districtid;
 
+    /**
+     * 区名
+     */
     private String districtname;
 
+    /**
+     * 所属城市
+     */
     private Integer cityid;
 
     public Integer getDistrictid() {

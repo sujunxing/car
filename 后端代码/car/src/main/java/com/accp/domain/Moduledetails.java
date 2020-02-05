@@ -1,10 +1,24 @@
 package com.accp.domain;
 
+/**
+ * 模块详情
+ * @author 小朱
+ *
+ */
 public class Moduledetails {
+	/**
+	 * 主键自增
+	 */
     private Integer mosid;
 
+    /**
+     * 角色id
+     */
     private Integer jueid;
 
+    /**
+     * 模块id
+     */
     private Integer moeid;
 
     public Integer getMosid() {

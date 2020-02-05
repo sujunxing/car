@@ -1,8 +1,19 @@
 package com.accp.domain;
-
+/**
+ * 车辆归属类
+ * @author 小朱
+ *
+ */
 public class Ownership {
+	
+	/**
+	 * 车辆归属id
+	 */
     private Integer ownershipid;
 
+    /**
+     * 车辆归属名称
+     */
     private String ownershipname;
 
     public Integer getOwnershipid() {

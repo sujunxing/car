@@ -1,16 +1,41 @@
 package com.accp.domain;
 
+import java.util.List;
+
+/**
+ * 客户分类类
+ * @author 小朱
+ *
+ */
 public class Keclassify {
+	/**
+	 * 分类编号
+	 */
     private String keyid;
 
+    /**
+     * 客户类型别名
+     */
     private String keyketype;
 
+    /**
+     * 价格类型
+     */
     private String keypricetype;
 
+    /**
+     * 有效期
+     */
     private String keyyxq;
 
+    /**
+     * 会费
+     */
     private Integer keyhf;
 
+    /**
+     * 类别
+     */
     private String keytype;
 
     private String bei1;
@@ -22,7 +47,20 @@ public class Keclassify {
     private String bei4;
 
     private Integer bei5;
+    
+    /**
+     * 客户集合
+     */
+    private List<Client> clients;
 
+    public void setClients(List<Client> clients) {
+		this.clients = clients;
+	}
+    
+    public List<Client> getClients() {
+		return clients;
+	}
+    
     public String getKeyid() {
         return keyid;
     }

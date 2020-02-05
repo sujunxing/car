@@ -1,54 +1,136 @@
 package com.accp.domain;
 
+import java.util.List;
+
+/**
+ * 客户表
+ * @author asus
+ *
+ */
 public class Client {
+	/**
+	 * 客户id
+	 */
     private String cltid;
 
+    /**
+     * 客户名称
+     */
     private String cltname;
 
+    /**
+     * 联系人
+     */
     private String cltlinkman;
 
+    /**
+     * 手机号码
+     */
     private String cltphone;
 
+    /**
+     * 客户地址
+     */
     private String cltaddress;
 
+    /**
+     * 客户生日
+     */
     private String cltbirthday;
 
+    /**
+     * 账期
+     */
     private String cltpayment;
 
+    /**
+     * 挂账额度
+     */
     private Integer cltlimit;
 
+    /**
+     * 专属顾问
+     */
     private String cltcounselor;
 
+    /**
+     * 顾问电话
+     */
     private String cltcouphone;
 
+    /**
+     * 省
+     */
     private Integer provinceid;
 
+    /**
+     * 市
+     */
     private Integer cityid;
 
+    /**
+     * 区
+     */
     private Integer districtid;
 
+    /**
+     * 备注
+     */
     private String cltremake;
 
+    /**
+     * 纳税人识别号
+     */
     private String cltdiscern;
 
+    /**
+     * 注册电话
+     */
     private String cltregister;
 
+    /**
+     * 开户银行
+     */
     private String cltaccount;
 
+    /**
+     * 银行账号
+     */
     private String cltregistered;
 
+    /**
+     * 注册地址
+     */
     private String cltconaddress;
 
+    /**
+     * 其一
+     */
     private String cltelse;
 
+    /**
+     * 其二
+     */
     private String cltelses;
 
+    /**
+     * 其三
+     */
     private String cltelsess;
 
+    /**
+     * 其四
+     */
     private String cltelsesss;
 
+    /**
+     * 会员卡号
+     */
     private Integer me2berid;
 
+    /**
+     * 客户分类
+     */
     private String keyid;
 
     private String bei1;
@@ -60,8 +142,73 @@ public class Client {
     private String bei4;
 
     private Integer bei5;
+    
+    /**
+     * 省对象
+     */
+    private Province province;//
+    
+    /**
+     * 市对象
+     */
+    private City city;//
+    
+    /**
+     * 区对象
+     */
+    private District district;
+    
+    /**
+     * 客户分类对象
+     */
+    private Keclassify keclassify;
+    
+    /**
+     * 车集合
+     */
+    private List<Vehicle> vehicles;
 
-    public String getCltid() {
+    public Province getProvince() {
+		return province;
+	}
+
+	public void setProvince(Province province) {
+		this.province = province;
+	}
+
+	public City getCity() {
+		return city;
+	}
+
+	public void setCity(City city) {
+		this.city = city;
+	}
+
+	public District getDistrict() {
+		return district;
+	}
+
+	public void setDistrict(District district) {
+		this.district = district;
+	}
+
+	public Keclassify getKeclassify() {
+		return keclassify;
+	}
+
+	public void setKeclassify(Keclassify keclassify) {
+		this.keclassify = keclassify;
+	}
+
+	public List<Vehicle> getVehicles() {
+		return vehicles;
+	}
+
+	public void setVehicles(List<Vehicle> vehicles) {
+		this.vehicles = vehicles;
+	}
+
+	public String getCltid() {
         return cltid;
     }
 

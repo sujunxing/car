@@ -1,58 +1,144 @@
 package com.accp.domain;
 
+/**
+ * 车辆类
+ * @author 小朱
+ *
+ */
 public class Vehicle {
+	/**
+	 * 车辆号码
+	 */
     private String veeid;
 
+    /**
+     * 车型品牌
+     */
     private String veebrand;
 
+    /**
+     * 车辆型号
+     */
     private String veetype;
 
+    /**
+     * 驾驶员
+     */
     private String veedriver;
 
+    /**
+     * 驾驶员电话
+     */
     private String veedriverphone;
 
+    /**
+     * 出生日期
+     */
     private String veedate;
 
+    /**
+     * 车辆归属
+     */
     private String veeaffiliation;
 
+    /**
+     * 驾证到期
+     */
     private String veeexpires;
 
+    /**
+     * 车架号
+     */
     private String veeframe;
 
+    /**
+     * 发动机号
+     */
     private String veeengine;
 
+    /**
+     * 车辆年款
+     */
     private String veeyear;
 
+    /**
+     * 里程
+     */
     private String veemileage;
 
+    /**
+     * 发动机品牌
+     */
     private String endid;
 
+    /**
+     * 载重
+     */
     private Integer veeload;
 
+    /**
+     * 购买日期
+     */
     private String veepurchase;
 
+    /**
+     * 上牌日期
+     */
     private String veeregistered;
 
+    /**
+     * 车检日期
+     */
     private String veevehicle;
 
+    /**
+     * 燃油类别
+     */
     private String veecategory;
 
+    /**
+     * 车系
+     */
     private String veeseries;
 
+    /**
+     * 交强保险公司
+     */
     private String veeinsurance;
 
+    /**
+     * 交强保险到期
+     */
     private String veeexpire;
 
+    /**
+     * 在我投保车
+     */
     private String veeflag;
 
+    /**
+     * 商业保险公司
+     */
     private String veebusiness;
 
+    /**
+     * 商业险到期
+     */
     private String veebusexp;
 
+    /**
+     * 下次保养里程
+     */
     private String veeupkeep;
 
+    /**
+     * 下次保养日期
+     */
     private String veeupdate;
 
+    /**
+     * 客户id
+     */
     private String cltid;
 
     private String bei1;
@@ -64,8 +150,47 @@ public class Vehicle {
     private String bei4;
 
     private Integer bei5;
+    
+    /**
+     * 车型品牌对象
+     */
+    private Trademark trademark;
+    
+    /**
+     * 客户对象
+     */
+    private Client client;
+    
+    /**
+     * 发动机品牌对象
+     */
+    private Enginebrand enginebrand;
 
-    public String getVeeid() {
+    public Trademark getTrademark() {
+		return trademark;
+	}
+
+	public void setTrademark(Trademark trademark) {
+		this.trademark = trademark;
+	}
+
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
+	public Enginebrand getEnginebrand() {
+		return enginebrand;
+	}
+
+	public void setEnginebrand(Enginebrand enginebrand) {
+		this.enginebrand = enginebrand;
+	}
+
+	public String getVeeid() {
         return veeid;
     }
 
